@@ -1,0 +1,12 @@
+# HerfBook Community Seed Data — Purchase Types
+# License: CC BY-SA 4.0
+# Source: Common industry terminology
+# Last updated: 2026-05-03
+
+purchase_types:
+  - name: Box
+  - name: 5-Pack
+  - name: Single
+  - name: Sampler
+  - name: Bundle
+  - name: Gift

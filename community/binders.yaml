@@ -1,0 +1,59 @@
+# HerfBook Community Seed Data — Binder Leaf Types
+# License: CC BY-SA 4.0
+# Source: Industry-standard agricultural and botanical terminology
+# Last updated: 2026-05-03
+
+binders:
+  - name: Connecticut Broadleaf
+    origin_region: Connecticut River Valley, USA
+
+  - name: Connecticut Shade
+    origin_region: Connecticut River Valley, USA
+
+  - name: Habano
+    origin_region: Nicaragua
+
+  - name: Corojo
+    origin_region: Honduras / Nicaragua
+
+  - name: Criollo
+    origin_region: Nicaragua / Dominican Republic
+
+  - name: San Andres
+    origin_region: San Andrés Valley, Mexico
+
+  - name: Sumatra
+    origin_region: Indonesia / Ecuador
+
+  - name: Cameroon
+    origin_region: Cameroon / Central African Republic
+
+  - name: Dominican Olor
+    origin_region: Dominican Republic
+
+  - name: Dominican Piloto Cubano
+    origin_region: Dominican Republic
+
+  - name: Honduran
+    origin_region: Honduras
+
+  - name: Nicaraguan
+    origin_region: Nicaragua
+
+  - name: Brazilian Mata Fina
+    origin_region: Bahia, Brazil
+
+  - name: Brazilian Arapiraca
+    origin_region: Brazil
+
+  - name: Mexican San Andres
+    origin_region: San Andrés Valley, Mexico
+
+  - name: Pennsylvania Broadleaf
+    origin_region: Pennsylvania, USA
+
+  - name: Indonesian Besuki
+    origin_region: Java, Indonesia
+
+  - name: Ecuador Habano
+    origin_region: Ecuador

@@ -1,0 +1,41 @@
+# HerfBook Community Seed Data — Cigar-Producing Countries
+# License: CC BY-SA 4.0
+# Source: ISO 3166-1 alpha-2 (public domain international standard)
+# Last updated: 2026-05-03
+
+countries:
+  - name: Cuba
+    iso_code: CU
+
+  - name: Nicaragua
+    iso_code: NI
+
+  - name: Dominican Republic
+    iso_code: DO
+
+  - name: Honduras
+    iso_code: HN
+
+  - name: Mexico
+    iso_code: MX
+
+  - name: United States
+    iso_code: US
+
+  - name: Ecuador
+    iso_code: EC
+
+  - name: Brazil
+    iso_code: BR
+
+  - name: Colombia
+    iso_code: CO
+
+  - name: Indonesia
+    iso_code: ID
+
+  - name: Italy
+    iso_code: IT
+
+  - name: Philippines
+    iso_code: PH

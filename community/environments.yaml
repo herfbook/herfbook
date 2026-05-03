@@ -1,0 +1,15 @@
+# HerfBook Community Seed Data — Smoking Environments
+# License: CC BY-SA 4.0
+# Source: Common descriptive terms
+# Last updated: 2026-05-03
+
+environments:
+  - name: Indoor
+  - name: Outdoor – Patio
+  - name: Outdoor – Yard
+  - name: Lounge
+  - name: Golf Course
+  - name: Boat
+  - name: Camping
+  - name: Car
+  - name: Other

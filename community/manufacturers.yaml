@@ -1,0 +1,181 @@
+# HerfBook Community Seed Data — Cigar Manufacturers
+# License: CC BY-SA 4.0
+# Source: Wikipedia "List of cigar brands" (CC BY-SA 3.0), public industry data
+# Last updated: 2026-05-03
+
+manufacturers:
+  - name: Habanos S.A.
+    country: Cuba
+    website: https://www.habanos.com
+
+  - name: Altadis USA
+    country: United States
+    website: https://www.altadisusa.com
+
+  - name: General Cigar Company
+    country: United States
+    website: https://www.generalcigar.com
+
+  - name: Scandinavian Tobacco Group
+    country: Denmark
+    website: https://www.st-group.com
+
+  - name: Oettinger Davidoff Group
+    country: Switzerland
+    website: https://www.davidoff.com
+
+  - name: Tabacalera A. Fuente y Cia
+    country: Dominican Republic
+    website: https://www.arturofuente.com
+
+  - name: Padrón Cigars S.A.
+    country: Nicaragua
+    website: https://www.padron.com
+
+  - name: Drew Estate
+    country: United States
+    website: https://www.drewestate.com
+
+  - name: Oliva Cigar Company
+    country: Nicaragua
+    website: https://www.olivacigar.com
+
+  - name: My Father Cigars S.A.
+    country: Nicaragua
+    website: https://www.myfathercigars.com
+
+  - name: Rocky Patel Premium Cigars
+    country: United States
+    website: https://www.rockypatel.com
+
+  - name: A.J. Fernandez Cigars
+    country: Nicaragua
+    website: https://www.ajfcigars.com
+
+  - name: La Flor Dominicana
+    country: Dominican Republic
+    website: https://www.laflordominicana.com
+
+  - name: Joya de Nicaragua S.A.
+    country: Nicaragua
+    website: https://www.joyadenicaragua.com
+
+  - name: J.C. Newman Cigar Company
+    country: United States
+    website: https://www.jcnewman.com
+
+  - name: Tabacalera Perdomo S.A.
+    country: Nicaragua
+    website: https://www.perdomocigars.com
+
+  - name: E.P. Carrillo / Tabacalera La Alianza
+    country: Dominican Republic
+    website: https://www.epcarrillo.com
+
+  - name: Tatuaje Cigars Inc.
+    country: United States
+    website: https://www.tatuajecigars.com
+
+  - name: Plasencia Cigars S.A.
+    country: Nicaragua
+    website: https://www.plasenciacigars.com
+
+  - name: Alec Bradley Cigars
+    country: United States
+    website: https://www.alecbradley.com
+
+  - name: Ashton Distributors Inc.
+    country: United States
+    website: https://www.ashtoncigar.com
+
+  - name: Swisher International
+    country: United States
+    website: https://www.swisher.com
+
+  - name: Swedish Match
+    country: Sweden
+    website: https://www.swedishmatch.com
+
+  - name: Imperial Brands
+    country: United Kingdom
+    website: https://www.imperialbrandsplc.com
+
+  - name: Aganorsa Leaf
+    country: Nicaragua
+    website: https://www.aganorsaleaf.com
+
+  - name: Foundation Cigar Company
+    country: United States
+    website: https://www.foundationcigar.com
+
+  - name: Crowned Heads LLC
+    country: United States
+    website: https://www.crownedheads.com
+
+  - name: Warped Cigars
+    country: United States
+    website: https://www.warpedcigars.com
+
+  - name: RoMa Craft Tobac
+    country: United States
+    website: https://www.romacrafttobac.com
+
+  - name: Dunbarton Tobacco & Trust
+    country: United States
+    website: https://www.dunbartontobaccoandtrust.com
+
+  - name: Villiger Söhne AG
+    country: Switzerland
+    website: https://www.villiger.com
+
+  - name: Tabacalera Incorporada
+    country: Philippines
+    website: null
+
+  - name: Maya Selva Cigars
+    country: Honduras
+    website: https://www.mayaselva.com
+
+  - name: Manifatture Sigaro Toscano
+    country: Italy
+    website: https://www.toscano.it
+
+  - name: Boutique Blends Cigars
+    country: Nicaragua
+    website: https://www.boutiqueblends.com
+
+  - name: Espinosa Cigars
+    country: United States
+    website: https://www.espinosacigars.com
+
+  - name: Illusione Cigars
+    country: United States
+    website: https://www.illusionecigars.com
+
+  - name: Southern Draw Cigars
+    country: United States
+    website: https://www.southerndrawcigars.com
+
+  - name: Djarum
+    country: Indonesia
+    website: https://www.djarum.com
+
+  - name: MATASA
+    country: Dominican Republic
+    website: null
+
+  - name: Gurkha Cigars
+    country: United States
+    website: https://www.gurkhacigars.com
+
+  - name: Kristoff Cigars
+    country: Dominican Republic
+    website: https://www.kristoffcigars.com
+
+  - name: La Palina Cigars
+    country: United States
+    website: https://www.lapalina.com
+
+  - name: Nat Sherman International
+    country: United States
+    website: null

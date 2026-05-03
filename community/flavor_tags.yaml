@@ -1,0 +1,179 @@
+# HerfBook Community Seed Data — Flavor Tags (Tasting Vocabulary)
+# License: CC BY-SA 4.0
+# Source: Original HerfBook taxonomy
+# Last updated: 2026-05-03
+
+flavor_tags:
+  # ── Wood ───────────────────────────────────────────────────────────
+  - name: Cedar
+    category: wood
+  - name: Oak
+    category: wood
+  - name: Hickory
+    category: wood
+  - name: Mesquite
+    category: wood
+  - name: Sandalwood
+    category: wood
+  - name: Pine
+    category: wood
+  - name: Birch
+    category: wood
+  - name: Mahogany
+    category: wood
+
+  # ── Spice ──────────────────────────────────────────────────────────
+  - name: Black Pepper
+    category: spice
+  - name: White Pepper
+    category: spice
+  - name: Red Pepper
+    category: spice
+  - name: Cinnamon
+    category: spice
+  - name: Clove
+    category: spice
+  - name: Nutmeg
+    category: spice
+  - name: Anise
+    category: spice
+  - name: Ginger
+    category: spice
+  - name: Cumin
+    category: spice
+
+  # ── Sweet ──────────────────────────────────────────────────────────
+  - name: Dark Chocolate
+    category: sweet
+  - name: Milk Chocolate
+    category: sweet
+  - name: Cocoa
+    category: sweet
+  - name: Caramel
+    category: sweet
+  - name: Vanilla
+    category: sweet
+  - name: Honey
+    category: sweet
+  - name: Brown Sugar
+    category: sweet
+  - name: Molasses
+    category: sweet
+  - name: Maple
+    category: sweet
+  - name: Butterscotch
+    category: sweet
+
+  # ── Earth ──────────────────────────────────────────────────────────
+  - name: Leather
+    category: earth
+  - name: Soil
+    category: earth
+  - name: Moss
+    category: earth
+  - name: Mushroom
+    category: earth
+  - name: Peat
+    category: earth
+  - name: Barnyard
+    category: earth
+  - name: Wet Stone
+    category: earth
+  - name: Clay
+    category: earth
+
+  # ── Nut ────────────────────────────────────────────────────────────
+  - name: Almond
+    category: nut
+  - name: Walnut
+    category: nut
+  - name: Peanut
+    category: nut
+  - name: Cashew
+    category: nut
+  - name: Hazelnut
+    category: nut
+  - name: Pecan
+    category: nut
+  - name: Macadamia
+    category: nut
+
+  # ── Fruit ──────────────────────────────────────────────────────────
+  - name: Citrus
+    category: fruit
+  - name: Orange Peel
+    category: fruit
+  - name: Lemon Zest
+    category: fruit
+  - name: Berry
+    category: fruit
+  - name: Dried Fruit
+    category: fruit
+  - name: Raisin
+    category: fruit
+  - name: Fig
+    category: fruit
+  - name: Plum
+    category: fruit
+  - name: Cherry
+    category: fruit
+  - name: Apple
+    category: fruit
+
+  # ── Roast ──────────────────────────────────────────────────────────
+  - name: Coffee
+    category: roast
+  - name: Espresso
+    category: roast
+  - name: Toast
+    category: roast
+  - name: Char
+    category: roast
+  - name: Smoky
+    category: roast
+  - name: Roasted Nuts
+    category: roast
+  - name: Dark Roast
+    category: roast
+
+  # ── Cream ──────────────────────────────────────────────────────────
+  - name: Cream
+    category: cream
+  - name: Butter
+    category: cream
+  - name: Milk
+    category: cream
+  - name: Nougat
+    category: cream
+
+  # ── Floral ─────────────────────────────────────────────────────────
+  - name: Hay
+    category: floral
+  - name: Grass
+    category: floral
+  - name: Floral
+    category: floral
+  - name: Lavender
+    category: floral
+  - name: Rose
+    category: floral
+  - name: Tea
+    category: floral
+  - name: Herbal
+    category: floral
+
+  # ── Misc ───────────────────────────────────────────────────────────
+  - name: Mineral
+    category: misc
+  - name: Salt
+    category: misc
+  - name: Metallic
+    category: misc
+  - name: Baking Spice
+    category: misc
+  - name: Licorice
+    category: misc
+  - name: Malt
+    category: misc
+  - name: Umami
+    category: misc

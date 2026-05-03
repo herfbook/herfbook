@@ -1,0 +1,20 @@
+# HerfBook Community Seed Data — Strength Levels
+# License: CC BY-SA 4.0
+# Source: Industry-standard convention
+# Last updated: 2026-05-03
+
+strength_levels:
+  - name: Mild
+    sort_order: 1
+
+  - name: Mild-Medium
+    sort_order: 2
+
+  - name: Medium
+    sort_order: 3
+
+  - name: Medium-Full
+    sort_order: 4
+
+  - name: Full
+    sort_order: 5

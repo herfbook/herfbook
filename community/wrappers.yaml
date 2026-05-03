@@ -1,0 +1,99 @@
+# HerfBook Community Seed Data — Wrapper Leaf Types
+# License: CC BY-SA 4.0
+# Source: Industry-standard agricultural and botanical terminology
+# Last updated: 2026-05-03
+
+wrappers:
+  # ── Claro / Light ──────────────────────────────────────────────────
+  - name: Connecticut Shade
+    color_category: claro
+    origin_region: Connecticut River Valley, USA
+
+  - name: Candela
+    color_category: claro
+    origin_region: Various
+
+  - name: Ecuador Connecticut
+    color_category: claro
+    origin_region: Ecuador
+
+  # ── Colorado Claro ─────────────────────────────────────────────────
+  - name: Cameroon
+    color_category: colorado claro
+    origin_region: Cameroon / Central African Republic
+
+  - name: Sumatra
+    color_category: colorado claro
+    origin_region: Indonesia / Ecuador
+
+  - name: Shade Grown Habano
+    color_category: colorado claro
+    origin_region: Nicaragua / Ecuador
+
+  # ── Colorado ───────────────────────────────────────────────────────
+  - name: Habano
+    color_category: colorado
+    origin_region: Nicaragua / Ecuador
+
+  - name: Corojo
+    color_category: colorado
+    origin_region: Honduras / Nicaragua
+
+  - name: Criollo
+    color_category: colorado
+    origin_region: Nicaragua / Dominican Republic
+
+  - name: Arapiraca
+    color_category: colorado
+    origin_region: Brazil
+
+  - name: Piloto Cubano
+    color_category: colorado
+    origin_region: Dominican Republic
+
+  # ── Colorado Maduro ────────────────────────────────────────────────
+  - name: Habano Rosado
+    color_category: colorado maduro
+    origin_region: Nicaragua / Ecuador
+
+  - name: San Andres
+    color_category: colorado maduro
+    origin_region: San Andrés Valley, Mexico
+
+  - name: Sumatra Rosado
+    color_category: colorado maduro
+    origin_region: Ecuador
+
+  # ── Maduro ─────────────────────────────────────────────────────────
+  - name: Connecticut Broadleaf
+    color_category: maduro
+    origin_region: Connecticut River Valley, USA
+
+  - name: Maduro
+    color_category: maduro
+    origin_region: Various
+
+  - name: San Andres Maduro
+    color_category: maduro
+    origin_region: San Andrés Valley, Mexico
+
+  - name: Brazilian Mata Fina
+    color_category: maduro
+    origin_region: Bahia, Brazil
+
+  - name: Pennsylvania Broadleaf
+    color_category: maduro
+    origin_region: Pennsylvania, USA
+
+  # ── Oscuro ─────────────────────────────────────────────────────────
+  - name: Oscuro
+    color_category: oscuro
+    origin_region: Various
+
+  - name: Connecticut Broadleaf Oscuro
+    color_category: oscuro
+    origin_region: Connecticut River Valley, USA
+
+  - name: Mexican San Andres Oscuro
+    color_category: oscuro
+    origin_region: San Andrés Valley, Mexico
