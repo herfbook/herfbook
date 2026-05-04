@@ -3,7 +3,7 @@
 # GitHub docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
 # Default: all files require maintainer review
-* @your-github-username
+* @crzykidd
 
 # Community data — same reviewer; separating allows adding domain experts later
-/community/ @your-github-username
+/community/ @crzykidd
