@@ -181,25 +181,25 @@ The following fields are standardized as community-maintained lookup lists rathe
 
 | YAML File | Priority | Description |
 |---|---|---|
-| `brands.yaml` | M1 — Ship | Cigar brand names with manufacturer FK, country, website, active status. The largest and most important list. (e.g., Padron, Arturo Fuente, Oliva, Drew Estate, My Father, Liga Privada) |
-| `manufacturers.yaml` | M1 — Ship | Parent companies that own/produce brands. One manufacturer → many brands. (e.g., General Cigar Co., Altadis USA, Scandinavian Tobacco Group, Padrón Cigars S.A.) |
-| `vitolas.yaml` | M1 — Ship | Standard shape/size combinations. Each entry includes name, length (inches), ring gauge, and shape category (parejo or figurado). Ring gauge is a property of a vitola, not a standalone list. (e.g., Robusto 5×50, Toro 6×50, Churchill 7×48, Corona 5.5×42, Lancero 7.5×38, Gordo 6×60, Torpedo, Belicoso, Perfecto) |
-| `wrappers.yaml` | M1 — Ship | Wrapper leaf types with color category and origin region. (e.g., Connecticut Shade, Connecticut Broadleaf, Habano, Maduro, Oscuro, Candela, Corojo, Cameroon, Sumatra, San Andres) |
-| `binders.yaml` | M1 — Ship | Binder leaf types. Separate from wrappers because the same leaf can serve as either. Similar fields. |
-| `fillers.yaml` | M1 — Ship | Filler tobaccos. Relationship is many-to-many (cigars use blends). Includes country and leaf priming where applicable. (e.g., Nicaraguan Ligero, Dominican Seco, Honduran Viso, Piloto Cubano) |
-| `countries.yaml` | M1 — Ship | Country of origin for the cigar. Short, rarely changes. (e.g., Cuba, Nicaragua, Dominican Republic, Honduras, Mexico, USA, Ecuador, Brazil) |
-| `strength_levels.yaml` | M1 — Ship | Standardized strength scale. Prevents drift. (Mild, Mild-Medium, Medium, Medium-Full, Full) |
-| `flavor_tags.yaml` | M1 — Ship | Tasting vocabulary organized by category. Benefits most from community curation. Categories: wood (cedar, oak, hickory), spice (pepper, cinnamon, clove), sweet (cocoa, chocolate, caramel, vanilla, honey), earth (leather, soil, moss, mushroom), nut (almond, walnut, peanut), fruit (citrus, berry, dried fruit, raisin), roast (coffee, espresso, toast, char), cream (cream, butter, milk), floral (hay, grass, floral), misc (mineral, salt, metallic) |
-| `purchase_types.yaml` | M1 — Ship | How the cigars were purchased. Tiny list. (Box, 5-Pack, Single, Sampler, Bundle, Gift) |
-| `environments.yaml` | M1 — Ship | Smoking environment tags. (Indoor, Outdoor – Patio, Outdoor – Yard, Lounge, Golf Course, Boat, Camping, Car, Other) |
-| `vendors.yaml` | M2 — Later | Retailers and lounges. Could get large. Fields: name, url, type (online/B&M/lounge), state, country. Stays user-only for M1, becomes community in M2. |
-| `occasions.yaml` | Optional | Smoking occasions. May stay free text with typeahead suggestions. (Celebration, Daily, Special Reserve, Holiday, Bachelor Party, Birth of Child, Promotion, Retirement) |
+| `brands.yml` | M1 — Ship | Cigar brand names with manufacturer FK, country, website, active status. The largest and most important list. (e.g., Padron, Arturo Fuente, Oliva, Drew Estate, My Father, Liga Privada) |
+| `manufacturers.yml` | M1 — Ship | Parent companies that own/produce brands. One manufacturer → many brands. (e.g., General Cigar Co., Altadis USA, Scandinavian Tobacco Group, Padrón Cigars S.A.) |
+| `vitolas.yml` | M1 — Ship | Standard shape/size combinations. Each entry includes name, length (inches), ring gauge, and shape category (parejo or figurado). Ring gauge is a property of a vitola, not a standalone list. (e.g., Robusto 5×50, Toro 6×50, Churchill 7×48, Corona 5.5×42, Lancero 7.5×38, Gordo 6×60, Torpedo, Belicoso, Perfecto) |
+| `wrappers.yml` | M1 — Ship | Wrapper leaf types with color category and origin region. (e.g., Connecticut Shade, Connecticut Broadleaf, Habano, Maduro, Oscuro, Candela, Corojo, Cameroon, Sumatra, San Andres) |
+| `binders.yml` | M1 — Ship | Binder leaf types. Separate from wrappers because the same leaf can serve as either. Similar fields. |
+| `fillers.yml` | M1 — Ship | Filler tobaccos. Relationship is many-to-many (cigars use blends). Includes country and leaf priming where applicable. (e.g., Nicaraguan Ligero, Dominican Seco, Honduran Viso, Piloto Cubano) |
+| `countries.yml` | M1 — Ship | Country of origin for the cigar. Short, rarely changes. (e.g., Cuba, Nicaragua, Dominican Republic, Honduras, Mexico, USA, Ecuador, Brazil) |
+| `strength_levels.yml` | M1 — Ship | Standardized strength scale. Prevents drift. (Mild, Mild-Medium, Medium, Medium-Full, Full) |
+| `flavor_tags.yml` | M1 — Ship | Tasting vocabulary organized by category. Benefits most from community curation. Categories: wood (cedar, oak, hickory), spice (pepper, cinnamon, clove), sweet (cocoa, chocolate, caramel, vanilla, honey), earth (leather, soil, moss, mushroom), nut (almond, walnut, peanut), fruit (citrus, berry, dried fruit, raisin), roast (coffee, espresso, toast, char), cream (cream, butter, milk), floral (hay, grass, floral), misc (mineral, salt, metallic) |
+| `purchase_types.yml` | M1 — Ship | How the cigars were purchased. Tiny list. (Box, 5-Pack, Single, Sampler, Bundle, Gift) |
+| `environments.yml` | M1 — Ship | Smoking environment tags. (Indoor, Outdoor – Patio, Outdoor – Yard, Lounge, Golf Course, Boat, Camping, Car, Other) |
+| `vendors.yml` | M2 — Later | Retailers and lounges. Could get large. Fields: name, url, type (online/B&M/lounge), state, country. Stays user-only for M1, becomes community in M2. |
+| `occasions.yml` | Optional | Smoking occasions. May stay free text with typeahead suggestions. (Celebration, Daily, Special Reserve, Holiday, Bachelor Party, Birth of Child, Promotion, Retirement) |
 
 ### 4.2 YAML File Structure
 
 Each YAML file lives in a `community/` directory at the repository root. Files follow a consistent structure with a top-level key matching the filename.
 
-**`community/brands.yaml`**
+**`community/brands.yml`**
 ```yaml
 brands:
   - name: Padron
@@ -212,7 +212,7 @@ brands:
     website: https://arturofuente.com
 ```
 
-**`community/vitolas.yaml`**
+**`community/vitolas.yml`**
 ```yaml
 vitolas:
   - name: Robusto
@@ -229,7 +229,7 @@ vitolas:
     category: figurado
 ```
 
-**`community/wrappers.yaml`**
+**`community/wrappers.yml`**
 ```yaml
 wrappers:
   - name: Connecticut Shade
@@ -240,7 +240,7 @@ wrappers:
     origin_region: Various
 ```
 
-**`community/flavor_tags.yaml`**
+**`community/flavor_tags.yml`**
 ```yaml
 flavor_tags:
   - name: Cedar
@@ -345,19 +345,19 @@ For each lookup list, here's where we source initial data and the legal basis fo
 
 | YAML File | Primary Source | Legal Basis | Est. Count |
 |---|---|---|---|
-| `brands.yaml` | Wikipedia "List of cigar brands" (CC BY-SA) | CC-licensed. Brand names are not copyrightable. | 200–300 |
-| `manufacturers.yaml` | Wikipedia "Cigar manufacturing companies" category | CC-licensed. Company names are factual data. | 30–50 |
-| `vitolas.yaml` | Industry standard sizes (common knowledge) | Vitola names and traditional dimensions are industry-standard terms. | 25–35 |
-| `wrappers.yaml` | Agricultural/botanical terminology | Leaf variety names are descriptive terms. | 20–25 |
-| `binders.yaml` | Same as wrappers | Same basis. | 15–20 |
-| `fillers.yaml` | Botanical + geographic terminology | Country + priming names are factual. | 20–25 |
-| `countries.yaml` | ISO 3166 country list | International standard, public domain. | 8–12 |
-| `strength_levels.yaml` | Industry convention | 5 common terms, universally used. | 5 |
-| `flavor_tags.yaml` | Original taxonomy (our creation) | We define the vocabulary. | 60–80 |
-| `purchase_types.yaml` | Common sense | Descriptive terms. | 6 |
-| `environments.yaml` | Common sense | Descriptive terms. | 8–10 |
+| `brands.yml` | Wikipedia "List of cigar brands" (CC BY-SA) | CC-licensed. Brand names are not copyrightable. | 200–300 |
+| `manufacturers.yml` | Wikipedia "Cigar manufacturing companies" category | CC-licensed. Company names are factual data. | 30–50 |
+| `vitolas.yml` | Industry standard sizes (common knowledge) | Vitola names and traditional dimensions are industry-standard terms. | 25–35 |
+| `wrappers.yml` | Agricultural/botanical terminology | Leaf variety names are descriptive terms. | 20–25 |
+| `binders.yml` | Same as wrappers | Same basis. | 15–20 |
+| `fillers.yml` | Botanical + geographic terminology | Country + priming names are factual. | 20–25 |
+| `countries.yml` | ISO 3166 country list | International standard, public domain. | 8–12 |
+| `strength_levels.yml` | Industry convention | 5 common terms, universally used. | 5 |
+| `flavor_tags.yml` | Original taxonomy (our creation) | We define the vocabulary. | 60–80 |
+| `purchase_types.yml` | Common sense | Descriptive terms. | 6 |
+| `environments.yml` | Common sense | Descriptive terms. | 8–10 |
 
-**Wikipedia as Primary Seed:** The Wikipedia "List of cigar brands" page is CC BY-SA licensed and contains a comprehensive alphabetical list with brand name, owning company, and source references. This gives us both `brands.yaml` and most of `manufacturers.yaml` in one pass.
+**Wikipedia as Primary Seed:** The Wikipedia "List of cigar brands" page is CC BY-SA licensed and contains a comprehensive alphabetical list with brand name, owning company, and source references. This gives us both `brands.yml` and most of `manufacturers.yml` in one pass.
 
 **Existing APIs to Evaluate:**
 
@@ -1068,7 +1068,7 @@ For cigars without UPCs, a vision model (Anthropic API) identifies band photos. 
 
 ## 12. Open Questions
 
-1. **Cigar data seeding:** How aggressively do we pre-populate `brands.yaml` and `vitolas.yaml` for M1? Start with top 50–100 brands, or go for the full Wikipedia list (200–300)?
+1. **Cigar data seeding:** How aggressively do we pre-populate `brands.yml` and `vitolas.yml` for M1? Start with top 50–100 brands, or go for the full Wikipedia list (200–300)?
 2. **Vitola granularity:** The same name (Robusto) can mean different sizes across brands. Standardize to the most common dimensions, or document that custom overrides handle brand-specific sizes?
 3. **Smart hygrometer integration:** Build SensorPush/Govee API integration in M1, or defer?
 4. **Mobile native vs. PWA-only:** PWA covers 90% of use cases but camera/barcode performance may push React Native for M2+.
@@ -1103,17 +1103,17 @@ herfbook/
 │
 ├── community/                       # Community-maintained reference data
 │   ├── LICENSE                      # CC BY-SA 4.0 (data only)
-│   ├── brands.yaml
-│   ├── manufacturers.yaml
-│   ├── vitolas.yaml
-│   ├── wrappers.yaml
-│   ├── binders.yaml
-│   ├── fillers.yaml
-│   ├── countries.yaml
-│   ├── strength_levels.yaml
-│   ├── flavor_tags.yaml
-│   ├── purchase_types.yaml
-│   └── environments.yaml
+│   ├── brands.yml
+│   ├── manufacturers.yml
+│   ├── vitolas.yml
+│   ├── wrappers.yml
+│   ├── binders.yml
+│   ├── fillers.yml
+│   ├── countries.yml
+│   ├── strength_levels.yml
+│   ├── flavor_tags.yml
+│   ├── purchase_types.yml
+│   └── environments.yml
 │
 ├── backend/                         # FastAPI application
 │   ├── app/

@@ -43,9 +43,66 @@ Website: [herfbook.com](https://herfbook.com)
 
 ## Quick Start
 
-> Coming soon. The application is under active development.
+```bash
+cp .env.example .env        # copy config template
+# edit .env — at minimum set strong passwords and JWT_SECRET
+docker compose up           # starts api, db, minio, and web
+```
+
+`http://localhost/api/health` → `{"status":"ok","version":"0.1.0"}`
+
+> The application is under active development. Database models and the full UI are not yet built.
 
 See [DESIGN.md](DESIGN.md) for the full architecture and milestone roadmap.
+
+## Configuration
+
+HerfBook supports two equivalent configuration methods. **Environment variables always win** — useful for Docker, CI, and secrets managers. A YAML config file is available for users who prefer a single structured file over a `.env`.
+
+### Option 1 — `.env` file (recommended for Docker)
+
+```bash
+cp .env.example .env
+# edit .env, then:
+docker compose up
+```
+
+### Option 2 — YAML config file
+
+```bash
+cp config.example.yml config.yml
+# edit config.yml, then set the path:
+export HERFBOOK_CONFIG_FILE=config.yml
+docker compose up
+```
+
+### Precedence
+
+```text
+env vars  >  .env file  >  config.yml  >  built-in defaults
+```
+
+### Available settings
+
+| Setting | Default | Description |
+| --- | --- | --- |
+| `POSTGRES_USER` | `herfbook` | PostgreSQL username |
+| `POSTGRES_PASSWORD` | `changeme` | PostgreSQL password — **change this** |
+| `POSTGRES_DB` | `herfbook` | PostgreSQL database name |
+| `MINIO_ROOT_USER` | `herfbook` | MinIO root username |
+| `MINIO_ROOT_PASSWORD` | `changeme` | MinIO root password — **change this** |
+| `JWT_SECRET` | `changeme-…` | Secret for signing JWTs — **change this** |
+| `COMMUNITY_SYNC_ON_STARTUP` | `true` | Sync community YAML data from GitHub on startup |
+| `GITHUB_COMMUNITY_REPO` | `herfbook/herfbook` | GitHub repo to pull community YAML from |
+| `HERFBOOK_CONFIG_FILE` | *(unset)* | Optional path to a YAML config file |
+
+### Development mode (hot reload + exposed Postgres)
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+```
+
+This mounts `./backend` into the API container so code changes trigger an automatic reload, and exposes Postgres on `localhost:5432` for local DB tools.
 
 ## Contributing
 

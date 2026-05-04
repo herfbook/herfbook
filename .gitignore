@@ -22,6 +22,9 @@ dist/
 .parcel-cache/
 .vite/
 
+# Config file (local instance settings — do not commit)
+config.yml
+
 # Docker volumes
 postgres_data/
 minio_data/

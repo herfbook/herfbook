@@ -1,0 +1,55 @@
+services:
+  herfbook-api:
+    build: ./backend
+    container_name: herfbook-api
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_HOST: herfbook-db
+    depends_on:
+      herfbook-db:
+        condition: service_healthy
+      herfbook-minio:
+        condition: service_started
+    ports:
+      - "8000:8000"
+
+  herfbook-db:
+    image: postgres:16
+    container_name: herfbook-db
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  herfbook-minio:
+    image: minio/minio
+    container_name: herfbook-minio
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+
+  herfbook-web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: herfbook-web
+    restart: unless-stopped
+    depends_on:
+      - herfbook-api
+    ports:
+      - "80:80"
+
+volumes:
+  postgres_data:
+  minio_data:

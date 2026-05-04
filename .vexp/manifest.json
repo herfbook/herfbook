@@ -1,0 +1,18 @@
+{
+  "file_hashes": {
+    "Dockerfile.web": "647aa4fe7805421165339b7fd987718b52aba0b4f9ab941ef6ccada4f1257dbb",
+    "backend/Dockerfile": "24208b1c29333eebf9a55c2839514de3390bbb4be2acc459cdb7656127d2cac2",
+    "backend/app/__init__.py": "af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262",
+    "backend/app/config.py": "ce3043dc940add80acaede7edfcdf7a35e3a61f7c91f19a61d7cd31e79ae56b4",
+    "backend/app/main.py": "7dc5913fc48bae2419efde63c14868716b974ba385f3fd84e8d15d92daa6e342"
+  },
+  "indexed_at_commit": "9ba535acac159dc302b8e75e2716d808a14fabb6",
+  "indexed_at_timestamp": "2026-05-04T01:49:47.747533300+00:00",
+  "schema_version": 3,
+  "stats": {
+    "total_edges": 7,
+    "total_files": 5,
+    "total_nodes": 24
+  },
+  "vexp_version": "2.0.12"
+}

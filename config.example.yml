@@ -1,0 +1,21 @@
+# ──────────────────────────────────────────────
+# HerfBook YAML configuration (optional)
+# Copy to config.yml and set HERFBOOK_CONFIG_FILE=config.yml
+# Environment variables always take precedence over this file.
+# ──────────────────────────────────────────────
+
+# Database
+postgres_user: herfbook
+postgres_password: changeme
+postgres_db: herfbook
+
+# MinIO object storage
+minio_root_user: herfbook
+minio_root_password: changeme
+
+# Auth — replace with a long random string in production
+jwt_secret: changeme-replace-with-a-long-random-string
+
+# Community data sync
+community_sync_on_startup: true
+github_community_repo: herfbook/herfbook
