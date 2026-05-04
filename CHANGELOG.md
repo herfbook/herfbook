@@ -22,6 +22,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Production Docker Compose example for GHCR-based deployments
 - Landing page at herfbook.com (Cloudflare Pages)
 - PRD.md tracking M1 epics and feature status
+- SQLAlchemy ORM models for all M1 tables (11 community lookup tables, 17 core entity and guest access tables)
+- Base model mixins: UUIDPrimaryKey (PostgreSQL gen_random_uuid()), TimestampMixin, CommunityLookupMixin (AmmoLedger three-source pattern)
+- Composite database indexes on high-volume tables for multi-tenant query performance
+- Alembic migration framework configured with autogenerate from model metadata
+- Container entrypoint script (entrypoint.sh) runs database migrations automatically before starting the application
+- pg_isready wait loop in entrypoint for reliable database availability
 
 ### Changed
 - Standardized all YAML file extensions to .yml

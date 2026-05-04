@@ -25,14 +25,14 @@ Reference DESIGN.md for architecture decisions, data model, schema, and technica
 - [x] Configuration system (env vars + config file)
 - [x] GitHub Actions CI/CD workflows
 - [x] Branch protection and PR workflow
-- [ ] Alembic migration setup
+- [x] Alembic migration setup
 - [ ] Production Docker Compose with GHCR images
 
 ### Epic 2: Data Layer
 
-- [ ] SQLAlchemy ORM models — lookup tables (all 11 community tables)
-- [ ] SQLAlchemy ORM models — core entities (users, humidors, cigars, inventory, smoking_sessions, tasting_notes, etc.)
-- [ ] SQLAlchemy ORM models — guest access & swaps
+- [x] SQLAlchemy ORM models — lookup tables (all 11 community tables)
+- [x] SQLAlchemy ORM models — core entities (users, humidors, cigars, inventory, smoking_sessions, tasting_notes, etc.)
+- [x] SQLAlchemy ORM models — guest access & swaps
 - [ ] Initial Alembic migration (full schema)
 - [ ] Database seeding from community YAML files
 - [ ] CommunityDataProvider interface
