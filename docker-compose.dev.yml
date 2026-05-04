@@ -1,9 +1,68 @@
 services:
   herfbook-api:
+    build: ./backend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_HOST: herfbook-db
     volumes:
       - ./backend:/app
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      herfbook-db:
+        condition: service_healthy
+      herfbook-minio:
+        condition: service_started
+    ports:
+      - "8005:8000"
+    networks:
+      - herfbook-dev
 
   herfbook-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     ports:
-      - "5432:5432"
+      - "5435:5432"
+    networks:
+      - herfbook-dev
+
+  herfbook-minio:
+    image: minio/minio
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
+    ports:
+      - "9005:9000"
+      - "9006:9001"
+    networks:
+      - herfbook-dev
+
+  herfbook-web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    restart: unless-stopped
+    depends_on:
+      - herfbook-api
+    ports:
+      - "8080:80"
+    networks:
+      - herfbook-dev
+
+networks:
+  herfbook-dev:
+    name: herfbook-dev
+
+volumes:
+  postgres_data:
+  minio_data:
