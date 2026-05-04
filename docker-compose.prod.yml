@@ -1,0 +1,63 @@
+# HerfBook production deployment — pulls pre-built images from GHCR.
+# Use this on your server instead of building locally.
+#
+# Usage:
+#   cp .env.example .env   # configure passwords and JWT_SECRET
+#   docker compose -f docker-compose.prod.yml up -d
+
+services:
+  herfbook-api:
+    image: ghcr.io/herfbook/herfbook-api:latest  # pin to :0.1.0 for stability
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_HOST: herfbook-db
+    depends_on:
+      herfbook-db:
+        condition: service_healthy
+      herfbook-minio:
+        condition: service_started
+    networks:
+      - herfbook
+
+  herfbook-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - herfbook
+
+  herfbook-minio:
+    image: minio/minio
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
+    networks:
+      - herfbook
+
+  herfbook-web:
+    image: ghcr.io/herfbook/herfbook-web:latest  # pin to :0.1.0 for stability
+    restart: unless-stopped
+    depends_on:
+      - herfbook-api
+    ports:
+      - "8080:80"
+    networks:
+      - herfbook
+
+networks:
+  herfbook:
+    name: herfbook
+
+volumes:
+  postgres_data:
+  minio_data:

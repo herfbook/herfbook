@@ -96,13 +96,94 @@ env vars  >  .env file  >  config.yml  >  built-in defaults
 | `GITHUB_COMMUNITY_REPO` | `herfbook/herfbook` | GitHub repo to pull community YAML from |
 | `HERFBOOK_CONFIG_FILE` | *(unset)* | Optional path to a YAML config file |
 
-### Development mode (hot reload + exposed Postgres)
+### Development mode (hot reload + exposed ports)
 
 ```bash
-docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+docker compose -f docker-compose.dev.yml up
 ```
 
-This mounts `./backend` into the API container so code changes trigger an automatic reload, and exposes Postgres on `localhost:5432` for local DB tools.
+The dev compose is standalone. It mounts `./backend` for hot reload, exposes the API on `localhost:8005`, Postgres on `localhost:5435`, and MinIO on `localhost:9005`/`9006`.
+
+## Development Workflow
+
+### Branch strategy
+
+```text
+feature/* ──┐
+             ├──▶ dev ──▶ PR ──▶ main ──▶ GitHub Release
+community/* ─┘
+```
+
+| Branch | Purpose | Push rules |
+| --- | --- | --- |
+| `main` | Production-ready, all merges via PR | Protected — no direct pushes |
+| `dev` | Integration branch, PRs land here first | Status checks required |
+| `feature/*` | Individual features, branched from `dev` | Open PR to `dev` |
+| `community/*` | Community YAML edits only | Open PR to `dev` |
+
+### Starting a feature
+
+```bash
+git checkout dev && git pull
+git checkout -b feature/my-feature
+# ... work, commit ...
+git push -u origin feature/my-feature
+# Open PR → dev
+```
+
+### Contributing community data
+
+Community YAML branches only trigger YAML validation — no Docker build runs, keeping PRs fast (< 30 s):
+
+```bash
+git checkout dev && git pull
+git checkout -b community/add-padron-brands
+# edit community/*.yml
+python scripts/validate_community.py   # verify locally first
+git push -u origin community/add-padron-brands
+# Open PR → dev
+```
+
+### Release process
+
+1. Open a PR from `dev` → `main` and merge
+   - Builds and pushes `:latest` + `:sha-abc1234` images to GHCR
+2. Create a GitHub Release tagged `v0.1.0`
+   - Builds and pushes `:latest`, `:0.1.0`, `:0`, `:sha-abc1234` images
+
+### Docker image tags
+
+| Tag | Built from | Recommended use |
+| --- | --- | --- |
+| `:0.1.0` | GitHub Release | **Production — immutable, stable** |
+| `:0` | GitHub Release | Latest release within major version |
+| `:latest` | Push to `main` or release | Auto-update to newest main build |
+| `:dev` | Push to `dev` | Testing unreleased work |
+| `:sha-abc1234` | Every push | Pinned to exact commit |
+
+To pin a specific release in `docker-compose.prod.yml`:
+
+```yaml
+image: ghcr.io/herfbook/herfbook-api:0.1.0
+```
+
+### Versioning
+
+Version is defined in [backend/version.py](backend/version.py) and mirrored in [VERSION](VERSION). Bump both when releasing. Follows [semantic versioning](https://semver.org): `MAJOR.MINOR.PATCH`.
+
+### Branch protection (configure manually in GitHub)
+
+**`main`:**
+
+- Require pull request before merging
+- Require 1 approval (self-approval is fine for solo dev)
+- Require status checks: `ci / Backend lint & test`, `ci / Community YAML validation`
+- Require branch to be up to date before merging
+
+**`dev`:**
+
+- Require status checks: `ci / Backend lint & test`
+- Allow direct pushes (solo dev convenience)
 
 ## Contributing
 

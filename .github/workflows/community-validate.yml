@@ -1,0 +1,23 @@
+name: Community Data Validation
+
+on:
+  pull_request:
+    paths:
+      - "community/*.yml"
+
+jobs:
+  validate:
+    name: Validate community YAML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PyYAML
+        run: pip install pyyaml
+
+      - name: Validate community data
+        run: python scripts/validate_community.py
