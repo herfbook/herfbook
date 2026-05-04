@@ -4,154 +4,123 @@
 # Last updated: 2026-05-03
 
 vitolas:
-  # ── Parejos (straight-sided) ───────────────────────────────────────
-  - name: Rothschild
-    length_inches: 4.5
-    ring_gauge: 50
-    category: parejo
-
-  - name: Robusto
-    length_inches: 5.0
-    ring_gauge: 50
-    category: parejo
-
-  - name: Robusto Extra
-    length_inches: 5.5
-    ring_gauge: 52
-    category: parejo
-
-  - name: Corona
-    length_inches: 5.5
-    ring_gauge: 42
-    category: parejo
-
-  - name: Petit Corona
-    length_inches: 5.0
-    ring_gauge: 42
-    category: parejo
-
-  - name: Corona Gorda
-    length_inches: 5.5
-    ring_gauge: 46
-    category: parejo
-
-  - name: Toro
-    length_inches: 6.0
-    ring_gauge: 50
-    category: parejo
-
-  - name: Toro Grande
-    length_inches: 6.0
-    ring_gauge: 54
-    category: parejo
-
-  - name: Gordo
-    length_inches: 6.0
-    ring_gauge: 60
-    category: parejo
-
-  - name: Lonsdale
-    length_inches: 6.5
-    ring_gauge: 42
-    category: parejo
-
-  - name: Corona Extra
-    length_inches: 5.5
-    ring_gauge: 46
-    category: parejo
-
-  - name: Churchill
-    length_inches: 7.0
-    ring_gauge: 48
-    category: parejo
-
-  - name: Double Corona
-    length_inches: 7.5
-    ring_gauge: 49
-    category: parejo
-
-  - name: Lancero
-    length_inches: 7.5
-    ring_gauge: 38
-    category: parejo
-
-  - name: Panetela
-    length_inches: 6.0
-    ring_gauge: 34
-    category: parejo
-
-  - name: Petit Panetela
-    length_inches: 4.0
-    ring_gauge: 33
-    category: parejo
-
-  - name: Gran Corona
-    length_inches: 9.25
-    ring_gauge: 47
-    category: parejo
-
-  - name: Double Toro
-    length_inches: 6.0
-    ring_gauge: 60
-    category: parejo
-
-  - name: Presidente
-    length_inches: 8.0
-    ring_gauge: 52
-    category: parejo
-
-  - name: Sixty
-    length_inches: 6.0
-    ring_gauge: 60
-    category: parejo
-
-  - name: Short Robusto
-    length_inches: 4.0
-    ring_gauge: 50
-    category: parejo
-
-  # ── Figurados (irregular/tapered shapes) ───────────────────────────
-  - name: Torpedo
-    length_inches: 6.5
-    ring_gauge: 52
-    category: figurado
-
   - name: Belicoso
     length_inches: 5.5
     ring_gauge: 52
     category: figurado
-
-  - name: Petit Belicoso
-    length_inches: 5.0
-    ring_gauge: 50
-    category: figurado
-
-  - name: Pyramid
+  - name: Churchill
     length_inches: 7.0
-    ring_gauge: 54
-    category: figurado
-
-  - name: Perfecto
-    length_inches: 6.0
     ring_gauge: 48
-    category: figurado
-
-  - name: Diadema
-    length_inches: 8.5
-    ring_gauge: 52
-    category: figurado
-
-  - name: Salomon
-    length_inches: 7.25
-    ring_gauge: 57
-    category: figurado
-
+    category: parejo
+  - name: Corona
+    length_inches: 5.5
+    ring_gauge: 42
+    category: parejo
+  - name: Corona Extra
+    length_inches: 5.5
+    ring_gauge: 46
+    category: parejo
+  - name: Corona Gorda
+    length_inches: 5.5
+    ring_gauge: 46
+    category: parejo
   - name: Culebra
     length_inches: 5.75
     ring_gauge: 38
     category: figurado
-
+  - name: Diadema
+    length_inches: 8.5
+    ring_gauge: 52
+    category: figurado
+  - name: Double Corona
+    length_inches: 7.5
+    ring_gauge: 49
+    category: parejo
+  - name: Double Toro
+    length_inches: 6.0
+    ring_gauge: 60
+    category: parejo
   - name: Flying Pig
     length_inches: 3.9
     ring_gauge: 60
+    category: figurado
+  - name: Gordo
+    length_inches: 6.0
+    ring_gauge: 60
+    category: parejo
+  - name: Gran Corona
+    length_inches: 9.25
+    ring_gauge: 47
+    category: parejo
+  - name: Lancero
+    length_inches: 7.5
+    ring_gauge: 38
+    category: parejo
+  - name: Lonsdale
+    length_inches: 6.5
+    ring_gauge: 42
+    category: parejo
+  - name: Panetela
+    length_inches: 6.0
+    ring_gauge: 34
+    category: parejo
+  - name: Perfecto
+    length_inches: 6.0
+    ring_gauge: 48
+    category: figurado
+  - name: Petit Belicoso
+    length_inches: 5.0
+    ring_gauge: 50
+    category: figurado
+  - name: Petit Corona
+    length_inches: 5.0
+    ring_gauge: 42
+    category: parejo
+  - name: Petit Panetela
+    length_inches: 4.0
+    ring_gauge: 33
+    category: parejo
+  - name: Presidente
+    length_inches: 8.0
+    ring_gauge: 52
+    category: parejo
+  - name: Pyramid
+    length_inches: 7.0
+    ring_gauge: 54
+    category: figurado
+  - name: Robusto
+    length_inches: 5.0
+    ring_gauge: 50
+    category: parejo
+  - name: Robusto Extra
+    length_inches: 5.5
+    ring_gauge: 52
+    category: parejo
+  - name: Rothschild
+    length_inches: 4.5
+    ring_gauge: 50
+    category: parejo
+  - name: Salomon
+    length_inches: 7.25
+    ring_gauge: 57
+    category: figurado
+  - name: Short Robusto
+    length_inches: 4.0
+    ring_gauge: 50
+    category: parejo
+  - name: Sixty
+    length_inches: 6.0
+    ring_gauge: 60
+    category: parejo
+  - name: Toro
+    length_inches: 6.0
+    ring_gauge: 50
+    category: parejo
+  - name: Toro Grande
+    length_inches: 6.0
+    ring_gauge: 54
+    category: parejo
+  - name: Torpedo
+    length_inches: 6.5
+    ring_gauge: 52
     category: figurado

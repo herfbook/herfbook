@@ -4,176 +4,157 @@
 # Last updated: 2026-05-03
 
 flavor_tags:
-  # ── Wood ───────────────────────────────────────────────────────────
-  - name: Cedar
-    category: wood
-  - name: Oak
-    category: wood
-  - name: Hickory
-    category: wood
-  - name: Mesquite
-    category: wood
-  - name: Sandalwood
-    category: wood
-  - name: Pine
-    category: wood
-  - name: Birch
-    category: wood
-  - name: Mahogany
-    category: wood
-
-  # ── Spice ──────────────────────────────────────────────────────────
-  - name: Black Pepper
-    category: spice
-  - name: White Pepper
-    category: spice
-  - name: Red Pepper
-    category: spice
-  - name: Cinnamon
-    category: spice
-  - name: Clove
-    category: spice
-  - name: Nutmeg
-    category: spice
+  - name: Almond
+    category: nut
   - name: Anise
     category: spice
-  - name: Ginger
+  - name: Apple
+    category: fruit
+  - name: Baking Spice
+    category: misc
+  - name: Barnyard
+    category: earth
+  - name: Berry
+    category: fruit
+  - name: Birch
+    category: wood
+  - name: Black Pepper
     category: spice
-  - name: Cumin
-    category: spice
-
-  # ── Sweet ──────────────────────────────────────────────────────────
-  - name: Dark Chocolate
+  - name: Brown Sugar
     category: sweet
-  - name: Milk Chocolate
-    category: sweet
-  - name: Cocoa
+  - name: Butter
+    category: cream
+  - name: Butterscotch
     category: sweet
   - name: Caramel
     category: sweet
-  - name: Vanilla
+  - name: Cashew
+    category: nut
+  - name: Cedar
+    category: wood
+  - name: Char
+    category: roast
+  - name: Cherry
+    category: fruit
+  - name: Cinnamon
+    category: spice
+  - name: Citrus
+    category: fruit
+  - name: Clay
+    category: earth
+  - name: Clove
+    category: spice
+  - name: Cocoa
     category: sweet
+  - name: Coffee
+    category: roast
+  - name: Cream
+    category: cream
+  - name: Cumin
+    category: spice
+  - name: Dark Chocolate
+    category: sweet
+  - name: Dark Roast
+    category: roast
+  - name: Dried Fruit
+    category: fruit
+  - name: Espresso
+    category: roast
+  - name: Fig
+    category: fruit
+  - name: Floral
+    category: floral
+  - name: Ginger
+    category: spice
+  - name: Grass
+    category: floral
+  - name: Hay
+    category: floral
+  - name: Hazelnut
+    category: nut
+  - name: Herbal
+    category: floral
+  - name: Hickory
+    category: wood
   - name: Honey
     category: sweet
-  - name: Brown Sugar
-    category: sweet
-  - name: Molasses
-    category: sweet
-  - name: Maple
-    category: sweet
-  - name: Butterscotch
-    category: sweet
-
-  # ── Earth ──────────────────────────────────────────────────────────
+  - name: Lavender
+    category: floral
   - name: Leather
     category: earth
-  - name: Soil
-    category: earth
+  - name: Lemon Zest
+    category: fruit
+  - name: Licorice
+    category: misc
+  - name: Macadamia
+    category: nut
+  - name: Mahogany
+    category: wood
+  - name: Malt
+    category: misc
+  - name: Maple
+    category: sweet
+  - name: Mesquite
+    category: wood
+  - name: Metallic
+    category: misc
+  - name: Milk
+    category: cream
+  - name: Milk Chocolate
+    category: sweet
+  - name: Mineral
+    category: misc
+  - name: Molasses
+    category: sweet
   - name: Moss
     category: earth
   - name: Mushroom
     category: earth
-  - name: Peat
-    category: earth
-  - name: Barnyard
-    category: earth
-  - name: Wet Stone
-    category: earth
-  - name: Clay
-    category: earth
-
-  # ── Nut ────────────────────────────────────────────────────────────
-  - name: Almond
-    category: nut
-  - name: Walnut
-    category: nut
-  - name: Peanut
-    category: nut
-  - name: Cashew
-    category: nut
-  - name: Hazelnut
-    category: nut
-  - name: Pecan
-    category: nut
-  - name: Macadamia
-    category: nut
-
-  # ── Fruit ──────────────────────────────────────────────────────────
-  - name: Citrus
-    category: fruit
+  - name: Nougat
+    category: cream
+  - name: Nutmeg
+    category: spice
+  - name: Oak
+    category: wood
   - name: Orange Peel
     category: fruit
-  - name: Lemon Zest
-    category: fruit
-  - name: Berry
-    category: fruit
-  - name: Dried Fruit
+  - name: Peanut
+    category: nut
+  - name: Peat
+    category: earth
+  - name: Pecan
+    category: nut
+  - name: Pine
+    category: wood
+  - name: Plum
     category: fruit
   - name: Raisin
     category: fruit
-  - name: Fig
-    category: fruit
-  - name: Plum
-    category: fruit
-  - name: Cherry
-    category: fruit
-  - name: Apple
-    category: fruit
-
-  # ── Roast ──────────────────────────────────────────────────────────
-  - name: Coffee
-    category: roast
-  - name: Espresso
-    category: roast
-  - name: Toast
-    category: roast
-  - name: Char
-    category: roast
-  - name: Smoky
-    category: roast
+  - name: Red Pepper
+    category: spice
   - name: Roasted Nuts
     category: roast
-  - name: Dark Roast
-    category: roast
-
-  # ── Cream ──────────────────────────────────────────────────────────
-  - name: Cream
-    category: cream
-  - name: Butter
-    category: cream
-  - name: Milk
-    category: cream
-  - name: Nougat
-    category: cream
-
-  # ── Floral ─────────────────────────────────────────────────────────
-  - name: Hay
-    category: floral
-  - name: Grass
-    category: floral
-  - name: Floral
-    category: floral
-  - name: Lavender
-    category: floral
   - name: Rose
     category: floral
-  - name: Tea
-    category: floral
-  - name: Herbal
-    category: floral
-
-  # ── Misc ───────────────────────────────────────────────────────────
-  - name: Mineral
-    category: misc
   - name: Salt
     category: misc
-  - name: Metallic
-    category: misc
-  - name: Baking Spice
-    category: misc
-  - name: Licorice
-    category: misc
-  - name: Malt
-    category: misc
+  - name: Sandalwood
+    category: wood
+  - name: Smoky
+    category: roast
+  - name: Soil
+    category: earth
+  - name: Tea
+    category: floral
+  - name: Toast
+    category: roast
   - name: Umami
     category: misc
+  - name: Vanilla
+    category: sweet
+  - name: Walnut
+    category: nut
+  - name: Wet Stone
+    category: earth
+  - name: White Pepper
+    category: spice

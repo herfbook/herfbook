@@ -4,645 +4,498 @@
 # Last updated: 2026-05-03
 
 brands:
-  # ── A ──────────────────────────────────────────────────────────────
   - name: 5 Vegas
     manufacturer: Scandinavian Tobacco Group
     country: Honduras
     website: null
-
   - name: A.J. Fernandez
     manufacturer: A.J. Fernandez Cigars
     country: Nicaragua
     website: https://www.ajfcigars.com
-
   - name: Acid
     manufacturer: Drew Estate
     country: Nicaragua
     website: https://www.drewestate.com
-
   - name: Aging Room
     manufacturer: Boutique Blends Cigars
     country: Dominican Republic
     website: null
-
   - name: Alec Bradley
     manufacturer: Alec Bradley Cigars
     country: Honduras
     website: https://www.alecbradley.com
-
   - name: Arturo Fuente
     manufacturer: Tabacalera A. Fuente y Cia
     country: Dominican Republic
     website: https://www.arturofuente.com
-
   - name: Arturo Fuente Don Carlos
     manufacturer: Tabacalera A. Fuente y Cia
     country: Dominican Republic
     website: https://www.arturofuente.com
-
   - name: Arturo Fuente Hemingway
     manufacturer: Tabacalera A. Fuente y Cia
     country: Dominican Republic
     website: https://www.arturofuente.com
-
   - name: Ashton
     manufacturer: Ashton Distributors Inc.
     country: Dominican Republic
     website: https://www.ashtoncigar.com
-
   - name: Ashton Cabinet Selection
     manufacturer: Ashton Distributors Inc.
     country: Dominican Republic
     website: https://www.ashtoncigar.com
-
   - name: Ashton VSG
     manufacturer: Ashton Distributors Inc.
     country: Dominican Republic
     website: https://www.ashtoncigar.com
-
   - name: AVO
     manufacturer: Oettinger Davidoff Group
     country: Dominican Republic
     website: https://www.davidoff.com
-
-  # ── B ──────────────────────────────────────────────────────────────
   - name: Baccarat
     manufacturer: Oettinger Davidoff Group
     country: Dominican Republic
     website: null
-
   - name: Bolívar
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
   - name: Brick House
     manufacturer: J.C. Newman Cigar Company
     country: Nicaragua
     website: https://www.jcnewman.com
-
-  # ── C ──────────────────────────────────────────────────────────────
   - name: Cabaiguán
     manufacturer: Tatuaje Cigars Inc.
     country: Nicaragua
     website: null
-
   - name: Camacho
     manufacturer: Oettinger Davidoff Group
     country: Honduras
     website: https://www.camachocigars.com
-
   - name: CAO
     manufacturer: Scandinavian Tobacco Group
     country: Nicaragua
     website: https://www.caocigars.com
-
   - name: Charter Oak
     manufacturer: Foundation Cigar Company
     country: Nicaragua
     website: https://www.foundationcigar.com
-
   - name: Cohiba (Cuban)
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
   - name: Cohiba (Non-Cuban)
     manufacturer: General Cigar Company
     country: Dominican Republic
     website: https://www.generalcigar.com
-
   - name: Crowned Heads Jericho Hill
     manufacturer: Crowned Heads LLC
     country: Nicaragua
     website: https://www.crownedheads.com
-
   - name: Crowned Heads Le Carême
     manufacturer: Crowned Heads LLC
     country: Nicaragua
     website: https://www.crownedheads.com
-
   - name: Cuaba
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
   - name: Cuesta-Rey
     manufacturer: J.C. Newman Cigar Company
     country: Dominican Republic
     website: https://www.jcnewman.com
-
-  # ── D ──────────────────────────────────────────────────────────────
   - name: Davidoff
     manufacturer: Oettinger Davidoff Group
     country: Dominican Republic
     website: https://www.davidoff.com
-
   - name: Diamond Crown
     manufacturer: J.C. Newman Cigar Company
     country: Dominican Republic
     website: https://www.jcnewman.com
-
   - name: Diesel
     manufacturer: A.J. Fernandez Cigars
     country: Nicaragua
     website: null
-
   - name: Diplomáticos
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
   - name: Don Diego
     manufacturer: Altadis USA
     country: Dominican Republic
     website: null
-
   - name: Don Pepin Garcia
     manufacturer: My Father Cigars S.A.
     country: Nicaragua
     website: https://www.myfathercigars.com
-
   - name: Drew Estate Liga Privada No. 9
     manufacturer: Drew Estate
     country: Nicaragua
     website: https://www.drewestate.com
-
   - name: Drew Estate Liga Privada T52
     manufacturer: Drew Estate
     country: Nicaragua
     website: https://www.drewestate.com
-
   - name: Drew Estate Undercrown
     manufacturer: Drew Estate
     country: Nicaragua
     website: https://www.drewestate.com
-
   - name: Dunbarton Mi Querida
     manufacturer: Dunbarton Tobacco & Trust
     country: Nicaragua
     website: https://www.dunbartontobaccoandtrust.com
-
   - name: Dunbarton Sobremesa
     manufacturer: Dunbarton Tobacco & Trust
     country: Nicaragua
     website: https://www.dunbartontobaccoandtrust.com
-
   - name: Dutch Masters
     manufacturer: Altadis USA
     country: United States
     website: null
-
-  # ── E ──────────────────────────────────────────────────────────────
   - name: E.P. Carrillo
     manufacturer: E.P. Carrillo / Tabacalera La Alianza
     country: Dominican Republic
     website: https://www.epcarrillo.com
-
   - name: E.P. Carrillo Encore
     manufacturer: E.P. Carrillo / Tabacalera La Alianza
     country: Dominican Republic
     website: https://www.epcarrillo.com
-
   - name: E.P. Carrillo La Historia
     manufacturer: E.P. Carrillo / Tabacalera La Alianza
     country: Dominican Republic
     website: https://www.epcarrillo.com
-
   - name: El Rey del Mundo
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
   - name: Espinosa Laranja
     manufacturer: Espinosa Cigars
     country: Nicaragua
     website: https://www.espinosacigars.com
-
-  # ── F ──────────────────────────────────────────────────────────────
   - name: Flor de las Antillas
     manufacturer: My Father Cigars S.A.
     country: Nicaragua
     website: https://www.myfathercigars.com
-
   - name: Flor de Selva
     manufacturer: Maya Selva Cigars
     country: Honduras
     website: https://www.mayaselva.com
-
   - name: Fonseca
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
   - name: Foundation The Tabernacle
     manufacturer: Foundation Cigar Company
     country: Nicaragua
     website: https://www.foundationcigar.com
-
   - name: Fuente Fuente Opus X
     manufacturer: Tabacalera A. Fuente y Cia
     country: Dominican Republic
     website: https://www.arturofuente.com
-
-  # ── G ──────────────────────────────────────────────────────────────
   - name: Garcia y Vega
     manufacturer: Swedish Match
     country: United States
     website: null
-
   - name: Gispert
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
-  - name: La Gloria Cubana
-    manufacturer: General Cigar Company
-    country: Dominican Republic
-    website: https://www.generalcigar.com
-
   - name: Griffin's
     manufacturer: Oettinger Davidoff Group
     country: Dominican Republic
     website: https://www.davidoff.com
-
   - name: Gurkha
     manufacturer: Gurkha Cigars
     country: Dominican Republic
     website: https://www.gurkhacigars.com
-
-  # ── H ──────────────────────────────────────────────────────────────
   - name: H. Upmann (Cuban)
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
   - name: H. Upmann (Non-Cuban)
     manufacturer: Altadis USA
     country: Dominican Republic
     website: null
-
   - name: Henry Clay
     manufacturer: Altadis USA
     country: Dominican Republic
     website: null
-
   - name: Herrera Estelí
     manufacturer: Drew Estate
     country: Nicaragua
     website: https://www.drewestate.com
-
   - name: Hoyo de Monterrey (Cuban)
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
   - name: Hoyo de Monterrey (Non-Cuban)
     manufacturer: General Cigar Company
     country: Honduras
     website: https://www.generalcigar.com
-
-  # ── I ──────────────────────────────────────────────────────────────
   - name: Illusione Epernay
     manufacturer: Illusione Cigars
     country: Nicaragua
     website: https://www.illusionecigars.com
-
-  # ── J ──────────────────────────────────────────────────────────────
   - name: Joya de Nicaragua
     manufacturer: Joya de Nicaragua S.A.
     country: Nicaragua
     website: https://www.joyadenicaragua.com
-
   - name: Joya de Nicaragua Antaño
     manufacturer: Joya de Nicaragua S.A.
     country: Nicaragua
     website: https://www.joyadenicaragua.com
-
   - name: Juan López
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
-  # ── K ──────────────────────────────────────────────────────────────
   - name: Kristoff
     manufacturer: Kristoff Cigars
     country: Dominican Republic
     website: https://www.kristoffcigars.com
-
-  # ── L ──────────────────────────────────────────────────────────────
   - name: La Aroma de Cuba
     manufacturer: Ashton Distributors Inc.
     country: Nicaragua
     website: https://www.ashtoncigar.com
-
   - name: La Flor Dominicana
     manufacturer: La Flor Dominicana
     country: Dominican Republic
     website: https://www.laflordominicana.com
-
   - name: La Flor Dominicana Andalusian Bull
     manufacturer: La Flor Dominicana
     country: Dominican Republic
     website: https://www.laflordominicana.com
-
+  - name: La Gloria Cubana
+    manufacturer: General Cigar Company
+    country: Dominican Republic
+    website: https://www.generalcigar.com
   - name: La Palina
     manufacturer: La Palina Cigars
     country: Dominican Republic
     website: https://www.lapalina.com
-
-  # ── M ──────────────────────────────────────────────────────────────
   - name: Macanudo
     manufacturer: General Cigar Company
     country: Dominican Republic
     website: https://www.macanudo.com
-
   - name: Man O' War
     manufacturer: A.J. Fernandez Cigars
     country: Nicaragua
     website: null
-
   - name: Montecristo (Cuban)
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
   - name: Montecristo (Non-Cuban)
     manufacturer: Altadis USA
     country: Dominican Republic
     website: null
-
   - name: Montesino
     manufacturer: Tabacalera A. Fuente y Cia
     country: Dominican Republic
     website: https://www.arturofuente.com
-
   - name: My Father
     manufacturer: My Father Cigars S.A.
     country: Nicaragua
     website: https://www.myfathercigars.com
-
   - name: My Father Le Bijou 1922
     manufacturer: My Father Cigars S.A.
     country: Nicaragua
     website: https://www.myfathercigars.com
-
   - name: My Father The Judge
     manufacturer: My Father Cigars S.A.
     country: Nicaragua
     website: https://www.myfathercigars.com
-
-  # ── N ──────────────────────────────────────────────────────────────
   - name: Nat Sherman
     manufacturer: Nat Sherman International
     country: Dominican Republic
     website: null
-
   - name: Nub
     manufacturer: Oliva Cigar Company
     country: Nicaragua
     website: https://www.olivacigar.com
-
-  # ── O ──────────────────────────────────────────────────────────────
   - name: Oliva Serie G
     manufacturer: Oliva Cigar Company
     country: Nicaragua
     website: https://www.olivacigar.com
-
   - name: Oliva Serie O
     manufacturer: Oliva Cigar Company
     country: Nicaragua
     website: https://www.olivacigar.com
-
   - name: Oliva Serie V
     manufacturer: Oliva Cigar Company
     country: Nicaragua
     website: https://www.olivacigar.com
-
   - name: Oliva Serie V Melanio
     manufacturer: Oliva Cigar Company
     country: Nicaragua
     website: https://www.olivacigar.com
-
-  # ── P ──────────────────────────────────────────────────────────────
   - name: Padron
     manufacturer: Padrón Cigars S.A.
     country: Nicaragua
     website: https://www.padron.com
-
   - name: Padron 1926 Serie
     manufacturer: Padrón Cigars S.A.
     country: Nicaragua
     website: https://www.padron.com
-
   - name: Padron 1964 Anniversary Series
     manufacturer: Padrón Cigars S.A.
     country: Nicaragua
     website: https://www.padron.com
-
   - name: Padron Family Reserve
     manufacturer: Padrón Cigars S.A.
     country: Nicaragua
     website: https://www.padron.com
-
   - name: Partagás (Cuban)
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
   - name: Partagás (Non-Cuban)
     manufacturer: General Cigar Company
     country: Dominican Republic
     website: https://www.generalcigar.com
-
   - name: Perdomo
     manufacturer: Tabacalera Perdomo S.A.
     country: Nicaragua
     website: https://www.perdomocigars.com
-
   - name: Perdomo 10th Anniversary Champagne
     manufacturer: Tabacalera Perdomo S.A.
     country: Nicaragua
     website: https://www.perdomocigars.com
-
   - name: Perdomo Lot 23
     manufacturer: Tabacalera Perdomo S.A.
     country: Nicaragua
     website: https://www.perdomocigars.com
-
   - name: Plasencia Alma Fuerte
     manufacturer: Plasencia Cigars S.A.
     country: Nicaragua
     website: https://www.plasenciacigars.com
-
   - name: Plasencia Reserva Original
     manufacturer: Plasencia Cigars S.A.
     country: Nicaragua
     website: https://www.plasenciacigars.com
-
   - name: Por Larrañaga
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
   - name: Punch (Cuban)
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
   - name: Punch (Non-Cuban)
     manufacturer: General Cigar Company
     country: Honduras
     website: https://www.generalcigar.com
-
-  # ── Q ──────────────────────────────────────────────────────────────
   - name: Quai d'Orsay
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
   - name: Quesada
     manufacturer: MATASA
     country: Dominican Republic
     website: null
-
   - name: Quintero
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
-  # ── R ──────────────────────────────────────────────────────────────
   - name: Ramón Allones
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
   - name: Rocky Patel
     manufacturer: Rocky Patel Premium Cigars
     country: Honduras
     website: https://www.rockypatel.com
-
   - name: Rocky Patel Decade
     manufacturer: Rocky Patel Premium Cigars
     country: Honduras
     website: https://www.rockypatel.com
-
   - name: Rocky Patel Vintage 1990
     manufacturer: Rocky Patel Premium Cigars
     country: Honduras
     website: https://www.rockypatel.com
-
   - name: Rocky Patel Vintage 1999
     manufacturer: Rocky Patel Premium Cigars
     country: Honduras
     website: https://www.rockypatel.com
-
   - name: RoMa Craft CroMagnon
     manufacturer: RoMa Craft Tobac
     country: Nicaragua
     website: https://www.romacrafttobac.com
-
   - name: Romeo y Julieta (Cuban)
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
   - name: Romeo y Julieta (Non-Cuban)
     manufacturer: Altadis USA
     country: Dominican Republic
     website: null
-
-  # ── S ──────────────────────────────────────────────────────────────
   - name: Saint Luis Rey
     manufacturer: Altadis USA
     country: Honduras
     website: null
-
   - name: San Cristóbal de la Habana
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
   - name: San Lotano
     manufacturer: A.J. Fernandez Cigars
     country: Nicaragua
     website: https://www.ajfcigars.com
-
   - name: Sancho Panza
     manufacturer: General Cigar Company
     country: Honduras
     website: https://www.generalcigar.com
-
   - name: Southern Draw Jacobs Ladder
     manufacturer: Southern Draw Cigars
     country: Nicaragua
     website: https://www.southerndrawcigars.com
-
-  # ── T ──────────────────────────────────────────────────────────────
   - name: Tatuaje
     manufacturer: Tatuaje Cigars Inc.
     country: Nicaragua
     website: https://www.tatuajecigars.com
-
   - name: Tatuaje Havana VI
     manufacturer: Tatuaje Cigars Inc.
     country: Nicaragua
     website: https://www.tatuajecigars.com
-
   - name: Toscano
     manufacturer: Manifatture Sigaro Toscano
     country: Italy
     website: https://www.toscano.it
-
   - name: Trinidad (Cuban)
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
   - name: Trinidad (Non-Cuban)
     manufacturer: Altadis USA
     country: Dominican Republic
     website: null
-
-  # ── U ──────────────────────────────────────────────────────────────
   - name: Undercrown Shade
     manufacturer: Drew Estate
     country: Nicaragua
     website: https://www.drewestate.com
-
-  # ── V ──────────────────────────────────────────────────────────────
   - name: Vegafina
     manufacturer: Altadis USA
     country: Dominican Republic
     website: null
-
   - name: Vegas Robaina
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
   - name: Vegueros
     manufacturer: Habanos S.A.
     country: Cuba
     website: https://www.habanos.com
-
-  # ── W ──────────────────────────────────────────────────────────────
   - name: Warped Flor del Valle
     manufacturer: Warped Cigars
     country: Nicaragua
     website: https://www.warpedcigars.com
-
   - name: Warped La Colmena
     manufacturer: Warped Cigars
     country: Nicaragua
     website: https://www.warpedcigars.com
-
   - name: Winston Churchill
     manufacturer: Oettinger Davidoff Group
     country: Dominican Republic
     website: https://www.davidoff.com
-
-  # ── Z ──────────────────────────────────────────────────────────────
   - name: Zino
     manufacturer: Oettinger Davidoff Group
     country: Dominican Republic

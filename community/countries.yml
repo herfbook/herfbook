@@ -4,38 +4,27 @@
 # Last updated: 2026-05-03
 
 countries:
-  - name: Cuba
-    iso_code: CU
-
-  - name: Nicaragua
-    iso_code: NI
-
-  - name: Dominican Republic
-    iso_code: DO
-
-  - name: Honduras
-    iso_code: HN
-
-  - name: Mexico
-    iso_code: MX
-
-  - name: United States
-    iso_code: US
-
-  - name: Ecuador
-    iso_code: EC
-
   - name: Brazil
     iso_code: BR
-
   - name: Colombia
     iso_code: CO
-
+  - name: Cuba
+    iso_code: CU
+  - name: Dominican Republic
+    iso_code: DO
+  - name: Ecuador
+    iso_code: EC
+  - name: Honduras
+    iso_code: HN
   - name: Indonesia
     iso_code: ID
-
   - name: Italy
     iso_code: IT
-
+  - name: Mexico
+    iso_code: MX
+  - name: Nicaragua
+    iso_code: NI
   - name: Philippines
     iso_code: PH
+  - name: United States
+    iso_code: US

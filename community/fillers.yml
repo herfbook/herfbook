@@ -4,109 +4,75 @@
 # Last updated: 2026-05-03
 
 fillers:
-  # ── Nicaraguan ─────────────────────────────────────────────────────
-  - name: Nicaraguan Ligero
-    country: Nicaragua
-    priming: ligero
-
-  - name: Nicaraguan Viso
-    country: Nicaragua
-    priming: viso
-
-  - name: Nicaraguan Seco
-    country: Nicaragua
-    priming: seco
-
-  - name: Nicaraguan Volado
-    country: Nicaragua
-    priming: volado
-
-  # ── Dominican ──────────────────────────────────────────────────────
-  - name: Dominican Piloto Cubano
-    country: Dominican Republic
-    priming: null
-
-  - name: Dominican Olor
-    country: Dominican Republic
-    priming: null
-
-  - name: Dominican Seco
-    country: Dominican Republic
-    priming: seco
-
-  - name: Dominican Ligero
-    country: Dominican Republic
-    priming: ligero
-
-  - name: Dominican Criollo 98
-    country: Dominican Republic
-    priming: null
-
-  # ── Honduran ───────────────────────────────────────────────────────
-  - name: Honduran Ligero
-    country: Honduras
-    priming: ligero
-
-  - name: Honduran Viso
-    country: Honduras
-    priming: viso
-
-  - name: Honduran Seco
-    country: Honduras
-    priming: seco
-
-  # ── Cuban ──────────────────────────────────────────────────────────
-  - name: Cuban Ligero
-    country: Cuba
-    priming: ligero
-
-  - name: Cuban Seco
-    country: Cuba
-    priming: seco
-
-  - name: Cuban Volado
-    country: Cuba
-    priming: volado
-
-  # ── Brazilian ──────────────────────────────────────────────────────
-  - name: Brazilian Mata Fina
-    country: Brazil
-    priming: null
-
   - name: Brazilian Arapiraca
     country: Brazil
     priming: null
-
-  # ── Mexican ────────────────────────────────────────────────────────
-  - name: Mexican San Andres
-    country: Mexico
+  - name: Brazilian Mata Fina
+    country: Brazil
     priming: null
-
-  # ── Ecuadorian ─────────────────────────────────────────────────────
-  - name: Ecuadorian Habano
-    country: Ecuador
-    priming: null
-
-  - name: Ecuadorian Sumatra
-    country: Ecuador
-    priming: null
-
-  # ── Colombian ──────────────────────────────────────────────────────
   - name: Colombian
     country: Colombia
     priming: null
-
-  # ── Peruvian ───────────────────────────────────────────────────────
-  - name: Peruvian
-    country: Peru
+  - name: Cuban Ligero
+    country: Cuba
+    priming: ligero
+  - name: Cuban Seco
+    country: Cuba
+    priming: seco
+  - name: Cuban Volado
+    country: Cuba
+    priming: volado
+  - name: Dominican Criollo 98
+    country: Dominican Republic
     priming: null
-
-  # ── Indonesian ─────────────────────────────────────────────────────
+  - name: Dominican Ligero
+    country: Dominican Republic
+    priming: ligero
+  - name: Dominican Olor
+    country: Dominican Republic
+    priming: null
+  - name: Dominican Piloto Cubano
+    country: Dominican Republic
+    priming: null
+  - name: Dominican Seco
+    country: Dominican Republic
+    priming: seco
+  - name: Ecuadorian Habano
+    country: Ecuador
+    priming: null
+  - name: Ecuadorian Sumatra
+    country: Ecuador
+    priming: null
+  - name: Honduran Ligero
+    country: Honduras
+    priming: ligero
+  - name: Honduran Seco
+    country: Honduras
+    priming: seco
+  - name: Honduran Viso
+    country: Honduras
+    priming: viso
   - name: Indonesian Besuki
     country: Indonesia
     priming: null
-
-  # ── Pennsylvanian ──────────────────────────────────────────────────
+  - name: Mexican San Andres
+    country: Mexico
+    priming: null
+  - name: Nicaraguan Ligero
+    country: Nicaragua
+    priming: ligero
+  - name: Nicaraguan Seco
+    country: Nicaragua
+    priming: seco
+  - name: Nicaraguan Viso
+    country: Nicaragua
+    priming: viso
+  - name: Nicaraguan Volado
+    country: Nicaragua
+    priming: volado
   - name: Pennsylvania Broadleaf
     country: United States
+    priming: null
+  - name: Peruvian
+    country: Peru
     priming: null

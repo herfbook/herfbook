@@ -7,6 +7,8 @@ Checks:
   3. Required fields — each entry has the mandatory fields for its file type
   4. Duplicates — no duplicate names or community_keys within a file
   5. Sort order — entries are alphabetically sorted by name (case-insensitive)
+     Exempt files (logical ordering takes precedence): strength_levels,
+     purchase_types, environments.
 
 Exit 0 if all files are valid, 1 if any errors are found.
 """
@@ -36,6 +38,8 @@ SCHEMAS: dict[str, list[str]] = {
     "vitolas":         ["name", "length_inches", "ring_gauge", "category"],
     "wrappers":        ["name"],
 }
+
+SORT_EXEMPT: set[str] = {"environments", "purchase_types", "strength_levels"}
 
 
 def validate_file(path: Path) -> list[str]:
@@ -107,16 +111,17 @@ def validate_file(path: Path) -> list[str]:
     check_dupes(ckeys, "community_key")
 
     # 5. Sort check (alphabetical by name, case-insensitive) ───────────────
-    valid_names = [n for n in names if n is not None]
-    sorted_names = sorted(valid_names, key=str.casefold)
-    if valid_names != sorted_names:
-        for idx, (actual, expected) in enumerate(zip(valid_names, sorted_names)):
-            if actual != expected:
-                errors.append(
-                    f"{path.name}: entries not sorted by name — "
-                    f"position {idx} has {actual!r}, expected {expected!r}"
-                )
-                break
+    if stem not in SORT_EXEMPT:
+        valid_names = [n for n in names if n is not None]
+        sorted_names = sorted(valid_names, key=str.casefold)
+        if valid_names != sorted_names:
+            for idx, (actual, expected) in enumerate(zip(valid_names, sorted_names)):
+                if actual != expected:
+                    errors.append(
+                        f"{path.name}: entries not sorted by name — "
+                        f"position {idx} has {actual!r}, expected {expected!r}"
+                    )
+                    break
 
     return errors
 
