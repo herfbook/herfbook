@@ -1,0 +1,171 @@
+name: Release
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main]
+  release:
+    types: [published]
+
+jobs:
+  # ── Detect what changed ────────────────────────────────────────────────
+  changes:
+    name: Detect changes
+    runs-on: ubuntu-latest
+    outputs:
+      code: ${{ steps.result.outputs.code }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Filter changed paths
+        id: filter
+        if: github.event_name != 'release'
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            code:
+              - 'backend/**'
+              - 'frontend/**'
+              - 'nginx/**'
+              - 'Dockerfile'
+              - 'Dockerfile.web'
+
+      - name: Resolve code_changed
+        id: result
+        run: |
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            # Always build on release regardless of what changed
+            echo "code=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "code=${{ steps.filter.outputs.code }}" >> "$GITHUB_OUTPUT"
+          fi
+
+  # ── Community-only push: create a data tag ─────────────────────────────
+  community-tag:
+    name: Tag community data update
+    needs: changes
+    if: needs.changes.outputs.code == 'false' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create data tag
+        run: |
+          SHORT_SHA="${GITHUB_SHA::7}"
+          TAG="data-$(date +'%Y.%m.%d')-${SHORT_SHA}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "$TAG"
+          git push origin "$TAG"
+          echo "Tagged commit as ${TAG}"
+
+  # ── Build and push Docker images ───────────────────────────────────────
+  build:
+    name: Build & push images
+    needs: changes
+    if: needs.changes.outputs.code == 'true' || github.event_name == 'release'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract version from backend/version.py
+        id: version
+        run: |
+          VERSION=$(python -c "exec(open('backend/version.py').read()); print(__version__)")
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Log in to GHCR
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # ── API image ──────────────────────────────────────────────────────
+      - name: Docker metadata (API)
+        id: meta-api
+        uses: docker/metadata-action@v6
+        with:
+          images: ghcr.io/herfbook/herfbook-api
+          flavor: latest=false
+          tags: |
+            type=raw,value=dev,enable=${{ github.event_name == 'push' && github.ref_name == 'dev' }}
+            type=raw,value=latest,enable=${{ github.event_name == 'push' && github.ref_name == 'main' }}
+            type=sha,prefix=sha-,format=short,enable=${{ github.event_name == 'push' }}
+            type=raw,value=latest,enable=${{ github.event_name == 'release' }}
+            type=semver,pattern={{version}},enable=${{ github.event_name == 'release' }}
+            type=semver,pattern={{major}},enable=${{ github.event_name == 'release' }}
+            type=ref,event=pr
+          labels: |
+            org.opencontainers.image.version=${{ steps.version.outputs.version }}
+
+      - name: Build & push API
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta-api.outputs.tags }}
+          labels: ${{ steps.meta-api.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # ── Web image ──────────────────────────────────────────────────────
+      - name: Docker metadata (web)
+        id: meta-web
+        uses: docker/metadata-action@v6
+        with:
+          images: ghcr.io/herfbook/herfbook-web
+          flavor: latest=false
+          tags: |
+            type=raw,value=dev,enable=${{ github.event_name == 'push' && github.ref_name == 'dev' }}
+            type=raw,value=latest,enable=${{ github.event_name == 'push' && github.ref_name == 'main' }}
+            type=sha,prefix=sha-,format=short,enable=${{ github.event_name == 'push' }}
+            type=raw,value=latest,enable=${{ github.event_name == 'release' }}
+            type=semver,pattern={{version}},enable=${{ github.event_name == 'release' }}
+            type=semver,pattern={{major}},enable=${{ github.event_name == 'release' }}
+            type=ref,event=pr
+          labels: |
+            org.opencontainers.image.version=${{ steps.version.outputs.version }}
+
+      - name: Build & push web
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile.web
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta-web.outputs.tags }}
+          labels: ${{ steps.meta-web.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # ── Image cleanup ──────────────────────────────────────────────────
+      - name: Prune old API images
+        if: github.event_name != 'pull_request'
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: herfbook-api
+          package-type: container
+          min-versions-to-keep: 10
+          ignore-versions: '^(latest|dev|\d+\.\d+\.\d+|\d+)$'
+
+      - name: Prune old web images
+        if: github.event_name != 'pull_request'
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: herfbook-web
+          package-type: container
+          min-versions-to-keep: 10
+          ignore-versions: '^(latest|dev|\d+\.\d+\.\d+|\d+)$'
