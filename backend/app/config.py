@@ -68,15 +68,16 @@ class Settings(BaseSettings):
         init_settings: PydanticBaseSettingsSource,
         env_settings: PydanticBaseSettingsSource,
         dotenv_settings: PydanticBaseSettingsSource,
-        secrets_settings: PydanticBaseSettingsSource,
+        file_secret_settings: PydanticBaseSettingsSource,
+        **kwargs: Any,
     ) -> Tuple[PydanticBaseSettingsSource, ...]:
-        # Priority: init kwargs > env vars > .env file > config.yml > defaults
+        # Priority: init kwargs > env vars > .env file > config.yml > file secrets
         return (
             init_settings,
             env_settings,
             dotenv_settings,
             YamlConfigSource(settings_cls),
-            secrets_settings,
+            file_secret_settings,
         )
 
 

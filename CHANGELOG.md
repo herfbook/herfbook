@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Alembic migration framework configured with autogenerate from model metadata
 - Container entrypoint script (entrypoint.sh) runs database migrations automatically before starting the application
 - pg_isready wait loop in entrypoint for reliable database availability
+- Initial Alembic migration covering full M1 schema (29 tables)
 
 ### Changed
 - Standardized all YAML file extensions to .yml

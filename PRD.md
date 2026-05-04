@@ -33,7 +33,7 @@ Reference DESIGN.md for architecture decisions, data model, schema, and technica
 - [x] SQLAlchemy ORM models — lookup tables (all 11 community tables)
 - [x] SQLAlchemy ORM models — core entities (users, humidors, cigars, inventory, smoking_sessions, tasting_notes, etc.)
 - [x] SQLAlchemy ORM models — guest access & swaps
-- [ ] Initial Alembic migration (full schema)
+- [x] Initial Alembic migration (full schema)
 - [ ] Database seeding from community YAML files
 - [ ] CommunityDataProvider interface
 - [ ] GitHubYAMLProvider implementation
