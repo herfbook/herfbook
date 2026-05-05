@@ -29,6 +29,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Container entrypoint script (entrypoint.sh) runs database migrations automatically before starting the application
 - pg_isready wait loop in entrypoint for reliable database availability
 - Initial Alembic migration covering full M1 schema (29 tables)
+- Async database session factory with asyncpg connection pooling
+- JWT authentication utilities (access tokens, refresh tokens with rotation)
+- Password hashing with bcrypt via passlib
+- FastAPI authentication dependencies (get_current_user, get_current_user_optional)
+- Refresh token storage model for secure token rotation and invalidation
+- is_admin flag on users table (first registered user becomes admin)
+- Auth configuration settings: JWT algorithm, access token expiry, refresh token expiry
 
 ### Changed
 - Standardized all YAML file extensions to .yml

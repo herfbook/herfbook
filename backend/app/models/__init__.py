@@ -12,7 +12,7 @@ from app.models.lookups import (
     PurchaseType,
     Environment,
 )
-from app.models.user import User
+from app.models.user import User, RefreshToken
 from app.models.humidor import Humidor, HumidorReading
 from app.models.cigar import Cigar, CigarFiller, CigarImage
 from app.models.inventory import Inventory, InventoryTransfer
@@ -35,6 +35,7 @@ __all__ = [
     "PurchaseType",
     "Environment",
     "User",
+    "RefreshToken",
     "Humidor",
     "HumidorReading",
     "Cigar",
