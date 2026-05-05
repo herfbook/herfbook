@@ -36,6 +36,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Refresh token storage model for secure token rotation and invalidation
 - is_admin flag on users table (first registered user becomes admin)
 - Auth configuration settings: JWT algorithm, access token expiry, refresh token expiry
+- User registration endpoint with first-user-is-admin pattern (POST /auth/register)
+- JWT login with OAuth2 form-based authentication (POST /auth/login)
+- Refresh token rotation endpoint (POST /auth/refresh)
+- Logout with token revocation (POST /auth/logout)
+- User profile endpoints (GET /users/me, PATCH /users/me, PATCH /users/me/password)
+- Registration closed by default for single-user self-hosted deployments (configurable via ALLOW_REGISTRATION)
+- Pydantic v2 request/response schemas for auth and user operations
+- JSONB shallow merge on user preferences and sharing_defaults updates
 
 ### Changed
 - Standardized all YAML file extensions to .yml

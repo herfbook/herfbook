@@ -41,11 +41,11 @@ Reference DESIGN.md for architecture decisions, data model, schema, and technica
 
 ### Epic 3: Authentication & Users
 
-- [ ] User registration (single-user default)
-- [ ] JWT login/logout
-- [ ] Password hashing (bcrypt)
-- [ ] User preferences (JSONB)
-- [ ] Sharing defaults configuration
+- [x] User registration (single-user default)
+- [x] JWT login/logout
+- [x] Password hashing (bcrypt)
+- [x] User preferences (JSONB)
+- [x] Sharing defaults configuration
 
 ### Epic 4: Humidor Management
 
