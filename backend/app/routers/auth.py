@@ -56,8 +56,13 @@ async def register(
     count_result = await db.execute(select(func.count()).select_from(User))
     user_count = count_result.scalar_one()
 
-    is_first_user = user_count == 0
-    if not is_first_user and not settings.allow_registration:
+    if user_count == 0:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="No users exist. Use POST /setup to create the first user.",
+        )
+
+    if not settings.allow_registration:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Registration is closed",
@@ -75,7 +80,7 @@ async def register(
         password_hash=hash_password(body.password),
         email=body.email,
         display_name=body.display_name,
-        is_admin=is_first_user,
+        is_admin=False,
     )
     db.add(user)
     await db.commit()

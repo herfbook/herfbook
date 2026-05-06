@@ -44,6 +44,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Registration closed by default for single-user self-hosted deployments (configurable via ALLOW_REGISTRATION)
 - Pydantic v2 request/response schemas for auth and user operations
 - JSONB shallow merge on user preferences and sharing_defaults updates
+- First-run setup endpoint that creates admin user and default humidor atomically (POST /setup)
+- Setup status detection endpoint for frontend routing (GET /status)
+- Auto-login after initial setup (returns JWT tokens immediately)
+- Default user preferences: system theme, Fahrenheit, MM/DD/YYYY date format
+- Default sharing settings: all sharing disabled (privacy-first default)
+- setup_required flag added to /health response
 
 ### Changed
 - Standardized all YAML file extensions to .yml

@@ -1,12 +1,18 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
+from sqlalchemy import func, select
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.routers import auth
+from app.database import get_db
+from app.models.user import User
+from app.routers import auth, setup
 
 app = FastAPI(title="HerfBook API", version="0.1.0")
 
 app.include_router(auth.router, tags=["Authentication"])
+app.include_router(setup.router, tags=["Setup"])
 
 
 @app.get("/health")
-async def health():
-    return {"status": "ok", "version": "0.1.0"}
+async def health(db: AsyncSession = Depends(get_db)):
+    user_count = await db.scalar(select(func.count()).select_from(User))
+    return {"status": "ok", "version": "0.1.0", "setup_required": user_count == 0}
