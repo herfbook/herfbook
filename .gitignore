@@ -27,6 +27,9 @@ frontend/dist/*
 # Config file (local instance settings — do not commit)
 config.yml
 
+# Claude Code local settings (machine-specific paths and dev credentials)
+.claude/settings.local.json
+
 # Docker volumes
 postgres_data/
 minio_data/
