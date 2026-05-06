@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Smoking session CRUD endpoints with from-inventory and quick-log modes
+- Structured tasting notes (draw quality, burn quality, ash, strength by thirds, finish)
+- Flavor tag management per session with third designation (first/second/third/all)
+- Pairing tracking (drink/food) with notes and 1–5 rating
+- Session filtering by date range, cigar, rating, and repurchase signal
+- Service layer for session business logic (inventory decrement, want list auto-creation)
+- Pydantic schemas with Literal-type validation for tasting note enum fields
 - Inventory management endpoints: add, list, detail, update with purchase and gift tracking
 - Inventory transfer between humidors with provenance tracking and partial quantity splits
 - Smoke endpoint: decrement inventory quantity and create smoking session stub for tasting notes flow

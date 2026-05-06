@@ -76,17 +76,17 @@ Reference DESIGN.md for architecture decisions, data model, schema, and technica
 
 ### Epic 7: Smoking Journal
 
-- [ ] Create smoking session (from inventory or quick-log)
-- [ ] Structured tasting notes (draw, burn, ash, strength by thirds)
-- [ ] Flavor tag selection (from community lookup)
-- [ ] Free-text flavor notes per third
-- [ ] Retrohale and finish notes
-- [ ] Personal rating (0–100)
-- [ ] Would buy again flag
-- [ ] Add to want list flag
-- [ ] Pairing tracking (drink/food with notes and rating)
-- [ ] Session environment selection (from lookup)
-- [ ] Session list view with filtering
+- [x] Create smoking session (from inventory or quick-log)
+- [x] Structured tasting notes (draw, burn, ash, strength by thirds)
+- [x] Flavor tag selection (from community lookup)
+- [x] Free-text flavor notes per third
+- [x] Retrohale and finish notes
+- [x] Personal rating (0–100)
+- [x] Would buy again flag
+- [x] Add to want list flag
+- [x] Pairing tracking (drink/food with notes and rating)
+- [x] Session environment selection (from lookup)
+- [x] Session list view with filtering
 
 ### Epic 8: Want List
 
