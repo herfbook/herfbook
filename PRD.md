@@ -90,17 +90,17 @@ Reference DESIGN.md for architecture decisions, data model, schema, and technica
 
 ### Epic 8: Want List
 
-- [ ] Add from smoking session (via flag)
-- [ ] Manual add (free-text or cigar FK)
-- [ ] Priority levels (high/medium/low)
-- [ ] Target price
-- [ ] Mark as fulfilled (link to inventory)
+- [x] Add from smoking session (via flag)
+- [x] Manual add (free-text or cigar FK)
+- [x] Priority levels (high/medium/low)
+- [x] Target price
+- [x] Mark as fulfilled (link to inventory)
 
 ### Epic 9: External Ratings
 
-- [ ] Add external rating per cigar (source, score, URL, date)
-- [ ] Source name dropdown with free-text option
-- [ ] Rating comparison view (personal vs external)
+- [x] Add external rating per cigar (source, score, URL, date)
+- [x] Source name dropdown with free-text option
+- [x] Rating comparison view (personal vs external)
 
 ### Epic 10: Guest Access & Swaps
 

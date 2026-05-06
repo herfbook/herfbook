@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Want list CRUD endpoints with priority filtering and duplicate prevention
+- Want list fulfillment flow linking purchases to wish list items
+- External ratings endpoints nested under /cigars/{cigar_id}/ratings
+- Personal reference data model for industry review scores and links (DESIGN.md §7.2)
 - Smoking session CRUD endpoints with from-inventory and quick-log modes
 - Structured tasting notes (draw quality, burn quality, ash, strength by thirds, finish)
 - Flavor tag management per session with third designation (first/second/third/all)
