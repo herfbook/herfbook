@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
+- Humidor management endpoints: create, list, detail, update, archive (soft delete)
+- Humidor readings: manual temperature/humidity logging with pagination and date range filtering
+- Humidor list enrichment: cigar count, capacity utilization percentage, latest reading
+- Humidor detail with inventory contents including resolved cigar names and aging calculation
+- Pydantic schemas for humidor request/response models
 - Project repository with README, DESIGN.md (v0.4), and dual licensing (AGPL-3.0 + CC BY-SA 4.0)
 - Community YAML seed files: brands, manufacturers, vitolas, wrappers, binders, fillers, countries, strength levels, flavor tags, purchase types, environments
 - Docker Compose scaffold with FastAPI, PostgreSQL 16, MinIO, and Nginx

@@ -49,9 +49,9 @@ Reference DESIGN.md for architecture decisions, data model, schema, and technica
 
 ### Epic 4: Humidor Management
 
-- [ ] CRUD endpoints: create, read, update, archive humidors
-- [ ] Humidor readings: manual temperature/humidity logging
-- [ ] Humidor capacity tracking
+- [x] CRUD endpoints: create, read, update, archive humidors
+- [x] Humidor readings: manual temperature/humidity logging
+- [x] Humidor capacity tracking
 - [ ] Humidor dashboard view
 
 ### Epic 5: Cigar Management
