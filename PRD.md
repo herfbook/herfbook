@@ -104,13 +104,13 @@ Reference DESIGN.md for architecture decisions, data model, schema, and technica
 
 ### Epic 10: Guest Access & Swaps
 
-- [ ] Generate shareable guest links with permissions
-- [ ] Guest read-only views (collection, journal, humidors, want list)
-- [ ] Permission enforcement (hide prices, vendors, gifts from guests)
-- [ ] Link management (activate, deactivate, set expiry)
-- [ ] Swap list management (mark inventory as available for trade)
-- [ ] Swap tracking (proposed → accepted → shipped → received → completed)
-- [ ] Swap provenance on incoming inventory
+- [x] Generate shareable guest links with permissions
+- [x] Guest read-only views (collection, journal, humidors, want list)
+- [x] Permission enforcement (hide prices, vendors, gifts from guests)
+- [x] Link management (activate, deactivate, set expiry)
+- [x] Swap list management (mark inventory as available for trade)
+- [x] Swap tracking (proposed → accepted → shipped → received → completed)
+- [x] Swap provenance on incoming inventory
 
 ### Epic 11: Community Data Admin
 

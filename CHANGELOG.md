@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Guest access link generation with configurable permissions (collection, journal, humidors, want list, swap list)
+- Public read-only guest views at /g/{token}/* with token-based authentication
+- Permission enforcement stripping financial data from guest views (prices, vendors, gift details)
+- Guest link management (create, update permissions, deactivate, set expiry)
+- Swap list management for marking inventory items as available for trade
+- Swap lifecycle tracking with status transitions (proposed → accepted → shipped → received → completed)
+- Swap completion logic: outgoing inventory decrement and incoming inventory creation with provenance notes
+- Status transition validation preventing illegal swap state changes
 - Want list CRUD endpoints with priority filtering and duplicate prevention
 - Want list fulfillment flow linking purchases to wish list items
 - External ratings endpoints nested under /cigars/{cigar_id}/ratings
