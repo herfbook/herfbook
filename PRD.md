@@ -66,13 +66,13 @@ Reference DESIGN.md for architecture decisions, data model, schema, and technica
 
 ### Epic 6: Inventory Management
 
-- [ ] Add to inventory (box, 5-pack, single, sampler, bundle, gift)
-- [ ] Purchase tracking (price, vendor, date, purchase type)
-- [ ] Assign to humidor
-- [ ] Transfer between humidors with provenance
-- [ ] Gift tracking (received/given, from/to whom, occasion)
-- [ ] Inventory list with filtering and sorting
-- [ ] Box code and aging date tracking
+- [x] Add to inventory (box, 5-pack, single, sampler, bundle, gift)
+- [x] Purchase tracking (price, vendor, date, purchase type)
+- [x] Assign to humidor
+- [x] Transfer between humidors with provenance
+- [x] Gift tracking (received/given, from/to whom, occasion)
+- [x] Inventory list with filtering and sorting
+- [x] Box code and aging date tracking
 
 ### Epic 7: Smoking Journal
 

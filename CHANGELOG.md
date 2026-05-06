@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Inventory management endpoints: add, list, detail, update with purchase and gift tracking
+- Inventory transfer between humidors with provenance tracking and partial quantity splits
+- Smoke endpoint: decrement inventory quantity and create smoking session stub for tasting notes flow
+- Inventory statistics: total sticks, total value, average price per stick, breakdown by humidor
+- Inventory list with pagination and filtering by humidor, cigar, gift status, and minimum quantity
+- Cigar display name resolution on inventory list (brand + line + vitola)
+- Aging calculation (days since added to humidor) on inventory list and detail
 - Cigar management endpoints: create, list, detail, update, delete with lookup FK validation
 - Cigar search and filtering by brand, wrapper, strength, country, and free text
 - Filler many-to-many management: accept array of filler IDs on create/update
