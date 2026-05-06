@@ -56,12 +56,12 @@ Reference DESIGN.md for architecture decisions, data model, schema, and technica
 
 ### Epic 5: Cigar Management
 
-- [ ] CRUD endpoints for cigars with lookup FK resolution
-- [ ] Cigar creation with brand/vitola/wrapper dropdown selection
-- [ ] Custom vitola override (name, length, ring gauge)
-- [ ] Filler many-to-many management
-- [ ] Cigar image upload (up to 3, stored in MinIO)
-- [ ] UPC/barcode field
+- [x] CRUD endpoints for cigars with lookup FK resolution
+- [x] Cigar creation with brand/vitola/wrapper dropdown selection
+- [x] Custom vitola override (name, length, ring gauge)
+- [x] Filler many-to-many management
+- [x] Cigar image upload (up to 3, stored in MinIO)
+- [x] UPC/barcode field
 - [ ] Cigar detail view with all metadata
 
 ### Epic 6: Inventory Management

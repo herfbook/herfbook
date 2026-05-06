@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cigar management endpoints: create, list, detail, update, delete with lookup FK validation
+- Cigar search and filtering by brand, wrapper, strength, country, and free text
+- Filler many-to-many management: accept array of filler IDs on create/update
+- Cigar image upload to MinIO with validation (max 3 per cigar, 5 MB limit, JPEG/PNG/WebP)
+- Image management: set primary, delete with auto-promotion, presigned URL generation
+- MinIO service module (S3-compatible) for image upload, delete, and presigned URL generation
+- Custom vitola override support (name, length, ring gauge) on cigar create/update
+- CigarDetail response resolves all lookup FKs to human-readable names
 - Humidor management endpoints: create, list, detail, update, archive (soft delete)
 - Humidor readings: manual temperature/humidity logging with pagination and date range filtering
 - Humidor list enrichment: cigar count, capacity utilization percentage, latest reading

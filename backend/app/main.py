@@ -4,13 +4,14 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db
 from app.models.user import User
-from app.routers import auth, humidors, setup
+from app.routers import auth, cigars, humidors, setup
 
 app = FastAPI(title="HerfBook API", version="0.1.0")
 
 app.include_router(auth.router, tags=["Authentication"])
 app.include_router(setup.router, tags=["Setup"])
 app.include_router(humidors.router, prefix="/humidors", tags=["humidors"])
+app.include_router(cigars.router, prefix="/cigars", tags=["cigars"])
 
 
 @app.get("/health")
