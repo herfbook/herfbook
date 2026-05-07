@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Date, DateTime, Index, Integer, Numeric, String, Text, text
+from sqlalchemy import Boolean, Column, Date, DateTime, Index, Integer, Numeric, String, Text
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
