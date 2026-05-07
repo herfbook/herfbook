@@ -47,6 +47,10 @@ class Settings(BaseSettings):
 
     # Auth
     jwt_secret: str = "changeme-replace-in-production"
+    jwt_algorithm: str = "HS256"
+    access_token_expire_minutes: int = 30
+    refresh_token_expire_days: int = 7
+    allow_registration: bool = False
 
     # Community sync
     community_sync_on_startup: bool = True
@@ -61,6 +65,13 @@ class Settings(BaseSettings):
             f"@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}"
         )
 
+    @property
+    def async_database_url(self) -> str:
+        return (
+            f"postgresql+asyncpg://{self.postgres_user}:{self.postgres_password}"
+            f"@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}"
+        )
+
     @classmethod
     def settings_customise_sources(
         cls,
@@ -68,15 +79,16 @@ class Settings(BaseSettings):
         init_settings: PydanticBaseSettingsSource,
         env_settings: PydanticBaseSettingsSource,
         dotenv_settings: PydanticBaseSettingsSource,
-        secrets_settings: PydanticBaseSettingsSource,
+        file_secret_settings: PydanticBaseSettingsSource,
+        **kwargs: Any,
     ) -> Tuple[PydanticBaseSettingsSource, ...]:
-        # Priority: init kwargs > env vars > .env file > config.yml > defaults
+        # Priority: init kwargs > env vars > .env file > config.yml > file secrets
         return (
             init_settings,
             env_settings,
             dotenv_settings,
             YamlConfigSource(settings_cls),
-            secrets_settings,
+            file_secret_settings,
         )
 
 

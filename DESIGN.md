@@ -828,6 +828,29 @@ Separate PostgreSQL database on the central host. Replaces the GitHub YAML appro
 | `created_at` | TIMESTAMP | NO | |
 | `revoked_at` | TIMESTAMP | YES | |
 
+### 5.4 Indexes
+
+Composite indexes on high-volume personal data tables for multi-tenant query performance. Every personal data query filters by `user_id` first; these composites cover the most common access patterns.
+
+| Table | Index | Columns | Purpose |
+|---|---|---|---|
+| `inventory` | `ix_inventory_user_humidor` | `user_id`, `humidor_id` | "Show my cigars in humidor X" |
+| `inventory` | `ix_inventory_user_cigar` | `user_id`, `cigar_id` | "How many of cigar X do I have?" |
+| `smoking_sessions` | `ix_sessions_user_smoked_at` | `user_id`, `smoked_at` | "My sessions this month" |
+| `smoking_sessions` | `ix_sessions_user_cigar` | `user_id`, `cigar_id` | "All sessions for cigar X" |
+| `humidor_readings` | `ix_readings_humidor_recorded` | `humidor_id`, `recorded_at` | Time-series environment queries |
+| `cigar_images` | `ix_cigar_images_cigar` | `cigar_id`, `sort_order` | Display-ordered images per cigar |
+| `cigar_external_ratings` | `ix_ratings_cigar_user` | `cigar_id`, `user_id` | "My tracked ratings for cigar X" |
+
+Additional unique constraints prevent duplicate data in join tables:
+
+| Table | Columns | Purpose |
+|---|---|---|
+| `cigar_fillers` | `cigar_id`, `filler_id` | Prevent duplicate filler assignments |
+| `session_flavor_tags` | `session_id`, `tag_id`, `third` | Prevent duplicate tag assignments per third |
+
+Lookup tables have a unique index on `community_key` (from the `CommunityLookupMixin`) for sync matching. `guest_links.token` is unique and automatically indexed.
+
 ---
 
 ## 6. Guest & Friend Access
@@ -1147,8 +1170,8 @@ herfbook/
 │   │   └── utils/
 │   │       ├── slugify.py           # Community key generation
 │   │       └── images.py            # MinIO/S3 helpers
+│   ├── alembic.ini                  # Alembic configuration
 │   ├── alembic/                     # Database migrations
-│   │   ├── alembic.ini
 │   │   └── versions/
 │   ├── tests/
 │   └── requirements.txt
