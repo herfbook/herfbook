@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.1] — 2026-05-04
+
 ### Added
 
 - Guest access link generation with configurable permissions (collection, journal, humidors, want list, swap list)
@@ -92,8 +94,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - setup_required flag added to /health response
 
 ### Changed
+
 - Standardized all YAML file extensions to .yml
-
-## [0.1.0] — Unreleased
-
-Target: M1 Self-Hosted Core (see PRD.md for feature tracking)

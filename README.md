@@ -43,17 +43,68 @@ Website: [herfbook.com](https://herfbook.com)
 
 ## Quick Start
 
+> **Note:** v0.0.1 is a backend-only pre-release. The frontend is under development. You can interact with the API directly.
+
+### Prerequisites
+
+- Docker and Docker Compose
+
+### Run
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/herfbook/herfbook.git
+   cd herfbook
+   ```
+
+2. Copy the example configuration:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+3. Start the stack:
+
+   ```bash
+   docker compose up -d
+   ```
+
+4. Verify it's running:
+
+   ```bash
+   curl http://localhost:8080/api/health
+   ```
+
+### Development
+
+For development with hot reload and exposed ports:
+
 ```bash
-cp .env.example .env        # copy config template
-# edit .env — at minimum set strong passwords and JWT_SECRET
-docker compose up           # starts api, db, minio, and web
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
 ```
 
-`http://localhost/api/health` → `{"status":"ok","version":"0.1.0"}`
+API is available at <http://localhost:8005>
+API docs (Swagger) at <http://localhost:8005/docs>
 
-> The application is under active development. Database models and the full UI are not yet built.
+## API Endpoints
 
-See [DESIGN.md](DESIGN.md) for the full architecture and milestone roadmap.
+| Group | Base Path | Description |
+| --- | --- | --- |
+| Health | `/health` | Health check and setup status |
+| Setup | `/setup` | First-run initialization |
+| Auth | `/auth/*` | Register, login, logout, token refresh |
+| Users | `/users/*` | Profile and preferences |
+| Humidors | `/humidors/*` | Humidor CRUD and readings |
+| Cigars | `/cigars/*` | Cigar management with lookup resolution |
+| Inventory | `/inventory/*` | Stock tracking, transfers, purchases |
+| Sessions | `/sessions/*` | Smoking journal and tasting notes |
+| Want List | `/want-list/*` | Wish list management |
+| Guests | `/guests/*` | Shareable read-only access links |
+| Guest Views | `/g/{token}/*` | Public guest endpoints |
+| Swaps | `/swaps/*` | Cigar swap tracking |
+
+Full API documentation available at `/docs` (Swagger UI) when running.
 
 ## Configuration
 

@@ -2,7 +2,7 @@
 
 **Product:** HerfBook
 **Version target:** 0.1.0 (M1 — Self-Hosted Core)
-**Last updated:** 2026-05-03
+**Last updated:** 2026-05-06
 
 ---
 
