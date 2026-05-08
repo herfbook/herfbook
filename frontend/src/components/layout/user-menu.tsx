@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "next-themes";
 import { toast } from "sonner";
-import { LogOut, Settings, Sun, Moon, Monitor, ChevronRight } from "lucide-react";
+import { LogOut, Settings, Sun, Moon, Monitor } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -64,7 +64,6 @@ export function UserMenu({ children }: UserMenuProps) {
           <DropdownMenuSubTrigger>
             <Sun className="mr-2 h-4 w-4" />
             Theme
-            <ChevronRight className="ml-auto h-4 w-4" />
           </DropdownMenuSubTrigger>
           <DropdownMenuPortal>
             <DropdownMenuSubContent>

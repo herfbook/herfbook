@@ -9,10 +9,8 @@ export function AppShell() {
   return (
     <PageMetaProvider>
       <SidebarProvider>
-        {/* Desktop sidebar — hidden on mobile */}
-        <div className="hidden md:flex">
-          <AppSidebar />
-        </div>
+        {/* Sidebar handles its own hidden/md:block visibility internally */}
+        <AppSidebar />
 
         <SidebarInset className="flex flex-col min-h-screen">
           <TopBar />

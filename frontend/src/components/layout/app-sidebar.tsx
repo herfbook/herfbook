@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   LayoutDashboard,
@@ -104,6 +104,10 @@ export function AppSidebar() {
   const [colOpen, setColOpen] = useState(collectionOpen);
   const [socOpen, setSocOpen] = useState(socialOpen);
   const [admOpen, setAdmOpen] = useState(adminOpen);
+
+  useEffect(() => { if (collectionOpen) setColOpen(true); }, [collectionOpen]);
+  useEffect(() => { if (socialOpen) setSocOpen(true); }, [socialOpen]);
+  useEffect(() => { if (adminOpen) setAdmOpen(true); }, [adminOpen]);
 
   return (
     <Sidebar collapsible="icon" variant="sidebar">
