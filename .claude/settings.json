@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Bash(npm install *)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -s http://localhost:8005/status)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/)",
+      "Bash(curl -s http://localhost:5173/api/status)",
+      "Bash(pkill -f \"vite --port 5173\")",
+      "Bash(curl -s -X POST http://localhost:8005/auth/login -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=admin&password=changeme')"
     ]
   },
   "hooks": {
