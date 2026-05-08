@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Frontend application scaffold: React 18 + TypeScript + Vite
+- Tailwind CSS v3 with HerfBook design tokens (warm tobacco-inspired palette)
+- shadcn/ui component library with curated starter set (Button, Card, Input, Label, Textarea, Select, Checkbox, Switch, Dialog, Sheet, Dropdown Menu, Popover, Tooltip, Sonner toast, Badge, Separator, Skeleton, Table, Tabs, Avatar)
+- Dark/light theme system with persistence via next-themes (dark default)
+- Inter, Fraunces, and JetBrains Mono variable fonts (self-hosted via @fontsource-variable)
+- Layout primitives: Container, PageHeader, PageSection
+- React Router v7 in plain mode
+- TanStack Query v5 client with sensible defaults
+- Vite dev server proxy from /api to backend at localhost:8005
+- Design system showcase page at /_/dev for visual reference
+- frontend/README.md with quickstart and build instructions
+
 ## [0.0.1] — 2026-05-04
 
 ### Added
