@@ -52,7 +52,17 @@ Reference DESIGN.md for architecture decisions, data model, schema, and technica
 - [x] CRUD endpoints: create, read, update, archive humidors
 - [x] Humidor readings: manual temperature/humidity logging
 - [x] Humidor capacity tracking
-- [ ] Humidor dashboard view
+- [x] Create humidor (name, description, capacity, location, target humidity, target temp)
+- [x] List humidors with cigar count, capacity fill %, latest reading
+- [x] View humidor detail (header, stats, contents)
+- [x] Edit humidor settings
+- [x] Archive (soft-delete) humidor
+- [x] Show/hide archived humidors on list page
+- [x] Log humidor reading (humidity, temperature, manual source)
+- [x] Display latest reading on cards and detail page
+- [ ] Reading history list and chart (deferred — needs real data)
+- [ ] Restore archived humidor UI (deferred)
+- [ ] Sensor API integration (M3+)
 
 ### Epic 5: Cigar Management
 

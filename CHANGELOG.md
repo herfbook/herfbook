@@ -13,6 +13,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Humidors list page (/humidors) with cards showing name, location, capacity fill, latest reading, and inline actions
+- Show archived toggle on humidors list, persisted to localStorage
+- Create and edit humidor dialog with all settings (name, description, capacity, location, target humidity, target temperature)
+- Humidor detail page (/humidors/:id) with header, stat tiles, and read-only contents table
+- Log humidor reading dialog (humidity and/or temperature, optional recorded_at, requires at least one value)
+- Archive humidor confirmation dialog with soft-delete
+- Reusable CapacityBar and ReadingPill components for humidor displays
+- TanStack Query hooks for humidor CRUD and readings with cache invalidation and optimistic edit updates
+- date-fns added for relative time and date formatting
+- Feature folder convention established under src/features/{feature}/ with api/types/queries/schemas/components subdivision
+
 - Persistent app shell with shadcn Sidebar (collapsible to icon rail on desktop) and a bottom tab bar on mobile
 - Top bar with page title, breadcrumb support, theme toggle, user menu, and disabled search placeholder
 - User menu with display name, settings link, theme submenu, and sign-out (reused from sidebar footer and top-bar avatar)

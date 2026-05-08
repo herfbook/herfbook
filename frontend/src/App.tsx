@@ -7,7 +7,8 @@ import SetupPage from "@/pages/setup";
 import LoginPage from "@/pages/login";
 import NotFoundPage from "@/pages/not-found";
 import DashboardPage from "@/pages/dashboard";
-import HumidorsPlaceholderPage from "@/pages/humidors-placeholder";
+import HumidorsListPage from "@/pages/humidors-list";
+import HumidorDetailPage from "@/pages/humidor-detail";
 import CigarsPlaceholderPage from "@/pages/cigars-placeholder";
 import InventoryPlaceholderPage from "@/pages/inventory-placeholder";
 import SessionsPlaceholderPage from "@/pages/sessions-placeholder";
@@ -30,7 +31,8 @@ export default function App() {
         <Route element={<ProtectedRoute />}>
           <Route element={<AppShell />}>
             <Route path="/" element={<DashboardPage />} />
-            <Route path="/humidors" element={<HumidorsPlaceholderPage />} />
+            <Route path="/humidors" element={<HumidorsListPage />} />
+            <Route path="/humidors/:id" element={<HumidorDetailPage />} />
             <Route path="/cigars" element={<CigarsPlaceholderPage />} />
             <Route path="/inventory" element={<InventoryPlaceholderPage />} />
             <Route path="/sessions" element={<SessionsPlaceholderPage />} />
