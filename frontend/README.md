@@ -25,7 +25,7 @@ npm install
 npm run dev
 ```
 
-Dev server runs at `http://localhost:5173`.
+Dev server runs at `http://localhost:5174`.
 
 ## Dev proxy
 
@@ -35,7 +35,7 @@ directly) before making API calls.
 
 ## Design system page
 
-Navigate to `http://localhost:5173/_/dev` to see the design system showcase:
+Navigate to `http://localhost:5174/_/dev` to see the design system showcase:
 typography, color swatches, all component variants, form controls, cards,
 overlays, and a data table example.
 
@@ -51,5 +51,5 @@ directory into the Nginx image — no changes to the Docker contract needed.
 ```bash
 npm run typecheck   # TypeScript check (no emit)
 npm run lint        # ESLint
-npm run preview     # Preview the production build locally
+npm run preview     # Preview the production build locally at http://localhost:5175
 ```

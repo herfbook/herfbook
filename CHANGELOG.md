@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Vite dev server now runs on port 5174 (was 5173) with strictPort enabled to fail fast on port conflicts. Vite preview server runs on 5175.
+
 ### Added
 
 - Persistent app shell with shadcn Sidebar (collapsible to icon rail on desktop) and a bottom tab bar on mobile
