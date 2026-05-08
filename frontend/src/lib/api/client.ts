@@ -1,6 +1,9 @@
 import axios from "axios";
 import type { InternalAxiosRequestConfig } from "axios";
 import type { TokenPair } from "./types";
+// Circular dep (client → auth-store → auth → client) is safe: useAuthStore
+// is only accessed inside callbacks, never during module initialisation.
+import { useAuthStore } from "@/stores/auth-store";
 
 // Interceptor-free instance used for refresh calls and public endpoints
 export const rawClient = axios.create({
@@ -14,15 +17,9 @@ export const apiClient = axios.create({
   withCredentials: false,
 });
 
-// Lazy-import the store to avoid circular deps at module init
-function getAuthStore() {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  return require("@/stores/auth-store").useAuthStore;
-}
-
 // Request interceptor: attach Bearer token from store
 apiClient.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-  const token = getAuthStore().getState().accessToken as string | null;
+  const token = useAuthStore.getState().accessToken;
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -57,16 +54,15 @@ apiClient.interceptors.response.use(
     if (!refreshPromise) {
       refreshPromise = (async () => {
         try {
-          const store = getAuthStore();
-          const refreshToken = store.getState().refreshToken as string | null;
+          const refreshToken = useAuthStore.getState().refreshToken;
           if (!refreshToken) throw new Error("No refresh token");
 
           const resp = await rawClient.post<TokenPair>("/auth/refresh", {
             refresh_token: refreshToken,
           });
-          store.getState().setTokens(resp.data);
+          useAuthStore.getState().setTokens(resp.data);
         } catch {
-          getAuthStore().getState().clear();
+          useAuthStore.getState().clear();
           throw error;
         } finally {
           refreshPromise = null;
@@ -76,7 +72,7 @@ apiClient.interceptors.response.use(
 
     try {
       await refreshPromise;
-      const newToken = getAuthStore().getState().accessToken as string | null;
+      const newToken = useAuthStore.getState().accessToken;
       if (newToken) {
         originalRequest.headers.Authorization = `Bearer ${newToken}`;
       }
