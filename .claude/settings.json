@@ -8,7 +8,23 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/)",
       "Bash(curl -s http://localhost:5173/api/status)",
       "Bash(pkill -f \"vite --port 5173\")",
-      "Bash(curl -s -X POST http://localhost:8005/auth/login -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=admin&password=changeme')"
+      "Bash(curl -s -X POST http://localhost:8005/auth/login -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=admin&password=changeme')",
+      "Bash(npx shadcn@latest add sidebar --yes)",
+      "Bash(npx --version)",
+      "Bash(cd /mnt/d/projects/herfbook/frontend && npx shadcn@latest add sidebar --yes 2>&1)",
+      "Read(//mnt/d/projects/herfbook/**)",
+      "Bash(ls /mnt/)",
+      "Read(//d//**)",
+      "Read(//c//**)",
+      "Bash(mount)",
+      "Bash(npx shadcn@latest add collapsible --yes)",
+      "Bash(npx shadcn@latest add breadcrumb --yes)",
+      "WebFetch(domain:localhost)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5175/)",
+      "Bash(pkill -f \"vite\")",
+      "Bash(netstat -ano)",
+      "Bash(taskkill //PID 51204 //F)",
+      "Bash(git rm *)"
     ]
   },
   "hooks": {
