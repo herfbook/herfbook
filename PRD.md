@@ -135,8 +135,8 @@ Reference DESIGN.md for architecture decisions, data model, schema, and technica
 - [x] React app scaffold with Vite
 - [ ] Navigation/layout component
 - [ ] Responsive design (desktop + mobile)
-- [ ] API client module
-- [ ] Auth context and protected routes
+- [x] API client module
+- [x] Auth context and protected routes
 
 ### Epic 14: PWA & Offline
 

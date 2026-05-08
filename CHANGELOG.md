@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Axios HTTP client with JWT bearer interceptor and transparent refresh-and-retry on 401
+- Concurrent-request-safe token refresh using promise singleton (queues 401-triggering requests during refresh)
+- Auth API module wrapping POST /auth/login (form-encoded), POST /auth/refresh, POST /auth/logout, GET /users/me
+- Setup API module wrapping GET /status and POST /setup
+- Zustand auth store with localStorage persistence and boot-time hydration via /users/me
+- AuthBoot component gating router on authentication hydration
+- SetupGate component routing unconfigured instances to /setup and configured instances away from it
+- ProtectedRoute layout component redirecting unauthenticated users to /login with return-path state
+- First-run setup page (/setup) creating admin user + default humidor and auto-logging in
+- Login page (/login) with inline error feedback and return-path navigation
+- Home placeholder page (/) with health pills and logout action
+- 404 page for unknown routes
+- TypeScript types mirroring backend Pydantic schemas (User, TokenPair, SetupStatus, SetupResponse)
 - Frontend application scaffold: React 18 + TypeScript + Vite
 - Tailwind CSS v3 with HerfBook design tokens (warm tobacco-inspired palette)
 - shadcn/ui component library with curated starter set (Button, Card, Input, Label, Textarea, Select, Checkbox, Switch, Dialog, Sheet, Dropdown Menu, Popover, Tooltip, Sonner toast, Badge, Separator, Skeleton, Table, Tabs, Avatar)
