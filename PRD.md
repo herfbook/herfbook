@@ -133,8 +133,8 @@ Reference DESIGN.md for architecture decisions, data model, schema, and technica
 ### Epic 13: Frontend Shell
 
 - [x] React app scaffold with Vite
-- [ ] Navigation/layout component
-- [ ] Responsive design (desktop + mobile)
+- [x] Navigation/layout component
+- [x] Responsive design (desktop + mobile)
 - [x] API client module
 - [x] Auth context and protected routes
 

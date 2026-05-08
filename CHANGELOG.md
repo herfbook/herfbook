@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Persistent app shell with shadcn Sidebar (collapsible to icon rail on desktop) and a bottom tab bar on mobile
+- Top bar with page title, breadcrumb support, theme toggle, user menu, and disabled search placeholder
+- User menu with display name, settings link, theme submenu, and sign-out (reused from sidebar footer and top-bar avatar)
+- Page meta context (usePageMeta hook) for pages to declare title and breadcrumbs without prop-drilling; updates document.title
+- Section sub-navigation tabs component for grouped sections (Collection, Social, Admin)
+- Reusable Placeholder component for sections not yet implemented
+- Dashboard placeholder page at / with health probes and welcome card (replaces FE-02 home placeholder)
+- Route placeholders for Humidors, Cigars, Inventory, Journal, Wishlist, Swaps, Guests, Admin Community, Admin Settings
+- Admin section visibility gated on user.is_admin flag
+- Sidebar palette tokens (--sidebar-*) tuned to HerfBook warm tobacco theme in both dark and light modes
+
 - Axios HTTP client with JWT bearer interceptor and transparent refresh-and-retry on 401
 - Concurrent-request-safe token refresh using promise singleton (queues 401-triggering requests during refresh)
 - Auth API module wrapping POST /auth/login (form-encoded), POST /auth/refresh, POST /auth/logout, GET /users/me
@@ -33,6 +44,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Vite dev server proxy from /api to backend at localhost:8005
 - Design system showcase page at /_/dev for visual reference
 - frontend/README.md with quickstart and build instructions
+
+### Fixed
+
+- Vite dev server proxy now rewrites /api prefix when forwarding to backend (was sending /api/status to backend instead of /status, causing 404s)
 
 ## [0.0.1] — 2026-05-04
 
