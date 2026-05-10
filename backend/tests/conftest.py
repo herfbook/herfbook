@@ -2,8 +2,14 @@ import pytest
 from unittest.mock import AsyncMock
 from fastapi.testclient import TestClient
 
-from app.main import app
-from app.database import get_db
+from app.config import settings
+
+# Disable community sync during tests — the lifespan would otherwise try to
+# open a real DB session, which isn't available in unit-test runs.
+settings.community_sync_on_startup = False
+
+from app.main import app  # noqa: E402  — must come after settings override
+from app.database import get_db  # noqa: E402
 
 
 @pytest.fixture

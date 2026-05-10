@@ -54,6 +54,7 @@ class Settings(BaseSettings):
 
     # Community sync
     community_sync_on_startup: bool = True
+    community_dir: str = "/app/community"
     github_community_repo: str = "herfbook/herfbook"
 
     herfbook_config_file: Optional[str] = None

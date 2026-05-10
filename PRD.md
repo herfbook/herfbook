@@ -34,10 +34,10 @@ Reference DESIGN.md for architecture decisions, data model, schema, and technica
 - [x] SQLAlchemy ORM models — core entities (users, humidors, cigars, inventory, smoking_sessions, tasting_notes, etc.)
 - [x] SQLAlchemy ORM models — guest access & swaps
 - [x] Initial Alembic migration (full schema)
-- [ ] Database seeding from community YAML files
-- [ ] CommunityDataProvider interface
-- [ ] GitHubYAMLProvider implementation
-- [ ] Community sync background task
+- [x] Database seeding from community YAML files
+- [x] CommunityDataProvider interface
+- [x] LocalYAMLProvider implementation (M1; M2 will add a remote/GitHub variant)
+- [x] Community sync on startup (lifespan hook; non-fatal)
 
 ### Epic 3: Authentication & Users
 

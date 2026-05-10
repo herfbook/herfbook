@@ -1,12 +1,15 @@
 services:
   herfbook-api:
-    build: ./backend
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
     restart: unless-stopped
     env_file: .env
     environment:
       POSTGRES_HOST: herfbook-db
     volumes:
       - ./backend:/app
+      - ./community:/app/community:ro
     command: ["--reload"]
     depends_on:
       herfbook-db:

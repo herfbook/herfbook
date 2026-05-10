@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Lookup API endpoints under `/lookups/*` for searching and creating community-managed reference data (brands, manufacturers, vitolas, wrappers, binders, fillers, countries, strength_levels, flavor_tags, purchase_types, environments)
+- Six lookup tables (manufacturers, brands, vitolas, wrappers, binders, fillers) accept user-created entries via POST; the rest are read-only
+- Duplicate detection on user-created lookup entries returns 409 with the existing entry's ID so the frontend can select it instead of creating
+- Brand POST validates that any provided `manufacturer_id` references an active and imported manufacturer (422 otherwise)
+- `CommunityDataProvider` Protocol and `LocalYAMLProvider` implementation reading from `community/*.yml`
+- Community lookup sync engine: slugified `community_key` matching, first-run auto-import, orphan demotion to `source="local"`, non-fatal startup hook via FastAPI `lifespan`
+- Community directory bind-mounted into the dev API container (read-only); `COPY`'d into the prod API image at build time
+- `slugify` utility for stable `community_key` generation across syncs
+- App-namespace logging configured at INFO so community sync stats are visible in container logs
+
+### Changed
+
+- Backend Docker image now builds with the repo root as context (was `./backend`) so the API image can `COPY community/` from its canonical location at the repo root. Dev compose, prod compose, and the release CI workflow updated accordingly.
+
 ### Fixed
 
 - Dev compose now builds the frontend inside the herfbook-web container via the multi-stage Dockerfile.web, instead of requiring a host-side `npm run build` and volume mount. `docker compose -f docker-compose.dev.yml up --build` is now sufficient to serve the app at :8080.
