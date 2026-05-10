@@ -7,10 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Dev compose now builds the frontend inside the herfbook-web container via the multi-stage Dockerfile.web, instead of requiring a host-side `npm run build` and volume mount. `docker compose -f docker-compose.dev.yml up --build` is now sufficient to serve the app at :8080.
+
 ### Changed
 
-- Docker frontend serving split into dev (volume-mount) and prod (multi-stage build) patterns. docker-compose.dev.yml now mounts frontend/dist as a read-only volume so host-side `npm run build` reflects in Nginx without rebuilding the herfbook-web image. Dockerfile.web is now a proper multi-stage build (Node + Nginx) for self-contained production images published to GHCR.
-- Added .dockerignore at the repo root to scope the production image build context.
+- Dockerfile.web is now a proper multi-stage build (Node + Nginx) for self-contained images. CI publishes this to ghcr.io/herfbook/herfbook-web; docker-compose.dev.yml builds it locally for the same self-contained dev serve.
+- Added .dockerignore at the repo root to scope the image build context.
 - Vite dev server now runs on port 5174 (was 5173) with strictPort enabled to fail fast on port conflicts. Vite preview server runs on 5175.
 
 ### Added

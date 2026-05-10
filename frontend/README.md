@@ -55,17 +55,19 @@ npm run preview     # Preview the production build locally at http://localhost:5
 
 ## Docker dev workflow
 
-The dev compose (`docker-compose.dev.yml`) serves the frontend via
-Nginx on port 8080 by mounting `frontend/dist` as a read-only volume
-into the `herfbook-web` container. This means:
+The dev compose (`docker-compose.dev.yml`) builds the frontend inside
+the `herfbook-web` container via the multi-stage `Dockerfile.web`
+(Node builds → Nginx serves) and exposes it on port 8080. No host
+toolchain is required.
 
-- Run `npm run build` on the host whenever you want :8080 to update.
-- For fast iteration, prefer `npm run dev` on `:5174` instead — it
-  has HMR and doesn't require Docker.
-- The `:8080` serve is useful for verifying the production-style
-  build occasionally.
+- **First build / after frontend changes:**
+  `docker compose -f docker-compose.dev.yml up --build`
+- **Just frontend changed:**
+  `docker compose -f docker-compose.dev.yml up --build herfbook-web`
+- **For fast iteration with HMR**, prefer `npm run dev` on `:5174` —
+  the dev server proxies `/api` to `:8005` directly. The `:8080`
+  serve is useful for verifying the production-style build.
 
-For production, `Dockerfile.web` is a multi-stage build that runs
-`npm ci && npm run build` inside the image. CI publishes this to
-`ghcr.io/herfbook/herfbook-web:latest`; `docker-compose.prod.yml`
-pulls and runs it. No host-side build step is needed in production.
+For production, `docker-compose.prod.yml` pulls the same multi-stage
+image from `ghcr.io/herfbook/herfbook-web:latest` (published by CI).
+No host-side build step is needed.

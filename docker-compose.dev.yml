@@ -48,19 +48,12 @@ services:
       - herfbook-dev
 
   herfbook-web:
-    # Dev image: serves frontend/dist via Nginx with a runtime volume
-    # mount. Run `npm run build` (or `npm run build -- --watch`) in
-    # ./frontend on the host to populate dist; changes appear
-    # immediately. For day-to-day frontend dev, prefer `npm run dev`
-    # on :5174 which proxies /api to :8005 directly.
     build:
       context: .
-      dockerfile: Dockerfile.web.dev
+      dockerfile: Dockerfile.web
     restart: unless-stopped
     depends_on:
       - herfbook-api
-    volumes:
-      - ./frontend/dist:/usr/share/nginx/html:ro
     ports:
       - "8080:80"
     networks:
