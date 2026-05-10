@@ -63,6 +63,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Vite dev server proxy now rewrites /api prefix when forwarding to backend (was sending /api/status to backend instead of /status, causing 404s)
+- API container failed to start on fresh Windows clones due to CRLF line endings in backend/entrypoint.sh leaking through Git's autocrlf behavior. Added .gitattributes at the repo root pinning shell scripts, Dockerfiles, YAML, and infrastructure files to LF regardless of host platform.
 
 ## [0.0.1] — 2026-05-04
 
