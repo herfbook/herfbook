@@ -91,7 +91,7 @@ export default function HumidorDetailPage() {
         humidor={humidor}
         onArchived={() => navigate("/humidors")}
       />
-      <HumidorContentsTable contents={humidor.contents} />
+      <HumidorContentsTable contents={humidor.contents} humidorId={humidor.id} />
     </div>
   );
 }

@@ -72,7 +72,7 @@ Reference DESIGN.md for architecture decisions, data model, schema, and technica
 - [x] Filler many-to-many management
 - [x] Cigar image upload (up to 3, stored in MinIO)
 - [x] UPC/barcode field
-- [ ] Cigar detail view with all metadata
+- [x] Cigar detail view with all metadata
 
 ### Epic 6: Inventory Management
 

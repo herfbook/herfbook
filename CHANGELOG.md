@@ -9,6 +9,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cigars catalog page (/cigars) with search, brand/wrapper/country/strength filter chips, responsive card grid, and in-stock counts aggregated client-side from inventory
+- Cigar detail page (/cigars/:id) with metadata grid, image gallery (up to 3 images, primary marker, type tags, lightbox), inventory-across-humidors breakdown linking back to each humidor
+- Cigar create/edit form with section layout (Identity, Composition, Origin & Strength, Identification, Notes), full lookup combobox integration, custom vitola override toggle (mutually exclusive with vitola_id), filler multi-select, and brand→manufacturer auto-fill
+- Cigar image upload (drag-and-drop, 10 MB client-side limit, multipart POST, upload progress), set-as-primary action, and image delete
+- Cigar deletion with smart visibility (option hidden in list-row menu when in-stock > 0; backend-side 409 surfaces as toast for sessions reference)
+- Inventory list page (/inventory) with sortable table (cigar/quantity/humidor/price/aging/added), humidor / gift / min-quantity filters, client-side free-text search over cigar display name, and pagination
+- Inventory detail page (/inventory/:id) with stat tiles (quantity, aging, $/stick, total spend), purchase metadata, gift card, notes, and transfer history table
+- Inventory create/edit form covering cigar selection, quantity, humidor, purchase details (date, price, $/stick, vendor, vendor URL, purchase type), aging & box code, collapsible gift section, and notes
+- CigarPickerCombobox: searches the cigar catalog with debounced query, shows brand+line+vitola with thumbnail, supports inline cigar creation from a no-match query (composes CigarFormDialog) and selects the new cigar afterward
+- HumidorPicker thin wrapper over shadcn Select for assigning humidors (with optional Unassigned)
+- Transfer dialog for moving cigars between humidors with full/partial quantity (server splits the row when partial); destination defaults to the current humidor's exclusion list
+- Smoke confirmation dialog (AlertDialog) that decrements quantity by 1, invalidates inventory + humidor + cigar caches, and toasts "Logged. Quantity decreased." (full session form lands in FE-06)
+- Inventory deletion with FK-aware backend error surfacing
+- Lookup combobox infrastructure (`src/components/lookup/`): debounced /lookups/{table} search, per-table secondary text (brand→manufacturer, vitola→size + category, wrapper→color + region, etc.), "User" badge for user-source entries, inline create-on-no-match for the six user-creatable tables
+- Lookup create dialog with table-specific form fields (manufacturer, brand with nested manufacturer combobox, vitola, wrapper, binder, filler); 409 duplicate response automatically selects the existing entry and toasts
+- LookupMultiCombobox for many-to-many relationships (used by cigar fillers), rendering selected entries as removable chips
+- Cross-feature wiring: humidor detail "Add cigars" button now deep-links to `/inventory?new=1&humidor=:id`; humidor contents rows navigate to `/cigars/:id`
+- Query-param support: `/cigars?new=1&q=…`, `/inventory?new=1&humidor=:id&cigar=:id` — one-shot params are stripped from the URL after the dialog opens so a refresh doesn't reopen it
+- `useDebouncedValue` shared hook in `src/lib/hooks/`
 - Lookup API endpoints under `/lookups/*` for searching and creating community-managed reference data (brands, manufacturers, vitolas, wrappers, binders, fillers, countries, strength_levels, flavor_tags, purchase_types, environments)
 - Six lookup tables (manufacturers, brands, vitolas, wrappers, binders, fillers) accept user-created entries via POST; the rest are read-only
 - Duplicate detection on user-created lookup entries returns 409 with the existing entry's ID so the frontend can select it instead of creating

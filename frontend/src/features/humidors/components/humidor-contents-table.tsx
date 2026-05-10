@@ -1,9 +1,5 @@
+import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -17,6 +13,7 @@ import type { HumidorInventoryItem } from "../types";
 
 interface HumidorContentsTableProps {
   contents: HumidorInventoryItem[];
+  humidorId: string;
 }
 
 function cigarLabel(item: HumidorInventoryItem): string {
@@ -26,32 +23,44 @@ function cigarLabel(item: HumidorInventoryItem): string {
 
 function sortContents(items: HumidorInventoryItem[]): HumidorInventoryItem[] {
   return [...items].sort((a, b) => {
-    // date_added_humidor desc (null sorts last)
     if (a.date_added_humidor !== b.date_added_humidor) {
       if (!a.date_added_humidor) return 1;
       if (!b.date_added_humidor) return -1;
       return b.date_added_humidor.localeCompare(a.date_added_humidor);
     }
-    // brand_name asc
     const brandCmp = a.brand_name.localeCompare(b.brand_name);
     if (brandCmp !== 0) return brandCmp;
-    // line asc
-    const lineA = a.line ?? "";
-    const lineB = b.line ?? "";
-    return lineA.localeCompare(lineB);
+    return (a.line ?? "").localeCompare(b.line ?? "");
   });
 }
 
-export function HumidorContentsTable({ contents }: HumidorContentsTableProps) {
+export function HumidorContentsTable({
+  contents,
+  humidorId,
+}: HumidorContentsTableProps) {
+  const navigate = useNavigate();
   const sorted = sortContents(contents);
 
   return (
     <div className="space-y-4">
-      <div className="flex items-baseline gap-2">
-        <h2 className="text-lg font-semibold">Contents</h2>
-        <span className="text-sm text-muted-foreground">
-          {contents.length} {contents.length === 1 ? "cigar" : "cigars"}
-        </span>
+      <div className="flex items-baseline justify-between gap-2">
+        <div className="flex items-baseline gap-2">
+          <h2 className="text-lg font-semibold">Contents</h2>
+          <span className="text-sm text-muted-foreground">
+            {contents.length} {contents.length === 1 ? "cigar" : "cigars"}
+          </span>
+        </div>
+        {contents.length > 0 && (
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() =>
+              navigate(`/inventory?new=1&humidor=${humidorId}`)
+            }
+          >
+            Add cigars
+          </Button>
+        )}
       </div>
 
       {contents.length === 0 ? (
@@ -59,14 +68,13 @@ export function HumidorContentsTable({ contents }: HumidorContentsTableProps) {
           <p className="text-sm text-muted-foreground">
             This humidor is empty.
           </p>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <span>
-                <Button disabled>Add cigars</Button>
-              </span>
-            </TooltipTrigger>
-            <TooltipContent>Coming in FE-05</TooltipContent>
-          </Tooltip>
+          <Button
+            onClick={() =>
+              navigate(`/inventory?new=1&humidor=${humidorId}`)
+            }
+          >
+            Add cigars
+          </Button>
         </div>
       ) : (
         <div className="rounded-lg border overflow-hidden">
@@ -81,14 +89,21 @@ export function HumidorContentsTable({ contents }: HumidorContentsTableProps) {
             </TableHeader>
             <TableBody>
               {sorted.map((item) => (
-                <TableRow key={item.inventory_id}>
+                <TableRow
+                  key={item.inventory_id}
+                  onClick={() => navigate(`/cigars/${item.cigar_id}`)}
+                  className="cursor-pointer"
+                >
                   <TableCell className="font-medium">
                     {cigarLabel(item)}
                   </TableCell>
                   <TableCell className="text-right">{item.quantity}</TableCell>
                   <TableCell className="text-muted-foreground text-sm">
                     {item.date_added_humidor
-                      ? format(new Date(item.date_added_humidor + "T00:00:00"), "MMM d, yyyy")
+                      ? format(
+                          new Date(item.date_added_humidor + "T00:00:00"),
+                          "MMM d, yyyy"
+                        )
                       : "—"}
                   </TableCell>
                   <TableCell className="text-muted-foreground text-sm">

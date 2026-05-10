@@ -9,8 +9,10 @@ import NotFoundPage from "@/pages/not-found";
 import DashboardPage from "@/pages/dashboard";
 import HumidorsListPage from "@/pages/humidors-list";
 import HumidorDetailPage from "@/pages/humidor-detail";
-import CigarsPlaceholderPage from "@/pages/cigars-placeholder";
-import InventoryPlaceholderPage from "@/pages/inventory-placeholder";
+import CigarsListPage from "@/pages/cigars-list";
+import CigarDetailPage from "@/pages/cigar-detail";
+import InventoryListPage from "@/pages/inventory-list";
+import InventoryDetailPage from "@/pages/inventory-detail";
 import SessionsPlaceholderPage from "@/pages/sessions-placeholder";
 import WishlistPlaceholderPage from "@/pages/wishlist-placeholder";
 import SwapsPlaceholderPage from "@/pages/swaps-placeholder";
@@ -33,8 +35,10 @@ export default function App() {
             <Route path="/" element={<DashboardPage />} />
             <Route path="/humidors" element={<HumidorsListPage />} />
             <Route path="/humidors/:id" element={<HumidorDetailPage />} />
-            <Route path="/cigars" element={<CigarsPlaceholderPage />} />
-            <Route path="/inventory" element={<InventoryPlaceholderPage />} />
+            <Route path="/cigars" element={<CigarsListPage />} />
+            <Route path="/cigars/:id" element={<CigarDetailPage />} />
+            <Route path="/inventory" element={<InventoryListPage />} />
+            <Route path="/inventory/:id" element={<InventoryDetailPage />} />
             <Route path="/sessions" element={<SessionsPlaceholderPage />} />
             <Route path="/wishlist" element={<WishlistPlaceholderPage />} />
             <Route path="/swaps" element={<SwapsPlaceholderPage />} />
