@@ -1,3 +1,25 @@
+# Production image for herfbook-web.
+# Multi-stage: Node builds the frontend, Nginx serves the result.
+# Used by CI to publish ghcr.io/herfbook/herfbook-web and as a fallback
+# for anyone who wants to build the prod image locally.
+
+# ---- Stage 1: build the frontend ----
+FROM node:20-alpine AS build
+
+WORKDIR /build
+
+# Install deps first for layer caching
+COPY frontend/package.json frontend/package-lock.json* ./
+RUN npm ci
+
+# Copy the rest of the frontend and build
+COPY frontend/ ./
+RUN npm run build
+
+# ---- Stage 2: serve with Nginx ----
 FROM nginx:alpine
+
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY frontend/dist /usr/share/nginx/html
+COPY --from=build /build/dist /usr/share/nginx/html
+
+EXPOSE 80

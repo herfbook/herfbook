@@ -45,11 +45,27 @@ overlays, and a data table example.
 npm run build
 ```
 
-Output lands in `frontend/dist/`. The existing `Dockerfile.web` copies this
-directory into the Nginx image — no changes to the Docker contract needed.
+Output lands in `frontend/dist/`.
 
 ```bash
 npm run typecheck   # TypeScript check (no emit)
 npm run lint        # ESLint
 npm run preview     # Preview the production build locally at http://localhost:5175
 ```
+
+## Docker dev workflow
+
+The dev compose (`docker-compose.dev.yml`) serves the frontend via
+Nginx on port 8080 by mounting `frontend/dist` as a read-only volume
+into the `herfbook-web` container. This means:
+
+- Run `npm run build` on the host whenever you want :8080 to update.
+- For fast iteration, prefer `npm run dev` on `:5174` instead — it
+  has HMR and doesn't require Docker.
+- The `:8080` serve is useful for verifying the production-style
+  build occasionally.
+
+For production, `Dockerfile.web` is a multi-stage build that runs
+`npm ci && npm run build` inside the image. CI publishes this to
+`ghcr.io/herfbook/herfbook-web:latest`; `docker-compose.prod.yml`
+pulls and runs it. No host-side build step is needed in production.
