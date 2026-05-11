@@ -44,7 +44,7 @@ def _build_response(item: WantList) -> WantListResponse:
         fulfilled_inventory_id=item.fulfilled_inventory_id,
         created_at=item.created_at,
         cigar_brand=item.cigar.brand.name if item.cigar and item.cigar.brand else None,
-        cigar_line=item.cigar.line if item.cigar else None,
+        cigar_line=item.cigar.line.name if item.cigar and item.cigar.line else None,
         cigar_vitola=_cigar_vitola(item.cigar),
     )
 

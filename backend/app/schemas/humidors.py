@@ -46,7 +46,7 @@ class HumidorInventoryItem(BaseModel):
     inventory_id: UUID
     cigar_id: UUID
     brand_name: str
-    line: Optional[str] = None
+    line_name: Optional[str] = None
     vitola_name: Optional[str] = None
     quantity: int
     date_added_humidor: Optional[date] = None

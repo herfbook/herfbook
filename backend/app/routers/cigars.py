@@ -18,6 +18,7 @@ from app.models.lookups import (
     Brand,
     Country,
     Filler,
+    Line,
     Manufacturer,
     StrengthLevel,
     Vitola,
@@ -83,6 +84,36 @@ async def _validate_lookup(
         )
 
 
+async def _validate_line_for_brand(
+    db: AsyncSession,
+    line_id: UUID,
+    brand_id: UUID,
+) -> None:
+    """Validate that the line exists, is active+imported, and belongs to
+    the given brand. Lines are brand-scoped — using a line from a
+    different brand is a 422.
+    """
+    line = (
+        await db.execute(
+            select(Line).where(
+                Line.id == line_id,
+                Line.is_imported.is_(True),
+                Line.is_active.is_(True),
+            )
+        )
+    ).scalar_one_or_none()
+    if line is None:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail="Line not found or not active",
+        )
+    if line.brand_id != brand_id:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail="Line does not belong to the selected brand",
+        )
+
+
 async def _get_cigar_or_404(db: AsyncSession, cigar_id: UUID, user_id: UUID) -> Cigar:
     result = await db.execute(
         select(Cigar).where(Cigar.id == cigar_id, Cigar.user_id == user_id)
@@ -100,6 +131,7 @@ async def _load_full_cigar(db: AsyncSession, cigar_id: UUID, user_id: UUID) -> C
         .where(Cigar.id == cigar_id, Cigar.user_id == user_id)
         .options(
             selectinload(Cigar.brand),
+            selectinload(Cigar.line),
             selectinload(Cigar.vitola),
             selectinload(Cigar.wrapper),
             selectinload(Cigar.binder),
@@ -136,7 +168,8 @@ def _build_detail(cigar: Cigar, minio_svc: MinIOService) -> CigarDetail:
         id=cigar.id,
         brand_id=cigar.brand_id,
         brand_name=cigar.brand.name,
-        line=cigar.line,
+        line_id=cigar.line_id,
+        line_name=cigar.line.name if cigar.line else None,
         vitola_id=cigar.vitola_id,
         vitola_name=cigar.vitola.name if cigar.vitola else None,
         vitola_size=_vitola_size(cigar),
@@ -170,6 +203,8 @@ def _build_detail(cigar: Cigar, minio_svc: MinIOService) -> CigarDetail:
 
 async def _validate_create_lookups(db: AsyncSession, body: CigarCreate) -> None:
     await _validate_lookup(db, Brand, body.brand_id, "Brand")
+    if body.line_id is not None:
+        await _validate_line_for_brand(db, body.line_id, body.brand_id)
     if body.vitola_id is not None:
         await _validate_lookup(db, Vitola, body.vitola_id, "Vitola")
     if body.wrapper_id is not None:
@@ -203,7 +238,7 @@ async def create_cigar(
     cigar = Cigar(
         user_id=current_user.id,
         brand_id=body.brand_id,
-        line=body.line,
+        line_id=body.line_id,
         vitola_id=body.vitola_id,
         custom_vitola_name=body.custom_vitola_name,
         custom_length=body.custom_length,
@@ -251,13 +286,16 @@ async def list_cigars(
     if country_id is not None:
         base_filters.append(Cigar.country_id == country_id)
 
-    need_brand_join = q is not None
+    need_text_search = q is not None
 
     # Count
     count_stmt = select(func.count(Cigar.id)).where(*base_filters)
-    if need_brand_join:
-        count_stmt = count_stmt.join(Brand, Cigar.brand_id == Brand.id).where(
-            or_(Brand.name.ilike(f"%{q}%"), Cigar.line.ilike(f"%{q}%"))
+    if need_text_search:
+        count_stmt = (
+            count_stmt
+            .join(Brand, Cigar.brand_id == Brand.id)
+            .outerjoin(Line, Cigar.line_id == Line.id)
+            .where(or_(Brand.name.ilike(f"%{q}%"), Line.name.ilike(f"%{q}%")))
         )
     total = (await db.execute(count_stmt)).scalar_one()
 
@@ -267,6 +305,7 @@ async def list_cigars(
         .where(*base_filters)
         .options(
             selectinload(Cigar.brand),
+            selectinload(Cigar.line),
             selectinload(Cigar.vitola),
             selectinload(Cigar.wrapper),
             selectinload(Cigar.strength),
@@ -277,9 +316,12 @@ async def list_cigars(
         .offset(offset)
         .limit(limit)
     )
-    if need_brand_join:
-        main_stmt = main_stmt.join(Brand, Cigar.brand_id == Brand.id).where(
-            or_(Brand.name.ilike(f"%{q}%"), Cigar.line.ilike(f"%{q}%"))
+    if need_text_search:
+        main_stmt = (
+            main_stmt
+            .join(Brand, Cigar.brand_id == Brand.id)
+            .outerjoin(Line, Cigar.line_id == Line.id)
+            .where(or_(Brand.name.ilike(f"%{q}%"), Line.name.ilike(f"%{q}%")))
         )
 
     cigars = (await db.execute(main_stmt)).unique().scalars().all()
@@ -294,7 +336,8 @@ async def list_cigars(
                 id=cigar.id,
                 brand_id=cigar.brand_id,
                 brand_name=cigar.brand.name,
-                line=cigar.line,
+                line_id=cigar.line_id,
+                line_name=cigar.line.name if cigar.line else None,
                 vitola_id=cigar.vitola_id,
                 vitola_name=cigar.vitola.name if cigar.vitola else None,
                 vitola_size=_vitola_size(cigar),
@@ -339,6 +382,15 @@ async def update_cigar(
     # Validate any FK IDs being changed
     if "brand_id" in updates:
         await _validate_lookup(db, Brand, updates["brand_id"], "Brand")
+    # Line is brand-scoped; validate against the effective brand (after this
+    # patch). If brand is also being changed, line must match the new brand.
+    # If brand changes but the caller didn't touch line_id, the existing
+    # line_id may no longer match — also check that.
+    effective_brand_id = updates.get("brand_id", cigar.brand_id)
+    if "line_id" in updates and updates["line_id"] is not None:
+        await _validate_line_for_brand(db, updates["line_id"], effective_brand_id)
+    elif "brand_id" in updates and cigar.line_id is not None and "line_id" not in updates:
+        await _validate_line_for_brand(db, cigar.line_id, effective_brand_id)
     if "vitola_id" in updates and updates["vitola_id"] is not None:
         await _validate_lookup(db, Vitola, updates["vitola_id"], "Vitola")
     if "wrapper_id" in updates and updates["wrapper_id"] is not None:

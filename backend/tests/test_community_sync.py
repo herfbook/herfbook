@@ -201,6 +201,119 @@ def test_second_run_does_not_duplicate(yaml_dir: Path) -> None:
 
 
 @_skip_if_no_db
+def test_lines_sync_resolves_brand_and_keys_by_brand_slug(tmp_path: Path) -> None:
+    """Lines sync looks up brand by community_key and uses
+    `{brand_slug}-{line_slug}` for the line's own community_key.
+    Lines whose brand isn't in the DB are counted in `skipped`.
+    """
+    from sqlalchemy import select
+    from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
+
+    from app.models.lookups import Line
+    from app.services.community_sync import sync_all_lookups
+
+    (tmp_path / "manufacturers.yml").write_text(
+        "manufacturers:\n  - name: Padron Cigars\n", encoding="utf-8"
+    )
+    (tmp_path / "brands.yml").write_text(
+        "brands:\n  - name: Padron\n    manufacturer: Padron Cigars\n",
+        encoding="utf-8",
+    )
+    (tmp_path / "lines.yml").write_text(
+        "lines:\n"
+        "  - name: 1964 Anniversary\n"
+        "    brand: Padron\n"
+        "  - name: Damaso\n"
+        "    brand: Padron\n"
+        "  - name: Orphan Line\n"
+        "    brand: Nonexistent Brand\n",
+        encoding="utf-8",
+    )
+
+    async def _run_test() -> None:
+        engine = create_async_engine(_TEST_DB_URL, future=True)
+        Session = async_sessionmaker(engine, expire_on_commit=False)
+        provider = LocalYAMLProvider(tmp_path)
+
+        async with Session() as session:
+            stats = await sync_all_lookups(session, provider)
+
+        async with Session() as session:
+            anniversary = (
+                await session.execute(
+                    select(Line).where(Line.community_key == "padron-1964-anniversary")
+                )
+            ).scalar_one()
+            assert anniversary.name == "1964 Anniversary"
+            assert anniversary.brand is not None
+            assert anniversary.brand.community_key == "padron"
+
+            orphan = (
+                await session.execute(
+                    select(Line).where(Line.name == "Orphan Line")
+                )
+            ).scalar_one_or_none()
+            assert orphan is None  # skipped, not created
+
+        # Two created, one skipped (no matching brand).
+        assert stats["lines"]["skipped"] >= 1
+        assert stats["lines"]["created"] + stats["lines"]["updated"] >= 2
+        await engine.dispose()
+
+    asyncio.run(_run_test())
+
+
+@_skip_if_no_db
+def test_lines_sync_same_name_across_brands(tmp_path: Path) -> None:
+    """Two brands may share a line name (e.g., both have "Maduro").
+    The community_key uniqueness must include the brand slug.
+    """
+    from sqlalchemy import select
+    from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
+
+    from app.models.lookups import Line
+    from app.services.community_sync import sync_all_lookups
+
+    (tmp_path / "manufacturers.yml").write_text(
+        "manufacturers:\n  - name: Test Mfg\n", encoding="utf-8"
+    )
+    (tmp_path / "brands.yml").write_text(
+        "brands:\n"
+        "  - name: Brand Alpha\n"
+        "    manufacturer: Test Mfg\n"
+        "  - name: Brand Beta\n"
+        "    manufacturer: Test Mfg\n",
+        encoding="utf-8",
+    )
+    (tmp_path / "lines.yml").write_text(
+        "lines:\n"
+        "  - name: Maduro\n"
+        "    brand: Brand Alpha\n"
+        "  - name: Maduro\n"
+        "    brand: Brand Beta\n",
+        encoding="utf-8",
+    )
+
+    async def _run_test() -> None:
+        engine = create_async_engine(_TEST_DB_URL, future=True)
+        Session = async_sessionmaker(engine, expire_on_commit=False)
+
+        async with Session() as session:
+            await sync_all_lookups(session, LocalYAMLProvider(tmp_path))
+
+        async with Session() as session:
+            keys = (
+                await session.execute(
+                    select(Line.community_key).where(Line.name == "Maduro")
+                )
+            ).scalars().all()
+            assert set(keys) >= {"brand-alpha-maduro", "brand-beta-maduro"}
+        await engine.dispose()
+
+    asyncio.run(_run_test())
+
+
+@_skip_if_no_db
 def test_orphan_demotion(tmp_path: Path) -> None:
     """A community row whose YAML entry disappears is demoted to local."""
     from sqlalchemy import select

@@ -9,7 +9,7 @@ from pydantic import BaseModel, ConfigDict
 
 class CigarCreate(BaseModel):
     brand_id: UUID
-    line: Optional[str] = None
+    line_id: Optional[UUID] = None
     vitola_id: Optional[UUID] = None
     custom_vitola_name: Optional[str] = None
     custom_length: Optional[float] = None
@@ -26,7 +26,7 @@ class CigarCreate(BaseModel):
 
 class CigarUpdate(BaseModel):
     brand_id: Optional[UUID] = None
-    line: Optional[str] = None
+    line_id: Optional[UUID] = None
     vitola_id: Optional[UUID] = None
     custom_vitola_name: Optional[str] = None
     custom_length: Optional[float] = None
@@ -69,7 +69,8 @@ class CigarListItem(BaseModel):
     id: UUID
     brand_id: UUID
     brand_name: str
-    line: Optional[str] = None
+    line_id: Optional[UUID] = None
+    line_name: Optional[str] = None
     vitola_id: Optional[UUID] = None
     vitola_name: Optional[str] = None
     vitola_size: Optional[str] = None

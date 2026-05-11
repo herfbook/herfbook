@@ -52,7 +52,7 @@ _LIST_OPTIONS = [
 
 def _cigar_display_name(cigar: Cigar) -> str:
     brand = cigar.brand.name if cigar.brand else "Unknown"
-    line = cigar.line
+    line = cigar.line.name if cigar.line else None
     vitola = cigar.vitola.name if cigar.vitola else cigar.custom_vitola_name
     if line and vitola:
         return f"{brand} — {line} ({vitola})"

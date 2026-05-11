@@ -31,6 +31,7 @@ from app.models.lookups import (
     Environment,
     Filler,
     FlavorTag,
+    Line,
     Manufacturer,
     PurchaseType,
     StrengthLevel,
@@ -48,6 +49,8 @@ from app.schemas.lookups import (
     FillerCreate,
     FillerLookupResponse,
     FlavorTagResponse,
+    LineCreate,
+    LineResponse,
     ManufacturerCreate,
     ManufacturerResponse,
     PurchaseTypeResponse,
@@ -262,6 +265,110 @@ async def create_brand(
     )
     row = result.scalar_one()
     return _brand_to_response(row)
+
+
+# ---------------------------------------------------------------------------
+# Lines (brand-scoped)
+# ---------------------------------------------------------------------------
+
+
+def _line_to_response(row: Line) -> LineResponse:
+    return LineResponse(
+        id=row.id,
+        name=row.name,
+        source=row.source,
+        is_imported=row.is_imported,
+        is_active=row.is_active,
+        brand_id=row.brand_id,
+        brand_name=row.brand.name if row.brand else None,
+    )
+
+
+@router.get("/lines", response_model=list[LineResponse])
+async def list_lines(
+    brand_id: UUID = Query(..., description="Required — lines are scoped by brand"),
+    q: Optional[str] = Query(default=None, max_length=200),
+    limit: int = Query(default=50, ge=1, le=200),
+    db: AsyncSession = Depends(get_db),
+) -> list[LineResponse]:
+    stmt = (
+        select(Line)
+        .where(
+            Line.brand_id == brand_id,
+            Line.is_active.is_(True),
+            Line.is_imported.is_(True),
+        )
+        .options(selectinload(Line.brand))
+        .order_by(Line.name.asc())
+        .limit(limit)
+    )
+    if q:
+        stmt = stmt.where(Line.name.ilike(f"%{q}%"))
+    rows = (await db.execute(stmt)).scalars().all()
+    return [_line_to_response(r) for r in rows]
+
+
+@router.post(
+    "/lines",
+    response_model=LineResponse,
+    status_code=status.HTTP_201_CREATED,
+)
+async def create_line(
+    body: LineCreate,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    brand = (
+        await db.execute(
+            select(Brand).where(
+                Brand.id == body.brand_id,
+                Brand.is_imported.is_(True),
+                Brand.is_active.is_(True),
+            )
+        )
+    ).scalar_one_or_none()
+    if brand is None:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail="Brand not found or not active",
+        )
+
+    # Duplicate detection scoped by brand: same line name on different
+    # brands is allowed (multiple brands have "Connecticut", "Maduro", etc.).
+    existing = (
+        await db.execute(
+            select(Line).where(
+                func.lower(Line.name) == body.name.lower(),
+                Line.brand_id == body.brand_id,
+                Line.is_active.is_(True),
+            )
+        )
+    ).scalar_one_or_none()
+    if existing is not None:
+        return JSONResponse(
+            status_code=status.HTTP_409_CONFLICT,
+            content={
+                "detail": "A line with this name already exists for this brand",
+                "existing_id": str(existing.id),
+            },
+        )
+
+    row = Line(
+        name=body.name,
+        source="user",
+        community_key=None,
+        is_imported=True,
+        is_active=True,
+        brand_id=body.brand_id,
+    )
+    db.add(row)
+    await db.commit()
+    # Re-load with brand eager-loaded for the response.
+    result = await db.execute(
+        select(Line).where(Line.id == row.id).options(selectinload(Line.brand))
+    )
+    row = result.scalar_one()
+    return _line_to_response(row)
 
 
 # ---------------------------------------------------------------------------

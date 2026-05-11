@@ -75,7 +75,7 @@ class GuestLinkResponse(BaseModel):
 class GuestCigarResponse(BaseModel):
     id: UUID
     brand_name: Optional[str]
-    line: Optional[str]
+    line_name: Optional[str]
     vitola_name: Optional[str]
     wrapper_name: Optional[str]
     country_name: Optional[str]

@@ -182,6 +182,7 @@ The following fields are standardized as community-maintained lookup lists rathe
 | YAML File | Priority | Description |
 |---|---|---|
 | `brands.yml` | M1 — Ship | Cigar brand names with manufacturer FK, country, website, active status. The largest and most important list. (e.g., Padron, Arturo Fuente, Oliva, Drew Estate, My Father, Liga Privada) |
+| `lines.yml` | M1 — Shipped (BE-02) | Brand-scoped cigar lines (e.g., 1964 Anniversary, Liga Privada No. 9, Hemingway). Unique by `(name, brand_id)`. Initial seed of ~350 canonical lines covering ~55 well-known brands; users add their own via the lookup combobox. |
 | `manufacturers.yml` | M1 — Ship | Parent companies that own/produce brands. One manufacturer → many brands. (e.g., General Cigar Co., Altadis USA, Scandinavian Tobacco Group, Padrón Cigars S.A.) |
 | `vitolas.yml` | M1 — Ship | Standard shape/size combinations. Each entry includes name, length (inches), ring gauge, and shape category (parejo or figurado). Ring gauge is a property of a vitola, not a standalone list. (e.g., Robusto 5×50, Toro 6×50, Churchill 7×48, Corona 5.5×42, Lancero 7.5×38, Gordo 6×60, Torpedo, Belicoso, Perfecto) |
 | `wrappers.yml` | M1 — Ship | Wrapper leaf types with color category and origin region. (e.g., Connecticut Shade, Connecticut Broadleaf, Habano, Maduro, Oscuro, Candela, Corojo, Cameroon, Sumatra, San Andres) |
@@ -401,6 +402,20 @@ The schema is designed to work at both the local (self-hosted) and community lev
 | `is_imported` | BOOLEAN | NO | |
 | `is_active` | BOOLEAN | NO | |
 
+#### `lines`
+
+Added in BE-02. Brand-scoped cigar line names that were previously a free-text `cigars.line` column. Uniqueness is enforced on `(name, brand_id)` so the same line name may exist across different brands.
+
+| Column | Type | Nullable | Notes |
+|---|---|---|---|
+| `id` | UUID | NO | Primary key |
+| `name` | VARCHAR(200) | NO | e.g., 1964 Anniversary, Hemingway, Liga Privada No. 9 |
+| `brand_id` | UUID | YES | FK → brands, ON DELETE SET NULL |
+| `source` | VARCHAR(20) | NO | community / user / local |
+| `community_key` | VARCHAR(200) | YES | Slugified `{brand_slug}-{line_slug}` for stable cross-sync matching |
+| `is_imported` | BOOLEAN | NO | |
+| `is_active` | BOOLEAN | NO | |
+
 #### `vitolas`
 
 | Column | Type | Nullable | Notes |
@@ -564,7 +579,7 @@ The schema is designed to work at both the local (self-hosted) and community lev
 | `community_id` | UUID | YES | FK to community DB if synced (M2) |
 | `user_id` | UUID | NO | FK → users (who created locally) |
 | `brand_id` | UUID | NO | FK → brands (lookup) |
-| `line` | VARCHAR(200) | YES | e.g., 1964 Anniversary, Serie V. Free text with typeahead. |
+| `line_id` | UUID | YES | FK → lines (lookup) — was `line` text in initial design; promoted to a community lookup scoped by brand in BE-02. |
 | `vitola_id` | UUID | YES | FK → vitolas (lookup) |
 | `custom_vitola_name` | VARCHAR(100) | YES | Override if vitola doesn't match standard list |
 | `custom_length` | DECIMAL(3,1) | YES | Override length |
@@ -581,7 +596,7 @@ The schema is designed to work at both the local (self-hosted) and community lev
 | `created_at` | TIMESTAMP | NO | |
 | `updated_at` | TIMESTAMP | NO | |
 
-> **Design Decision — `line` as Free Text:** Line names (e.g., "1964 Anniversary", "Serie V Melanio") are too numerous and brand-specific to standardize as a lookup. Free text with typeahead from existing entries. The community cigar catalog (M2) becomes the de facto standardization layer for brand + line combinations.
+> **Design Decision — `line` as Community Lookup (BE-02 revision):** Originally specified as free text. BE-02 promoted it to a community lookup table `lines` scoped by `brand_id`, mirroring the existing three-source (community / user / local) pattern. The same name may exist across different brands (uniqueness is `(name, brand_id)`), and ~350 canonical lines are seeded from `community/lines.yml`. Users add their own through the lookup combobox; contributions flow back as PRs.
 
 #### `cigar_fillers` (many-to-many)
 
@@ -1081,7 +1096,7 @@ For cigars without UPCs, a vision model (Anthropic API) identifies band photos. 
 | **Docker Compose** | One-command deploy. Same compose file for dev, self-hosted prod, and hosted infra. |
 | **Rating Scale 0–100** | Matches Cigar Aficionado convention. More granular than 5-star. Better for aggregation. |
 | **YAML-First Community Data** | Low-friction for M1. GitHub PRs for contributions. Bundled fallback in Docker image. Swappable module for M2. |
-| **`line` as Free Text** | Line names are too numerous and brand-specific to standardize. Typeahead from existing entries. Community catalog (M2) becomes the de facto standardization. |
+| **`line` as Community Lookup (BE-02 revision)** | Originally specified as free text; promoted to a community lookup scoped by brand_id when we discovered the three-source model already supports user-added entries cleanly. ~350 canonical lines seeded; users add their own as `source="user"` via the lookup combobox. |
 | **Ring Gauge in Vitola** | Ring gauge is a property of a vitola, not standalone. Two columns (`length_inches` + `ring_gauge`) stored separately for independent filtering. |
 | **AGPL-3.0 for Code** | Strong copyleft with network-use protection. Prevents closed-source competing hosted services while keeping self-hosted fully free. |
 | **CC BY-SA 4.0 for Data** | Matches Wikipedia seed license. Keeps community data open and reusable. |

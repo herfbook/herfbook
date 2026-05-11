@@ -46,7 +46,7 @@ def _build_swap_item_response(item: SwapItem) -> SwapItemResponse:
         quantity=item.quantity,
         notes=item.notes,
         cigar_brand=item.cigar.brand.name if item.cigar and item.cigar.brand else None,
-        cigar_line=item.cigar.line if item.cigar else None,
+        cigar_line=item.cigar.line.name if item.cigar and item.cigar.line else None,
     )
 
 
@@ -134,7 +134,7 @@ async def add_to_swap_list(
         id=item.id,
         inventory_id=item.inventory_id,
         cigar_brand=inv.cigar.brand.name if inv.cigar and inv.cigar.brand else None,
-        cigar_line=inv.cigar.line if inv.cigar else None,
+        cigar_line=inv.cigar.line.name if inv.cigar and inv.cigar.line else None,
         cigar_vitola=_cigar_vitola(inv.cigar),
         available_quantity=inv.quantity,
         max_quantity=item.max_quantity,
@@ -174,7 +174,7 @@ async def get_swap_list(
             id=item.id,
             inventory_id=item.inventory_id,
             cigar_brand=item.inventory.cigar.brand.name if item.inventory.cigar.brand else None,
-            cigar_line=item.inventory.cigar.line,
+            cigar_line=item.inventory.cigar.line.name if item.inventory.cigar.line else None,
             cigar_vitola=_cigar_vitola(item.inventory.cigar),
             available_quantity=item.inventory.quantity,
             max_quantity=item.max_quantity,

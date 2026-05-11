@@ -32,6 +32,7 @@ from app.models.lookups import (
     Environment,
     Filler,
     FlavorTag,
+    Line,
     Manufacturer,
     PurchaseType,
     StrengthLevel,
@@ -50,6 +51,7 @@ logger = logging.getLogger(__name__)
 _TABLE_FIELDS: dict[str, tuple[type, tuple[str, ...]]] = {
     "manufacturers": (Manufacturer, ("website", "country")),
     "brands": (Brand, ("country", "website")),  # manufacturer handled separately
+    "lines": (Line, ()),  # brand FK handled separately, like brand→manufacturer
     "vitolas": (Vitola, ("length_inches", "ring_gauge", "category")),
     "wrappers": (Wrapper, ("color_category", "origin_region")),
     "binders": (Binder, ("origin_region",)),
@@ -62,10 +64,12 @@ _TABLE_FIELDS: dict[str, tuple[type, tuple[str, ...]]] = {
 }
 
 # Sync order matters: manufacturers before brands so brand→manufacturer
-# FK resolution finds rows by community_key.
+# FK resolution finds rows by community_key. Lines come after brands for
+# the same reason (line→brand resolution).
 _SYNC_ORDER: tuple[str, ...] = (
     "manufacturers",
     "brands",
+    "lines",
     "vitolas",
     "wrappers",
     "binders",
@@ -91,7 +95,13 @@ async def sync_all_lookups(
             stats[table_name] = await _sync_table(db, provider, table_name)
         except Exception as exc:  # non-fatal: log and continue with other tables
             logger.exception("Sync failed for table %s: %s", table_name, exc)
-            stats[table_name] = {"created": 0, "updated": 0, "demoted": 0, "error": 1}
+            stats[table_name] = {
+                "created": 0,
+                "updated": 0,
+                "demoted": 0,
+                "skipped": 0,
+                "error": 1,
+            }
     await db.commit()
     return stats
 
@@ -106,7 +116,7 @@ async def _sync_table(
     yaml_entries = await provider.load_table(table_name)
     if not yaml_entries:
         logger.info("No YAML entries for %s; skipping", table_name)
-        return {"created": 0, "updated": 0, "demoted": 0}
+        return {"created": 0, "updated": 0, "demoted": 0, "skipped": 0}
 
     # First-run detection: per-table, based on community-source rows.
     existing_count = await db.scalar(
@@ -119,19 +129,34 @@ async def _sync_table(
     seen_keys: set[str] = set()
     created = 0
     updated = 0
+    skipped = 0
 
     for entry in yaml_entries:
         name = entry.get("name")
         if not name:
             logger.warning("%s: skipping entry with no name: %r", table_name, entry)
             continue
-        key = slugify(name)
+
+        # Compute key. Lines need brand context in the slug so two "Maduro"
+        # lines on different brands don't collide.
+        if table_name == "lines":
+            brand = await _resolve_line_brand(db, entry)
+            if brand is None:
+                skipped += 1
+                continue
+            key = f"{brand.community_key or slugify(brand.name)}-{slugify(name)}"
+        else:
+            key = slugify(name)
+
         if not key:
             logger.warning("%s: empty slug for name %r; skipping", table_name, name)
             continue
         seen_keys.add(key)
 
-        row = await _find_existing(db, model, key, name)
+        extra_filters: list = []
+        if table_name == "lines":
+            extra_filters.append(model.brand_id == brand.id)
+        row = await _find_existing(db, model, key, name, extra_filters=extra_filters)
 
         if row is None:
             row = model(
@@ -144,6 +169,8 @@ async def _sync_table(
             _apply_managed_fields(row, entry, managed_fields)
             if table_name == "brands":
                 await _resolve_brand_manufacturer(db, row, entry)
+            elif table_name == "lines":
+                row.brand_id = brand.id  # brand resolved above
             db.add(row)
             await db.flush()
             created += 1
@@ -159,11 +186,15 @@ async def _sync_table(
             _apply_managed_fields(row, entry, managed_fields)
             if table_name == "brands":
                 await _resolve_brand_manufacturer(db, row, entry)
+            elif table_name == "lines":
+                # brand_id should not change once set, but heal NULLs.
+                if row.brand_id is None:
+                    row.brand_id = brand.id
             updated += 1
 
     demoted = await _demote_orphans(db, model, seen_keys)
 
-    return {"created": created, "updated": updated, "demoted": demoted}
+    return {"created": created, "updated": updated, "demoted": demoted, "skipped": skipped}
 
 
 async def _find_existing(
@@ -171,6 +202,8 @@ async def _find_existing(
     model: type,
     community_key: str,
     name: str,
+    *,
+    extra_filters: list | None = None,
 ):
     # Fast path: by community_key.
     row = (
@@ -181,15 +214,15 @@ async def _find_existing(
 
     # Fallback: by name (case-insensitive), but ONLY for community rows.
     # User rows must never be matched here — that would risk false orphan
-    # demotion or overwriting user data.
-    row = (
-        await db.execute(
-            select(model).where(
-                func.lower(model.name) == name.lower(),
-                model.source == "community",
-            )
-        )
-    ).scalar_one_or_none()
+    # demotion or overwriting user data. Extra filters (e.g., brand_id for
+    # lines) keep cross-scope matches from happening.
+    stmt = select(model).where(
+        func.lower(model.name) == name.lower(),
+        model.source == "community",
+    )
+    if extra_filters:
+        stmt = stmt.where(*extra_filters)
+    row = (await db.execute(stmt)).scalar_one_or_none()
     return row
 
 
@@ -231,6 +264,42 @@ async def _resolve_brand_manufacturer(
         brand_row.manufacturer_id = None
         return
     brand_row.manufacturer_id = manufacturer.id
+
+
+async def _resolve_line_brand(
+    db: AsyncSession,
+    entry: dict,
+) -> Brand | None:
+    """Look up the Brand row referenced by `entry["brand"]`.
+
+    Returns None (and logs a warning) if the brand name is missing or no
+    brand row matches by community_key. Callers should treat None as
+    "skip this line entry."
+    """
+    brand_name = entry.get("brand")
+    if not brand_name:
+        logger.warning(
+            "Line entry has no brand; skipping: %r", entry
+        )
+        return None
+    key = slugify(brand_name)
+    if not key:
+        logger.warning(
+            "Line entry has unslugifiable brand %r; skipping", brand_name
+        )
+        return None
+    brand = (
+        await db.execute(select(Brand).where(Brand.community_key == key))
+    ).scalar_one_or_none()
+    if brand is None:
+        logger.warning(
+            "Line %r references unknown brand %r (slug=%s); skipping",
+            entry.get("name"),
+            brand_name,
+            key,
+        )
+        return None
+    return brand
 
 
 async def _demote_orphans(

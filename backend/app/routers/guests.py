@@ -171,7 +171,7 @@ async def guest_collection(
         GuestCigarResponse(
             id=inv.cigar.id,
             brand_name=inv.cigar.brand.name if inv.cigar.brand else None,
-            line=inv.cigar.line,
+            line_name=inv.cigar.line.name if inv.cigar.line else None,
             vitola_name=_cigar_vitola(inv.cigar),
             wrapper_name=inv.cigar.wrapper.name if inv.cigar.wrapper else None,
             country_name=inv.cigar.country.name if inv.cigar.country else None,
@@ -233,7 +233,7 @@ async def guest_journal(
         return GuestSessionResponse(
             id=s.id,
             cigar_brand=s.cigar.brand.name if s.cigar and s.cigar.brand else None,
-            cigar_line=s.cigar.line if s.cigar else None,
+            cigar_line=s.cigar.line.name if s.cigar and s.cigar.line else None,
             cigar_vitola=_cigar_vitola(s.cigar),
             smoked_at=s.smoked_at,
             duration_minutes=s.duration_minutes,
@@ -303,7 +303,7 @@ async def guest_humidors(
             GuestCigarResponse(
                 id=inv.cigar.id,
                 brand_name=inv.cigar.brand.name if inv.cigar.brand else None,
-                line=inv.cigar.line,
+                line_name=inv.cigar.line.name if inv.cigar.line else None,
                 vitola_name=_cigar_vitola(inv.cigar),
                 wrapper_name=inv.cigar.wrapper.name if inv.cigar.wrapper else None,
                 country_name=inv.cigar.country.name if inv.cigar.country else None,
@@ -356,7 +356,7 @@ async def guest_want_list(
         GuestWantListResponse(
             id=item.id,
             cigar_brand=item.cigar.brand.name if item.cigar and item.cigar.brand else None,
-            cigar_line=item.cigar.line if item.cigar else None,
+            cigar_line=item.cigar.line.name if item.cigar and item.cigar.line else None,
             cigar_vitola=_cigar_vitola(item.cigar) if item.cigar else None,
             notes=item.notes,
             priority=item.priority,
@@ -396,7 +396,7 @@ async def guest_swap_list(
         GuestSwapListResponse(
             id=item.id,
             cigar_brand=item.inventory.cigar.brand.name if item.inventory.cigar.brand else None,
-            cigar_line=item.inventory.cigar.line,
+            cigar_line=item.inventory.cigar.line.name if item.inventory.cigar.line else None,
             cigar_vitola=_cigar_vitola(item.inventory.cigar),
             max_quantity=item.max_quantity,
             notes=item.notes,

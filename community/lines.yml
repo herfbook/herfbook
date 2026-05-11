@@ -1,0 +1,834 @@
+# HerfBook Community Seed Data — Cigar Lines
+# License: CC BY-SA 4.0
+# Source: Industry-standard reference (manufacturer catalogs, Cigar Aficionado,
+#         Halfwheel, common cigar knowledge). Line names are factual data and
+#         not copyrightable.
+# Last updated: 2026-05-10
+#
+# Structure: each entry has `name` and `brand` (matching brand.name in brands.yml).
+# Sync will resolve brand -> brand_id FK at seed time. Entries without a matching
+# brand are logged as warnings and skipped (not failed).
+#
+# This is a starter set of ~50 brands' well-known canonical lines, ~350 entries.
+# Users add their own via the lookup combobox; contributions flow back as PRs.
+
+lines:
+  # ===== Padron =====
+  - name: "1964 Anniversary"
+    brand: Padron
+  - name: "1926 Serie"
+    brand: Padron
+  - name: "Family Reserve"
+    brand: Padron
+  - name: "Damaso"
+    brand: Padron
+  - name: "Serie 7000"
+    brand: Padron
+  - name: "Serie 6000"
+    brand: Padron
+  - name: "Serie 5000"
+    brand: Padron
+  - name: "Serie 4000"
+    brand: Padron
+  - name: "Serie 3000"
+    brand: Padron
+  - name: "Serie 2000"
+    brand: Padron
+  - name: "Serie 1000"
+    brand: Padron
+  - name: "Magnum"
+    brand: Padron
+  - name: "Londres"
+    brand: Padron
+  - name: "Delicias"
+    brand: Padron
+  - name: "Chico"
+    brand: Padron
+  - name: "50th Anniversary"
+    brand: Padron
+  - name: "60th Anniversary"
+    brand: Padron
+
+  # ===== Arturo Fuente =====
+  - name: "Hemingway"
+    brand: Arturo Fuente
+  - name: "Don Carlos"
+    brand: Arturo Fuente
+  - name: "Fuente Fuente OpusX"
+    brand: Arturo Fuente
+  - name: "Anejo"
+    brand: Arturo Fuente
+  - name: "Chateau Fuente"
+    brand: Arturo Fuente
+  - name: "Gran Reserva"
+    brand: Arturo Fuente
+  - name: "Rosado Sungrown Magnum R"
+    brand: Arturo Fuente
+  - name: "Don Carlos Eye of the Shark"
+    brand: Arturo Fuente
+  - name: "Casa Cuba"
+    brand: Arturo Fuente
+  - name: "Sungrown"
+    brand: Arturo Fuente
+
+  # ===== Oliva =====
+  - name: "Serie V Melanio"
+    brand: Oliva
+  - name: "Serie V"
+    brand: Oliva
+  - name: "Serie V Melanio Maduro"
+    brand: Oliva
+  - name: "Serie O"
+    brand: Oliva
+  - name: "Serie G"
+    brand: Oliva
+  - name: "Connecticut Reserve"
+    brand: Oliva
+  - name: "Master Blends 3"
+    brand: Oliva
+
+  # ===== Drew Estate =====
+  - name: "Liga Privada No. 9"
+    brand: Drew Estate
+  - name: "Liga Privada T52"
+    brand: Drew Estate
+  - name: "Liga Privada Unico Serie"
+    brand: Drew Estate
+  - name: "Undercrown"
+    brand: Drew Estate
+  - name: "Undercrown Sun Grown"
+    brand: Drew Estate
+  - name: "Undercrown Shade"
+    brand: Drew Estate
+  - name: "Herrera Esteli"
+    brand: Drew Estate
+  - name: "Herrera Esteli Norteno"
+    brand: Drew Estate
+  - name: "MUWAT"
+    brand: Drew Estate
+  - name: "Java"
+    brand: Drew Estate
+  - name: "Tabak Especial"
+    brand: Drew Estate
+  - name: "Kentucky Fire Cured"
+    brand: Drew Estate
+  - name: "Deadwood"
+    brand: Drew Estate
+  - name: "Pappy Van Winkle Tradition"
+    brand: Drew Estate
+  - name: "Florida Sun Grown"
+    brand: Drew Estate
+  - name: "Nica Rustica"
+    brand: Drew Estate
+
+  # ===== ACID (Drew Estate) =====
+  - name: "Kuba Kuba"
+    brand: Acid
+  - name: "Blondie"
+    brand: Acid
+  - name: "Kong"
+    brand: Acid
+  - name: "Roam"
+    brand: Acid
+  - name: "Toast"
+    brand: Acid
+  - name: "Deep Dish"
+    brand: Acid
+  - name: "1400cc"
+    brand: Acid
+  - name: "Extra Ordinary Larry"
+    brand: Acid
+
+  # ===== My Father =====
+  - name: "Le Bijou 1922"
+    brand: My Father
+  - name: "El Centurion"
+    brand: My Father
+  - name: "La Antiguedad"
+    brand: My Father
+  - name: "La Promesa"
+    brand: My Father
+  - name: "Connecticut"
+    brand: My Father
+  - name: "Don Pepin Garcia Series JJ"
+    brand: My Father
+  - name: "Don Pepin Black"
+    brand: My Father
+  - name: "Jaime Garcia"
+    brand: My Father
+  - name: "La Aroma de Cuba"
+    brand: My Father
+  - name: "San Lotano"
+    brand: My Father
+  - name: "Flor de las Antillas"
+    brand: My Father
+
+  # ===== Rocky Patel =====
+  - name: "Decade"
+    brand: Rocky Patel
+  - name: "Vintage 1990"
+    brand: Rocky Patel
+  - name: "Vintage 1992"
+    brand: Rocky Patel
+  - name: "Vintage 1999"
+    brand: Rocky Patel
+  - name: "Edge"
+    brand: Rocky Patel
+  - name: "Sun Grown"
+    brand: Rocky Patel
+  - name: "Olde World Reserve"
+    brand: Rocky Patel
+  - name: "Conviction"
+    brand: Rocky Patel
+  - name: "ALR"
+    brand: Rocky Patel
+  - name: "Number 6"
+    brand: Rocky Patel
+
+  # ===== Davidoff =====
+  - name: "Aniversario"
+    brand: Davidoff
+  - name: "Millennium Blend"
+    brand: Davidoff
+  - name: "Grand Cru"
+    brand: Davidoff
+  - name: "Signature"
+    brand: Davidoff
+  - name: "Special R"
+    brand: Davidoff
+  - name: "Yamasa"
+    brand: Davidoff
+  - name: "Nicaragua"
+    brand: Davidoff
+  - name: "Escurio"
+    brand: Davidoff
+  - name: "Winston Churchill"
+    brand: Davidoff
+
+  # ===== Ashton =====
+  - name: "Classic"
+    brand: Ashton
+  - name: "Cabinet Selection"
+    brand: Ashton
+  - name: "Heritage"
+    brand: Ashton
+  - name: "VSG"
+    brand: Ashton
+  - name: "Aged Maduro"
+    brand: Ashton
+  - name: "ESG"
+    brand: Ashton
+  - name: "Symmetry"
+    brand: Ashton
+
+  # ===== Perdomo =====
+  - name: "10th Anniversary"
+    brand: Perdomo
+  - name: "20th Anniversary"
+    brand: Perdomo
+  - name: "Reserve Champagne"
+    brand: Perdomo
+  - name: "Habano Bourbon Barrel-Aged"
+    brand: Perdomo
+  - name: "Lot 23"
+    brand: Perdomo
+  - name: "Fresco"
+    brand: Perdomo
+  - name: "Estate Selection"
+    brand: Perdomo
+
+  # ===== E.P. Carrillo =====
+  - name: "La Historia"
+    brand: E.P. Carrillo
+  - name: "Encore"
+    brand: E.P. Carrillo
+  - name: "Pledge"
+    brand: E.P. Carrillo
+  - name: "Allegiance"
+    brand: E.P. Carrillo
+  - name: "Cuba Aliados"
+    brand: E.P. Carrillo
+  - name: "New Wave Connecticut"
+    brand: E.P. Carrillo
+  - name: "Pledge Prequel"
+    brand: E.P. Carrillo
+
+  # ===== Montecristo =====
+  - name: "Classic"
+    brand: Montecristo
+  - name: "White"
+    brand: Montecristo
+  - name: "Platinum"
+    brand: Montecristo
+  - name: "1935 Anniversary"
+    brand: Montecristo
+  - name: "Espada"
+    brand: Montecristo
+  - name: "Linea 1935"
+    brand: Montecristo
+  - name: "Edmundo"
+    brand: Montecristo
+  - name: "No. 2"
+    brand: Montecristo
+
+  # ===== Romeo y Julieta =====
+  - name: "Reserva Real"
+    brand: Romeo y Julieta
+  - name: "1875"
+    brand: Romeo y Julieta
+  - name: "Vintage"
+    brand: Romeo y Julieta
+  - name: "House of Capulet"
+    brand: Romeo y Julieta
+  - name: "Linea de Oro"
+    brand: Romeo y Julieta
+  - name: "Anejados"
+    brand: Romeo y Julieta
+  - name: "Churchill"
+    brand: Romeo y Julieta
+
+  # ===== Cohiba =====
+  - name: "Behike"
+    brand: Cohiba
+  - name: "Siglo"
+    brand: Cohiba
+  - name: "Espléndidos"
+    brand: Cohiba
+  - name: "Maduro 5"
+    brand: Cohiba
+  - name: "Robustos"
+    brand: Cohiba
+  - name: "Red Dot"
+    brand: Cohiba
+  - name: "Blue"
+    brand: Cohiba
+  - name: "Black"
+    brand: Cohiba
+  - name: "Macassar"
+    brand: Cohiba
+  - name: "Royale"
+    brand: Cohiba
+
+  # ===== H. Upmann =====
+  - name: "Magnum"
+    brand: H. Upmann
+  - name: "Connoisseur"
+    brand: H. Upmann
+  - name: "AJ Fernandez"
+    brand: H. Upmann
+  - name: "1844 Reserve"
+    brand: H. Upmann
+  - name: "Vintage Cameroon"
+    brand: H. Upmann
+
+  # ===== La Aurora =====
+  - name: "1495"
+    brand: La Aurora
+  - name: "Preferidos"
+    brand: La Aurora
+  - name: "107"
+    brand: La Aurora
+  - name: "Principes"
+    brand: La Aurora
+  - name: "Cien Anos"
+    brand: La Aurora
+
+  # ===== CAO =====
+  - name: "Brazilia"
+    brand: CAO
+  - name: "Italia"
+    brand: CAO
+  - name: "America"
+    brand: CAO
+  - name: "Flathead"
+    brand: CAO
+  - name: "Pilon"
+    brand: CAO
+  - name: "MX2"
+    brand: CAO
+  - name: "Gold"
+    brand: CAO
+  - name: "Maduro"
+    brand: CAO
+  - name: "Bones"
+    brand: CAO
+
+  # ===== Camacho =====
+  - name: "Triple Maduro"
+    brand: Camacho
+  - name: "Connecticut"
+    brand: Camacho
+  - name: "Corojo"
+    brand: Camacho
+  - name: "Criollo"
+    brand: Camacho
+  - name: "American Barrel-Aged"
+    brand: Camacho
+  - name: "Ecuador"
+    brand: Camacho
+  - name: "Nicaragua Barrel-Aged"
+    brand: Camacho
+
+  # ===== Macanudo =====
+  - name: "Cafe"
+    brand: Macanudo
+  - name: "Inspirado"
+    brand: Macanudo
+  - name: "Vintage"
+    brand: Macanudo
+  - name: "Maduro"
+    brand: Macanudo
+  - name: "1968"
+    brand: Macanudo
+  - name: "Cru Royale"
+    brand: Macanudo
+
+  # ===== Punch =====
+  - name: "Gran Puro"
+    brand: Punch
+  - name: "Champion"
+    brand: Punch
+  - name: "Rare Corojo"
+    brand: Punch
+  - name: "Diablo"
+    brand: Punch
+  - name: "Knuckle Buster"
+    brand: Punch
+
+  # ===== Hoyo de Monterrey =====
+  - name: "Excalibur"
+    brand: Hoyo de Monterrey
+  - name: "Epicure"
+    brand: Hoyo de Monterrey
+  - name: "Double Corona"
+    brand: Hoyo de Monterrey
+  - name: "La Amistad"
+    brand: Hoyo de Monterrey
+
+  # ===== Partagas =====
+  - name: "Black Label"
+    brand: Partagas
+  - name: "1845"
+    brand: Partagas
+  - name: "Cifuentes"
+    brand: Partagas
+  - name: "Heritage"
+    brand: Partagas
+  - name: "Linea Maestra"
+    brand: Partagas
+  - name: "Serie D No. 4"
+    brand: Partagas
+
+  # ===== Tatuaje =====
+  - name: "Brown Label"
+    brand: Tatuaje
+  - name: "Black Label"
+    brand: Tatuaje
+  - name: "Reserva Broadleaf"
+    brand: Tatuaje
+  - name: "Cabaiguan"
+    brand: Tatuaje
+  - name: "Havana VI"
+    brand: Tatuaje
+  - name: "Monster Series"
+    brand: Tatuaje
+  - name: "El Triunfador"
+    brand: Tatuaje
+  - name: "T110"
+    brand: Tatuaje
+
+  # ===== AJ Fernandez =====
+  - name: "New World"
+    brand: AJ Fernandez
+  - name: "Enclave"
+    brand: AJ Fernandez
+  - name: "Bellas Artes"
+    brand: AJ Fernandez
+  - name: "Last Call"
+    brand: AJ Fernandez
+  - name: "Hoyo de Tradicion"
+    brand: AJ Fernandez
+
+  # ===== Plasencia =====
+  - name: "Alma Fuerte"
+    brand: Plasencia
+  - name: "Alma del Campo"
+    brand: Plasencia
+  - name: "Alma del Fuego"
+    brand: Plasencia
+  - name: "Reserva Original"
+    brand: Plasencia
+  - name: "Cosecha 146"
+    brand: Plasencia
+  - name: "Year of the Snake"
+    brand: Plasencia
+
+  # ===== Aganorsa Leaf =====
+  - name: "Aniversario Corojo"
+    brand: Aganorsa Leaf
+  - name: "Aniversario Connecticut"
+    brand: Aganorsa Leaf
+  - name: "Signature Selection"
+    brand: Aganorsa Leaf
+  - name: "Supreme Leaf"
+    brand: Aganorsa Leaf
+  - name: "JFR"
+    brand: Aganorsa Leaf
+  - name: "Rare Leaf Reserve"
+    brand: Aganorsa Leaf
+
+  # ===== Crowned Heads =====
+  - name: "Four Kicks"
+    brand: Crowned Heads
+  - name: "Headley Grange"
+    brand: Crowned Heads
+  - name: "Las Calaveras"
+    brand: Crowned Heads
+  - name: "Jericho Hill"
+    brand: Crowned Heads
+  - name: "La Imperiosa"
+    brand: Crowned Heads
+  - name: "Mil Dias"
+    brand: Crowned Heads
+
+  # ===== Illusione =====
+  - name: "Original Documents"
+    brand: Illusione
+  - name: "Epernay"
+    brand: Illusione
+  - name: "Singulare"
+    brand: Illusione
+  - name: "Rothchildes"
+    brand: Illusione
+  - name: "Haut 10"
+    brand: Illusione
+
+  # ===== Caldwell =====
+  - name: "Long Live the King"
+    brand: Caldwell
+  - name: "Eastern Standard"
+    brand: Caldwell
+  - name: "All Out Kings"
+    brand: Caldwell
+  - name: "The T"
+    brand: Caldwell
+  - name: "Anastasia"
+    brand: Caldwell
+  - name: "Blind Man's Bluff"
+    brand: Caldwell
+
+  # ===== Gurkha =====
+  - name: "Cellar Reserve"
+    brand: Gurkha
+  - name: "Ghost"
+    brand: Gurkha
+  - name: "Royal Challenge"
+    brand: Gurkha
+  - name: "Heritage"
+    brand: Gurkha
+  - name: "Master Select"
+    brand: Gurkha
+  - name: "Black Dragon"
+    brand: Gurkha
+
+  # ===== Alec Bradley =====
+  - name: "Prensado"
+    brand: Alec Bradley
+  - name: "Tempus"
+    brand: Alec Bradley
+  - name: "Black Market"
+    brand: Alec Bradley
+  - name: "Mundial"
+    brand: Alec Bradley
+  - name: "American Sun Grown"
+    brand: Alec Bradley
+  - name: "Project 40"
+    brand: Alec Bradley
+
+  # ===== La Flor Dominicana =====
+  - name: "Double Ligero"
+    brand: La Flor Dominicana
+  - name: "Andalusian Bull"
+    brand: La Flor Dominicana
+  - name: "Air Bender"
+    brand: La Flor Dominicana
+  - name: "Ligero"
+    brand: La Flor Dominicana
+  - name: "Coronado"
+    brand: La Flor Dominicana
+  - name: "Reserva Especial"
+    brand: La Flor Dominicana
+
+  # ===== San Cristobal =====
+  - name: "Elegancia"
+    brand: San Cristobal
+  - name: "Quintessence"
+    brand: San Cristobal
+  - name: "Revelation"
+    brand: San Cristobal
+  - name: "Ovation"
+    brand: San Cristobal
+  - name: "Selección del Sol"
+    brand: San Cristobal
+
+  # ===== Espinosa =====
+  - name: "Habano"
+    brand: Espinosa
+  - name: "Laranja Reserva"
+    brand: Espinosa
+  - name: "Murcielago"
+    brand: Espinosa
+  - name: "60 Aniversario"
+    brand: Espinosa
+
+  # ===== Foundation =====
+  - name: "Tabernacle"
+    brand: Foundation Cigar Co.
+  - name: "Charter Oak"
+    brand: Foundation Cigar Co.
+  - name: "Highclere Castle"
+    brand: Foundation Cigar Co.
+  - name: "El Gueguense"
+    brand: Foundation Cigar Co.
+  - name: "Olmec"
+    brand: Foundation Cigar Co.
+  - name: "Aksum"
+    brand: Foundation Cigar Co.
+  - name: "Wise Man"
+    brand: Foundation Cigar Co.
+
+  # ===== Warped =====
+  - name: "La Colmena"
+    brand: Warped
+  - name: "Flor del Valle"
+    brand: Warped
+  - name: "Maestro del Tiempo"
+    brand: Warped
+  - name: "Don Reco"
+    brand: Warped
+  - name: "Sin Compromiso"
+    brand: Warped
+
+  # ===== Dunbarton =====
+  - name: "Sobremesa"
+    brand: Dunbarton Tobacco & Trust
+  - name: "Mi Querida"
+    brand: Dunbarton Tobacco & Trust
+  - name: "Muestra de Saka"
+    brand: Dunbarton Tobacco & Trust
+  - name: "Todos Las Dias"
+    brand: Dunbarton Tobacco & Trust
+  - name: "Sin Compromiso"
+    brand: Dunbarton Tobacco & Trust
+
+  # ===== Joya de Nicaragua =====
+  - name: "Antano"
+    brand: Joya de Nicaragua
+  - name: "Antano Dark Corojo"
+    brand: Joya de Nicaragua
+  - name: "Cabinetta"
+    brand: Joya de Nicaragua
+  - name: "CyB"
+    brand: Joya de Nicaragua
+  - name: "Numero Uno"
+    brand: Joya de Nicaragua
+  - name: "Black"
+    brand: Joya de Nicaragua
+
+  # ===== Cromagnon (RoMa Craft) =====
+  - name: "Cromagnon"
+    brand: RoMa Craft Tobac
+  - name: "Aquitaine"
+    brand: RoMa Craft Tobac
+  - name: "Intemperance"
+    brand: RoMa Craft Tobac
+  - name: "Neanderthal"
+    brand: RoMa Craft Tobac
+  - name: "Wunder|Lust"
+    brand: RoMa Craft Tobac
+
+  # ===== Hiram & Solomon =====
+  - name: "Master Mason"
+    brand: Hiram & Solomon
+  - name: "Venerable Master"
+    brand: Hiram & Solomon
+  - name: "Treasured Member"
+    brand: Hiram & Solomon
+
+  # ===== La Gloria Cubana =====
+  - name: "Serie R"
+    brand: La Gloria Cubana
+  - name: "Serie N"
+    brand: La Gloria Cubana
+  - name: "Esteli"
+    brand: La Gloria Cubana
+  - name: "Spanish Press"
+    brand: La Gloria Cubana
+  - name: "Wavell"
+    brand: La Gloria Cubana
+
+  # ===== Trinidad =====
+  - name: "Fundadores"
+    brand: Trinidad
+  - name: "Reyes"
+    brand: Trinidad
+  - name: "Espiritu"
+    brand: Trinidad
+  - name: "Vigia"
+    brand: Trinidad
+
+  # ===== Cuesta-Rey =====
+  - name: "Centennial Collection"
+    brand: Cuesta-Rey
+  - name: "Centro Fino Sungrown"
+    brand: Cuesta-Rey
+  - name: "Cabinet Selection"
+    brand: Cuesta-Rey
+
+  # ===== Diamond Crown =====
+  - name: "Maximus"
+    brand: Diamond Crown
+  - name: "Julius Caeser"
+    brand: Diamond Crown
+  - name: "Black Diamond"
+    brand: Diamond Crown
+  - name: "Classic"
+    brand: Diamond Crown
+
+  # ===== God of Fire =====
+  - name: "Serie B"
+    brand: God of Fire
+  - name: "Don Carlos"
+    brand: God of Fire
+  - name: "KK"
+    brand: God of Fire
+
+  # ===== Nub (Oliva) =====
+  - name: "Nub Cafe"
+    brand: Nub
+  - name: "Nub Connecticut"
+    brand: Nub
+  - name: "Nub Habano"
+    brand: Nub
+  - name: "Nub Maduro"
+    brand: Nub
+  - name: "Nub Sumatra"
+    brand: Nub
+
+  # ===== Quesada =====
+  - name: "Oktoberfest"
+    brand: Quesada
+  - name: "Espana"
+    brand: Quesada
+  - name: "Q d'etat"
+    brand: Quesada
+  - name: "40th Anniversary"
+    brand: Quesada
+
+  # ===== Casa Magna =====
+  - name: "Colorado"
+    brand: Casa Magna
+  - name: "Domus Magnus"
+    brand: Casa Magna
+  - name: "Oscuro"
+    brand: Casa Magna
+
+  # ===== Crux =====
+  - name: "Du Connoisseur"
+    brand: Crux
+  - name: "Epicure"
+    brand: Crux
+  - name: "Limitada"
+    brand: Crux
+  - name: "Skeeterz"
+    brand: Crux
+
+  # ===== Padilla =====
+  - name: "Miami"
+    brand: Padilla
+  - name: "Connecticut"
+    brand: Padilla
+  - name: "Habano"
+    brand: Padilla
+  - name: "Series '68"
+    brand: Padilla
+
+  # ===== 601 =====
+  - name: "Red Label"
+    brand: "601"
+  - name: "Blue Label"
+    brand: "601"
+  - name: "Green Label"
+    brand: "601"
+  - name: "La Bomba"
+    brand: "601"
+
+  # ===== Saint Luis Rey =====
+  - name: "Carenas"
+    brand: Saint Luis Rey
+  - name: "Genios"
+    brand: Saint Luis Rey
+  - name: "Serie G"
+    brand: Saint Luis Rey
+
+  # ===== Brick House (J.C. Newman) =====
+  - name: "Maduro"
+    brand: Brick House
+  - name: "Mighty Mighty"
+    brand: Brick House
+  - name: "Connecticut"
+    brand: Brick House
+  - name: "Fumas"
+    brand: Brick House
+
+  # ===== Boveda / Box-Pressed boutique brands (selection) =====
+
+  # ===== Casa Turrent =====
+  - name: "1942"
+    brand: Casa Turrent
+  - name: "1973"
+    brand: Casa Turrent
+  - name: "1880"
+    brand: Casa Turrent
+  - name: "1901"
+    brand: Casa Turrent
+
+  # ===== HVC =====
+  - name: "Black Friday"
+    brand: HVC
+  - name: "Pan Caliente"
+    brand: HVC
+  - name: "La Rosa 520"
+    brand: HVC
+  - name: "Cerro"
+    brand: HVC
+
+  # ===== Tatuaje (additional notable) =====
+  # already covered above
+
+  # ===== Punch (additional notable lines) =====
+  # already covered
+
+  # ===== Aladino =====
+  - name: "Cameroon"
+    brand: Aladino
+  - name: "Habano"
+    brand: Aladino
+  - name: "Maduro"
+    brand: Aladino
+  - name: "Vintage Selection"
+    brand: Aladino
+  - name: "Corojo Reserva"
+    brand: Aladino
+
+  # ===== Black Label Trading Co. =====
+  - name: "Last Rites"
+    brand: Black Label Trading Co.
+  - name: "Salvation"
+    brand: Black Label Trading Co.
+  - name: "Bishops Blend"
+    brand: Black Label Trading Co.
+  - name: "Royalty"
+    brand: Black Label Trading Co.
+  - name: "Redemption"
+    brand: Black Label Trading Co.

@@ -16,7 +16,12 @@ class Cigar(Base, UUIDPrimaryKey, TimestampMixin):
     community_id = Column(UUID(as_uuid=True), nullable=True)
     user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
     brand_id = Column(UUID(as_uuid=True), ForeignKey("brands.id"), nullable=False)
-    line = Column(String(200), nullable=True)
+    line_id = Column(
+        UUID(as_uuid=True),
+        ForeignKey("lines.id", ondelete="SET NULL"),
+        nullable=True,
+        index=True,
+    )
     vitola_id = Column(UUID(as_uuid=True), ForeignKey("vitolas.id"), nullable=True)
     custom_vitola_name = Column(String(100), nullable=True)
     custom_length = Column(Numeric(3, 1), nullable=True)
@@ -33,6 +38,7 @@ class Cigar(Base, UUIDPrimaryKey, TimestampMixin):
 
     user = relationship("User")
     brand = relationship("Brand")
+    line = relationship("Line", lazy="joined", foreign_keys=[line_id])
     vitola = relationship("Vitola")
     wrapper = relationship("Wrapper")
     binder = relationship("Binder")

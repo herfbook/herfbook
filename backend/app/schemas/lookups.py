@@ -42,6 +42,16 @@ class BrandCreate(BaseModel):
     website: Optional[str] = Field(None, max_length=500)
 
 
+class LineResponse(LookupBase):
+    brand_id: Optional[UUID] = None
+    brand_name: Optional[str] = None
+
+
+class LineCreate(BaseModel):
+    name: str = Field(..., min_length=1, max_length=200)
+    brand_id: UUID
+
+
 class VitolaResponse(LookupBase):
     length_inches: Optional[float] = None
     ring_gauge: Optional[int] = None

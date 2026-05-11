@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, Numeric, String
+from sqlalchemy import Column, Index, Integer, Numeric, String, UniqueConstraint
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
@@ -25,6 +25,37 @@ class Brand(Base, UUIDPrimaryKey, CommunityLookupMixin):
     website = Column(String(500), nullable=True)
 
     manufacturer = relationship("Manufacturer", back_populates="brands")
+    lines = relationship(
+        "Line",
+        back_populates="brand",
+        cascade="save-update, merge",
+    )
+
+
+class Line(Base, UUIDPrimaryKey, CommunityLookupMixin):
+    """Cigar line within a brand (e.g., 1964 Anniversary, Hemingway).
+
+    Community-managed lookup table scoped by brand FK. The (name, brand_id)
+    combination is unique — the same line name may exist across different
+    brands (multiple brands have "Connecticut", "Maduro", etc.).
+    """
+
+    __tablename__ = "lines"
+
+    __table_args__ = (
+        UniqueConstraint("name", "brand_id", name="uq_lines_name_brand"),
+        Index("ix_lines_brand_id_name", "brand_id", "name"),
+    )
+
+    name = Column(String(200), nullable=False)
+    brand_id = Column(
+        UUID(as_uuid=True),
+        ForeignKey("brands.id", ondelete="SET NULL"),
+        nullable=True,
+        index=True,
+    )
+
+    brand = relationship("Brand", back_populates="lines", lazy="joined")
 
 
 class Vitola(Base, UUIDPrimaryKey, CommunityLookupMixin):

@@ -224,7 +224,7 @@ async def get_humidor(
             inventory_id=inv.id,
             cigar_id=inv.cigar_id,
             brand_name=inv.cigar.brand.name,
-            line=inv.cigar.line,
+            line_name=inv.cigar.line.name if inv.cigar.line else None,
             vitola_name=(
                 inv.cigar.vitola.name if inv.cigar.vitola else inv.cigar.custom_vitola_name
             ),

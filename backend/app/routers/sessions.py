@@ -101,7 +101,7 @@ def _build_session_response(s: SmokingSession) -> SessionResponse:
         flavor_tags=[_build_flavor_tag_response(sft) for sft in s.flavor_tags],
         pairings=[_build_pairing_response(p) for p in s.pairings],
         cigar_brand=s.cigar.brand.name if s.cigar and s.cigar.brand else None,
-        cigar_line=s.cigar.line if s.cigar else None,
+        cigar_line=s.cigar.line.name if s.cigar and s.cigar.line else None,
         cigar_vitola=_cigar_vitola(s.cigar),
     )
 
@@ -115,7 +115,7 @@ def _build_session_list_item(s: SmokingSession) -> SessionListResponse:
         personal_rating=s.personal_rating,
         would_buy_again=s.would_buy_again,
         cigar_brand=s.cigar.brand.name if s.cigar and s.cigar.brand else None,
-        cigar_line=s.cigar.line if s.cigar else None,
+        cigar_line=s.cigar.line.name if s.cigar and s.cigar.line else None,
         cigar_vitola=_cigar_vitola(s.cigar),
         created_at=s.created_at,
     )

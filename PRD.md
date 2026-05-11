@@ -38,6 +38,7 @@ Reference DESIGN.md for architecture decisions, data model, schema, and technica
 - [x] CommunityDataProvider interface
 - [x] LocalYAMLProvider implementation (M1; M2 will add a remote/GitHub variant)
 - [x] Community sync on startup (lifespan hook; non-fatal)
+- [x] Lines as community lookup table with brand FK (BE-02)
 
 ### Epic 3: Authentication & Users
 
