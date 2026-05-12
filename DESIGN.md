@@ -181,7 +181,7 @@ The following fields are standardized as community-maintained lookup lists rathe
 
 | YAML File | Priority | Description |
 |---|---|---|
-| `brands.yml` | M1 — Ship | Cigar brand names with manufacturer FK, country, website, active status. The largest and most important list. (e.g., Padron, Arturo Fuente, Oliva, Drew Estate, My Father, Liga Privada) |
+| `brands.yml` | M1 — Ship | ~116 normalized parent brands (BE-03) with manufacturer FK, country, website, active status. Only true parent brands — brand+line combos were demoted to `source="local"` once the `lines.yml` lookup landed. (e.g., Padron, Arturo Fuente, Oliva, Drew Estate, My Father, Cohiba, Montecristo). |
 | `lines.yml` | M1 — Shipped (BE-02) | Brand-scoped cigar lines (e.g., 1964 Anniversary, Liga Privada No. 9, Hemingway). Unique by `(name, brand_id)`. Initial seed of ~350 canonical lines covering ~55 well-known brands; users add their own via the lookup combobox. |
 | `manufacturers.yml` | M1 — Ship | Parent companies that own/produce brands. One manufacturer → many brands. (e.g., General Cigar Co., Altadis USA, Scandinavian Tobacco Group, Padrón Cigars S.A.) |
 | `vitolas.yml` | M1 — Ship | Standard shape/size combinations. Each entry includes name, length (inches), ring gauge, and shape category (parejo or figurado). Ring gauge is a property of a vitola, not a standalone list. (e.g., Robusto 5×50, Toro 6×50, Churchill 7×48, Corona 5.5×42, Lancero 7.5×38, Gordo 6×60, Torpedo, Belicoso, Perfecto) |
@@ -1101,6 +1101,8 @@ For cigars without UPCs, a vision model (Anthropic API) identifies band photos. 
 | **AGPL-3.0 for Code** | Strong copyleft with network-use protection. Prevents closed-source competing hosted services while keeping self-hosted fully free. |
 | **CC BY-SA 4.0 for Data** | Matches Wikipedia seed license. Keeps community data open and reusable. |
 | **Link-First for Reviews** | Community DB stores URLs to reviews, never scores or text. Zero legal risk, drives traffic to publications. |
+
+**BE-03 Cleanup (May 2026):** Initial `brands.yml` had ~28 entries that were really brand+line combos (e.g., "Padron 1964 Anniversary Series", "Drew Estate Liga Privada T52", "Oliva Serie V Melanio"). These were demoted to `source="local"` and the actual parent brands ("Padron", "Oliva", "Drew Estate", Cohiba/Romeo y Julieta/Hoyo de Monterrey/Montecristo/H. Upmann/Punch/Trinidad with Cuban+Non-Cuban variants, La Aurora, Crowned Heads, etc.) were added so the lines lookup table (BE-02) could FK-resolve cleanly. Post-cleanup: `lines.skipped = 0`, `lines.brand_id IS NULL = 0`.
 
 ---
 

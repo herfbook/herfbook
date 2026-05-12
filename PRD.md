@@ -39,6 +39,7 @@ Reference DESIGN.md for architecture decisions, data model, schema, and technica
 - [x] LocalYAMLProvider implementation (M1; M2 will add a remote/GitHub variant)
 - [x] Community sync on startup (lifespan hook; non-fatal)
 - [x] Lines as community lookup table with brand FK (BE-02)
+- [x] Brand data normalization: removed flattened brand+line combos from brands.yml; added missing parent brands so lines lookup resolves 100% (BE-03)
 
 ### Epic 3: Authentication & Users
 
