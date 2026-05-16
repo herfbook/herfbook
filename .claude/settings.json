@@ -80,7 +80,18 @@
       "PowerShell($idx = \\(curl.exe -s http://127.0.0.1:8080/\\) -join \"`n\"; \"INDEX_FIRST_500:\"; $idx.Substring\\(0, [Math]::Min\\(500, $idx.Length\\)\\); \"---\"; if \\($idx -match 'src=\"\\(/assets/index-[^\"]+\\\\.js\\)\"'\\) { $jsUrl = $matches[1]; \"JS_URL=$jsUrl\"; curl.exe -s -o NUL -w \"JS_HTTP=%{http_code} JS_SIZE=%{size_download}`n\" \"http://127.0.0.1:8080$jsUrl\" } else { \"NO_JS_REF \\(placeholder being served\\)\" })",
       "Bash(git -C /c/projects/herfbook add CHANGELOG.md docker-compose.dev.yml frontend/README.md)",
       "Bash(git -C /c/projects/herfbook log -1 --format='%H')",
-      "Bash(git -C /c/projects/herfbook log -3 --oneline)"
+      "Bash(git -C /c/projects/herfbook log -3 --oneline)",
+      "Bash(where.exe npm *)",
+      "PowerShell(Get-Command npm -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Command node -ErrorAction SilentlyContinue)",
+      "PowerShell($env:Path)",
+      "PowerShell(docker run --rm -v \"${PWD}/frontend:/app\" -w /app node:20-alpine sh -c \"if [ ! -d node_modules ]; then npm install --silent --no-audit --no-fund 2>&1 | tail -5; fi; echo '--TYPECHECK--'; npx tsc -p tsconfig.app.json --noEmit 2>&1\" 2>&1 | Select-Object -Last 200)",
+      "PowerShell(docker run --rm -v \"${PWD}/frontend:/app\" -w /app node:20-alpine sh -c \"npx tsc -p tsconfig.app.json --noEmit 2>&1 | head -100\" 2>&1)",
+      "PowerShell(docker run --rm -v \"${PWD}/frontend:/app\" -w /app node:20-alpine sh -c \"npx tsc -p tsconfig.app.json --noEmit 2>&1 | grep -E '^src' | head -50\" 2>&1)",
+      "PowerShell(docker run --rm -v \"${PWD}/frontend:/app\" -w /app node:20-alpine sh -c \"npx tsc -p tsconfig.app.json --noEmit 2>&1; echo '---EXIT---'; echo \\\\$?\" 2>&1)",
+      "PowerShell(docker run --rm -v \"${PWD}/frontend:/app\" -w /app node:20-alpine sh -c 'npx tsc -p tsconfig.app.json --noEmit; rc=$?; echo \"---TSC EXITED WITH $rc---\"' 2>&1)",
+      "PowerShell(docker run --rm -v \"${PWD}/frontend:/app\" -w /app node:20-alpine sh -c 'npx tsc -p tsconfig.app.json --noEmit > /app/.tsc-out 2>&1; echo \"exit=$?\"; cat /app/.tsc-out | tail -200; rm -f /app/.tsc-out')",
+      "PowerShell(docker run --rm -v \"${PWD}/frontend:/app\" -w /app node:20-alpine sh -c 'npm run build > /app/.build-out 2>&1; echo \"exit=$?\"; tail -80 /app/.build-out; rm -f /app/.build-out')"
     ],
     "additionalDirectories": [
       "C:\\projects\\herfbook\\backend",
